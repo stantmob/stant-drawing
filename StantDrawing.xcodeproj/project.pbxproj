@@ -10,6 +10,8 @@
 		070735561F096E8200E675C6 /* StantDrawing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0707354C1F096E8200E675C6 /* StantDrawing.framework */; };
 		0707355B1F096E8200E675C6 /* StantDrawingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0707355A1F096E8200E675C6 /* StantDrawingTests.swift */; };
 		0707355D1F096E8200E675C6 /* StantDrawing.h in Headers */ = {isa = PBXBuildFile; fileRef = 0707354F1F096E8200E675C6 /* StantDrawing.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		406B4BF4AFD8FBD1CF2DB076 /* Pods_StantDrawingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184F3DF706D22E4D486DA2E1 /* Pods_StantDrawingTests.framework */; };
+		6DCDA6EDCA5A700F03B65380 /* Pods_StantDrawing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3F3CEF0AA9EC8A615988A /* Pods_StantDrawing.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +25,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06DE2A065D2F15797CBBE2FC /* Pods-StantDrawingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StantDrawingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-StantDrawingTests/Pods-StantDrawingTests.release.xcconfig"; sourceTree = "<group>"; };
 		0707354C1F096E8200E675C6 /* StantDrawing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StantDrawing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0707354F1F096E8200E675C6 /* StantDrawing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StantDrawing.h; sourceTree = "<group>"; };
 		070735501F096E8200E675C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		070735551F096E8200E675C6 /* StantDrawingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StantDrawingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0707355A1F096E8200E675C6 /* StantDrawingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StantDrawingTests.swift; sourceTree = "<group>"; };
 		0707355C1F096E8200E675C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		184F3DF706D22E4D486DA2E1 /* Pods_StantDrawingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StantDrawingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3037F8E8A2B773AC75A74BF4 /* Pods-StantDrawing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StantDrawing.release.xcconfig"; path = "Pods/Target Support Files/Pods-StantDrawing/Pods-StantDrawing.release.xcconfig"; sourceTree = "<group>"; };
+		7368C2565A1BE2C0CD7CC0C8 /* Pods-StantDrawingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StantDrawingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StantDrawingTests/Pods-StantDrawingTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8CA3F3CEF0AA9EC8A615988A /* Pods_StantDrawing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StantDrawing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCF1C08A2F28128B91DA0749 /* Pods-StantDrawing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StantDrawing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StantDrawing/Pods-StantDrawing.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DCDA6EDCA5A700F03B65380 /* Pods_StantDrawing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +53,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				070735561F096E8200E675C6 /* StantDrawing.framework in Frameworks */,
+				406B4BF4AFD8FBD1CF2DB076 /* Pods_StantDrawingTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,6 +66,8 @@
 				0707354E1F096E8200E675C6 /* StantDrawing */,
 				070735591F096E8200E675C6 /* StantDrawingTests */,
 				0707354D1F096E8200E675C6 /* Products */,
+				2D7829452DA1CEB507E7D9DA /* Pods */,
+				F7624C5A646C08F78D6FD279 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,6 +98,26 @@
 			path = StantDrawingTests;
 			sourceTree = "<group>";
 		};
+		2D7829452DA1CEB507E7D9DA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FCF1C08A2F28128B91DA0749 /* Pods-StantDrawing.debug.xcconfig */,
+				3037F8E8A2B773AC75A74BF4 /* Pods-StantDrawing.release.xcconfig */,
+				7368C2565A1BE2C0CD7CC0C8 /* Pods-StantDrawingTests.debug.xcconfig */,
+				06DE2A065D2F15797CBBE2FC /* Pods-StantDrawingTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F7624C5A646C08F78D6FD279 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8CA3F3CEF0AA9EC8A615988A /* Pods_StantDrawing.framework */,
+				184F3DF706D22E4D486DA2E1 /* Pods_StantDrawingTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -104,10 +136,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 070735601F096E8200E675C6 /* Build configuration list for PBXNativeTarget "StantDrawing" */;
 			buildPhases = (
+				765C66C3244BB9486C6EA721 /* [CP] Check Pods Manifest.lock */,
 				070735471F096E8200E675C6 /* Sources */,
 				070735481F096E8200E675C6 /* Frameworks */,
 				070735491F096E8200E675C6 /* Headers */,
 				0707354A1F096E8200E675C6 /* Resources */,
+				19FEC3898A31BA9AB7545B7F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -122,9 +156,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 070735631F096E8200E675C6 /* Build configuration list for PBXNativeTarget "StantDrawingTests" */;
 			buildPhases = (
+				D6263247C4B787E15B609A55 /* [CP] Check Pods Manifest.lock */,
 				070735511F096E8200E675C6 /* Sources */,
 				070735521F096E8200E675C6 /* Frameworks */,
 				070735531F096E8200E675C6 /* Resources */,
+				3EA20218A52FEA93473A38A8 /* [CP] Embed Pods Frameworks */,
+				8AEBF82E55148BFB2A570AA3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -192,6 +229,84 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		19FEC3898A31BA9AB7545B7F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StantDrawing/Pods-StantDrawing-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3EA20218A52FEA93473A38A8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StantDrawingTests/Pods-StantDrawingTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		765C66C3244BB9486C6EA721 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8AEBF82E55148BFB2A570AA3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StantDrawingTests/Pods-StantDrawingTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D6263247C4B787E15B609A55 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		070735471F096E8200E675C6 /* Sources */ = {
@@ -323,6 +438,7 @@
 		};
 		070735611F096E8200E675C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCF1C08A2F28128B91DA0749 /* Pods-StantDrawing.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -342,6 +458,7 @@
 		};
 		070735621F096E8200E675C6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3037F8E8A2B773AC75A74BF4 /* Pods-StantDrawing.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
@@ -361,6 +478,7 @@
 		};
 		070735641F096E8200E675C6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7368C2565A1BE2C0CD7CC0C8 /* Pods-StantDrawingTests.debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = SWAFF648KE;
 				INFOPLIST_FILE = StantDrawingTests/Info.plist;
@@ -373,6 +491,7 @@
 		};
 		070735651F096E8200E675C6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06DE2A065D2F15797CBBE2FC /* Pods-StantDrawingTests.release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = SWAFF648KE;
 				INFOPLIST_FILE = StantDrawingTests/Info.plist;
