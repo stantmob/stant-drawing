@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ACEDrawingTools.h"
+#import "ACEDrawingView.h"
 
 //! Project version number for StantDrawing.
 FOUNDATION_EXPORT double StantDrawingVersionNumber;
@@ -15,5 +17,3 @@ FOUNDATION_EXPORT double StantDrawingVersionNumber;
 FOUNDATION_EXPORT const unsigned char StantDrawingVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <StantDrawing/PublicHeader.h>
-
-
