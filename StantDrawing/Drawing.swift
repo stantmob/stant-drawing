@@ -11,6 +11,7 @@ import Foundation
 public class Drawing {
     public var delegate: DrawingDelegate?
     var drawingView: ACEDrawingView = ACEDrawingView.init()
+    let zoomScrollView: UIScrollView
     let contentDrawing: UIView
     let drawingFrame: CGRect
     let brushColor: UIColor
@@ -22,6 +23,9 @@ public class Drawing {
         self.drawingFrame     = contentDrawing.frame
         self.brushColor       = brushColor
         self.placeholderImage = placeholderImage
+        self.zoomScrollView   = UIScrollView.init(frame: self.drawingFrame)
+        
+        self.zoomScrollView.bouncesZoom = true
         
         self.brushToolView = BrushToolView.instanceFromNib()
         var widthBase  = self.drawingFrame.width
@@ -51,7 +55,8 @@ public class Drawing {
             self.contentDrawing.addSubview(imageView)
         }
         
-        self.contentDrawing.addSubview(drawingView)
+        self.zoomScrollView.addSubview(drawingView)
+        self.contentDrawing.addSubview(zoomScrollView)
         self.contentDrawing.addSubview(self.brushToolView)
         
         disableUserInteractionOnDrawingView()
