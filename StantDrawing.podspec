@@ -89,7 +89,7 @@ Pod::Spec.new do |s|
   #
 
   s.source_files  = "StantDrawing", "StantDrawing/**/*.{h,m}", "StantDrawing/**/*.swift"
-  s.exclude_files = "Classes/Exclude"
+  #s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
 
@@ -104,6 +104,10 @@ Pod::Spec.new do |s|
 
   # s.resource  = "icon.png"
   # s.resources = "Resources/*.png"
+  #s.resources = 'StantDrawing/**/*.{storyboard,xib}'
+  s.resource_bundle = {
+    s.name => 'StantDrawing/BrushTool/*.{xib}'
+  }
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
@@ -127,7 +131,7 @@ Pod::Spec.new do |s|
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  # s.requires_arc = true
+   #s.requires_arc = true
 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
   # s.dependency "JSONKit", "~> 1.4"
