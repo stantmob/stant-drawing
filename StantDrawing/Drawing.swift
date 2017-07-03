@@ -9,34 +9,54 @@
 import Foundation
 
 public class Drawing {
+    public var delegate: DrawingDelegate?
+    var drawingView: ACEDrawingView = ACEDrawingView.init()
     let contentDrawing: UIView
-    public let drawingView: ACEDrawingView
     let drawingFrame: CGRect
     let brushColor: UIColor
     let brushToolView: BrushToolView
+    let placeholderImage: UIImage
     
-    public init(contentDrawing: UIView, brushColor: UIColor) {
-        self.contentDrawing = contentDrawing
-        self.drawingFrame   = contentDrawing.frame
-        self.brushColor     = brushColor
+    public init(contentDrawing: UIView, brushColor: UIColor, drawingImageToLoad: UIImage = UIImage(), placeholderImage: UIImage = UIImage()) {
+        self.contentDrawing   = contentDrawing
+        self.drawingFrame     = contentDrawing.frame
+        self.brushColor       = brushColor
+        self.placeholderImage = placeholderImage
         
         self.brushToolView = BrushToolView.instanceFromNib()
+        var widthBase  = self.drawingFrame.width
+        var heightBase = self.drawingFrame.height
         
-        let width  = self.drawingFrame.width - self.brushToolView.frame.width
-        let height = self.drawingFrame.height
+        if isValid(image: placeholderImage) {
+            widthBase  = placeholderImage.size.width
+            heightBase = placeholderImage.size.height
+        }
+        
+        let width  = widthBase - self.brushToolView.frame.width
+        let height = heightBase
         let x      = self.drawingFrame.origin.x + self.brushToolView.frame.width
         let y      = self.drawingFrame.origin.y
         let frame = CGRect.init(x: x, y: y, width: width, height: height)
         
         self.drawingView = ACEDrawingView(frame: frame)
+        if isValid(image: drawingImageToLoad) {
+            self.drawingView.loadImage(drawingImageToLoad)
+        }
         
         self.brushToolView.delegate = self
+        
+        if isValid(image: placeholderImage) {
+           let imageView = UIImageView(image: placeholderImage)
+            imageView.frame = frame
+            self.contentDrawing.addSubview(imageView)
+        }
         
         self.contentDrawing.addSubview(drawingView)
         self.contentDrawing.addSubview(self.brushToolView)
         
         disableUserInteractionOnDrawingView()
     }
+    
     
     // MARK: Enable/Disable UserInteraction on DrawingView
     
@@ -46,6 +66,12 @@ public class Drawing {
     
     func enableUserInteractionOnDrawingView() {
         self.drawingView.isUserInteractionEnabled = true
+    }
+    
+    // MARK: Private methods
+    
+    private func isValid(image: UIImage) -> Bool {
+        return image.size.width > 0 && image.size.height > 0
     }
     
 }
@@ -68,8 +94,6 @@ extension Drawing: BrushToolContract {
         drawingView.lineWidth = 10.0
         drawingView.lineAlpha = 0.5
         drawingView.lineColor = brushColor
-        
-//        zoomView?.shouldStopDragAndScroll(false)
     }
     
     func undo(){
@@ -83,10 +107,11 @@ extension Drawing: BrushToolContract {
     }
     
     func save(){
-        self.drawingView.removeFromSuperview()
+        let drawingImage = self.drawingView.image!
+        delegate?.save(drawingImage: drawingImage)
     }
     
     func cancel(){
-        self.drawingView.removeFromSuperview()
+        delegate?.cancel()
     }
 }

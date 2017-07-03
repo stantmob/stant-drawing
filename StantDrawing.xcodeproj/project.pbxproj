@@ -17,6 +17,7 @@
 		070735931F09EC1200E675C6 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070735921F09EC1200E675C6 /* Drawing.swift */; };
 		070735961F09F32600E675C6 /* BrushToolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070735951F09F32600E675C6 /* BrushToolView.swift */; };
 		070735981F09F43A00E675C6 /* BrushToolView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 070735971F09F43A00E675C6 /* BrushToolView.xib */; };
+		078F3A441F0A883300431451 /* DrawingContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078F3A431F0A883300431451 /* DrawingContract.swift */; };
 		07F9C3861F09F7FE00E8A4F6 /* BrushToolContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9C3851F09F7FE00E8A4F6 /* BrushToolContract.swift */; };
 		406B4BF4AFD8FBD1CF2DB076 /* Pods_StantDrawingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184F3DF706D22E4D486DA2E1 /* Pods_StantDrawingTests.framework */; };
 		6DCDA6EDCA5A700F03B65380 /* Pods_StantDrawing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3F3CEF0AA9EC8A615988A /* Pods_StantDrawing.framework */; };
@@ -47,6 +48,7 @@
 		070735921F09EC1200E675C6 /* Drawing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drawing.swift; sourceTree = "<group>"; };
 		070735951F09F32600E675C6 /* BrushToolView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrushToolView.swift; sourceTree = "<group>"; };
 		070735971F09F43A00E675C6 /* BrushToolView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrushToolView.xib; sourceTree = "<group>"; };
+		078F3A431F0A883300431451 /* DrawingContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingContract.swift; sourceTree = "<group>"; };
 		07F9C3851F09F7FE00E8A4F6 /* BrushToolContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrushToolContract.swift; sourceTree = "<group>"; };
 		184F3DF706D22E4D486DA2E1 /* Pods_StantDrawingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StantDrawingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3037F8E8A2B773AC75A74BF4 /* Pods-StantDrawing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StantDrawing.release.xcconfig"; path = "Pods/Target Support Files/Pods-StantDrawing/Pods-StantDrawing.release.xcconfig"; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				070735921F09EC1200E675C6 /* Drawing.swift */,
+				078F3A431F0A883300431451 /* DrawingContract.swift */,
 				070735941F09F30400E675C6 /* BrushTool */,
 				070735661F096F6500E675C6 /* Vendors */,
 				0707354F1F096E8200E675C6 /* StantDrawing.h */,
@@ -325,7 +328,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		8AEBF82E55148BFB2A570AA3 /* [CP] Copy Pods Resources */ = {
@@ -355,7 +358,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -369,6 +372,7 @@
 				070735961F09F32600E675C6 /* BrushToolView.swift in Sources */,
 				07F9C3861F09F7FE00E8A4F6 /* BrushToolContract.swift in Sources */,
 				0707356F1F096F9300E675C6 /* ACEDrawingView.m in Sources */,
+				078F3A441F0A883300431451 /* DrawingContract.swift in Sources */,
 				070735931F09EC1200E675C6 /* Drawing.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
