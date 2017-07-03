@@ -61,8 +61,6 @@ public class BrushToolView: UIView {
             self.delegate?.save()
         }))
         UIApplication.shared.keyWindow?.rootViewController!.topMostViewController().present(alert, animated: true, completion: nil)
-//        UIApplication.shared.keyWindow?.subviews.last?.present(alert, animated: true, completion: nil)
-//        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func cancel(_ sender: Any) {
@@ -73,30 +71,6 @@ public class BrushToolView: UIView {
             self.delegate?.cancel()
         }))
         UIApplication.shared.keyWindow?.rootViewController!.topMostViewController().present(alert, animated: true, completion: nil)
-//        UIApplication.shared.keyWindow?.subviews.last?.present(alert, animated: true, completion: nil)
-//        UIApplication.shared.keyWindow?.rootViewController?.present(alert, animated: true, completion: nil)
     }
 }
 
-extension UIViewController {
-    func topMostViewController() -> UIViewController {
-        // Handling Modal views
-        if let presentedViewController = self.presentedViewController {
-            return presentedViewController.topMostViewController()
-        }
-            // Handling UIViewController's added as subviews to some other views.
-        else {
-            for view in self.view.subviews
-            {
-                // Key property which most of us are unaware of / rarely use.
-                if let subViewController = view.next {
-                    if subViewController is UIViewController {
-                        let viewController = subViewController as! UIViewController
-                        return viewController.topMostViewController()
-                    }
-                }
-            }
-            return self
-        }
-    }
-}
