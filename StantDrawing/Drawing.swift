@@ -25,9 +25,7 @@ public class Drawing {
         self.drawingFrame     = contentDrawing.frame
         self.brushColor       = brushColor
         self.placeholderImage = placeholderImage
-        self.zoomScrollView   = UIScrollView.init(frame: self.drawingFrame)
         
-        self.zoomScrollView.bouncesZoom = true
         
         self.brushToolView = BrushToolView.instanceFromNib()
         let widthBase  = self.drawingFrame.width
@@ -45,6 +43,10 @@ public class Drawing {
         let y      = self.drawingFrame.origin.y
         let frame = CGRect.init(x: x, y: y, width: width, height: height)
         
+        self.zoomScrollView   = UIScrollView.init(frame: frame)
+        self.zoomScrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.zoomScrollView.bouncesZoom = true
+        
         self.drawingView = ACEDrawingView(frame: frame)
         
         if isValid(image: drawingImageToLoad) {
@@ -56,14 +58,16 @@ public class Drawing {
         if isValid(image: placeholderImage) {
            let imageView = UIImageView(image: placeholderImage)
             imageView.frame = frame
-            self.contentDrawing.addSubview(imageView)
+//            self.contentDrawing.addSubview(imageView)
+            self.zoomScrollView.addSubview(imageView)
         }
         
         self.zoomScrollView.addSubview(drawingView)
         self.contentDrawing.addSubview(zoomScrollView)
-        self.contentDrawing.addSubview(self.brushToolView)
+        self.contentDrawing.addSubview(brushToolView)
         
-        disableUserInteractionOnDrawingView()
+        enableUserInteractionOnDrawingView()
+//        disableUserInteractionOnDrawingView()
     }
     
     
@@ -94,6 +98,12 @@ public class Drawing {
     }
     
 }
+
+//extension Drawing: UIScrollViewDelegate {
+//    public func viewForZoomingInScrollView(scrollView: UIScrollView!) -> UIView! {
+//        return self.drawingView
+//    }
+//}
 
 extension UIScrollView {
     
