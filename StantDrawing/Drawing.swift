@@ -6,7 +6,9 @@
 //  Copyright © 2017 Stant. All rights reserved.
 //
 
+import UIKit
 import Foundation
+import SystemConfiguration
 
 public class Drawing {
     public var delegate: DrawingDelegate?
@@ -28,21 +30,23 @@ public class Drawing {
         self.zoomScrollView.bouncesZoom = true
         
         self.brushToolView = BrushToolView.instanceFromNib()
-        var widthBase  = self.drawingFrame.width
-        var heightBase = self.drawingFrame.height
+        let widthBase  = self.drawingFrame.width
+        let heightBase = self.drawingFrame.height
         
-        if isValid(image: placeholderImage) {
-            widthBase  = placeholderImage.size.width
-            heightBase = placeholderImage.size.height
-        }
+//        if isValid(image: placeholderImage) {
+//            widthBase  = placeholderImage.size.width
+//            heightBase = placeholderImage.size.height
+//        }
         
-        let width  = widthBase - self.brushToolView.frame.width
+        let width  = widthBase
+//        let width  = widthBase - self.brushToolView.frame.width
         let height = heightBase
         let x      = self.drawingFrame.origin.x + self.brushToolView.frame.width
         let y      = self.drawingFrame.origin.y
         let frame = CGRect.init(x: x, y: y, width: width, height: height)
         
         self.drawingView = ACEDrawingView(frame: frame)
+        
         if isValid(image: drawingImageToLoad) {
             self.drawingView.loadImage(drawingImageToLoad)
         }
@@ -73,6 +77,16 @@ public class Drawing {
         self.drawingView.isUserInteractionEnabled = true
     }
     
+    // MARK: Stop/Start Drag and Scroll on ZoomScrollView
+    
+    func startDragAndScrollonZoomScrollView() {
+        self.zoomScrollView.shouldStopDragAndScroll(false)
+    }
+    
+    func stopDragAndScrollonZoomScrollView() {
+        self.zoomScrollView.shouldStopDragAndScroll(true)
+    }
+    
     // MARK: Private methods
     
     private func isValid(image: UIImage) -> Bool {
@@ -81,19 +95,31 @@ public class Drawing {
     
 }
 
+extension UIScrollView {
+    
+    func shouldStopDragAndScroll(_ value: Bool) {
+        self.panGestureRecognizer.isEnabled = value
+        self.pinchGestureRecognizer!.isEnabled = value
+    }
+    
+}
+
 
 // MARK: Extension for BrushToolContract protocol
 extension Drawing: BrushToolContract {
     func moveCanvas(){
+        self.stopDragAndScrollonZoomScrollView()
         self.disableUserInteractionOnDrawingView()
     }
     
     func erase(){
+        self.startDragAndScrollonZoomScrollView()
         self.enableUserInteractionOnDrawingView()
         self.drawingView.drawTool = ACEDrawingToolTypeEraser
     }
     
     func draw(){
+        self.startDragAndScrollonZoomScrollView()
         self.enableUserInteractionOnDrawingView()
         drawingView.drawTool  = ACEDrawingToolTypePen
         drawingView.lineWidth = 10.0
@@ -102,11 +128,13 @@ extension Drawing: BrushToolContract {
     }
     
     func undo(){
+        self.startDragAndScrollonZoomScrollView()
         self.disableUserInteractionOnDrawingView()
         self.drawingView.undoLatestStep()
     }
     
     func redo(){
+        self.startDragAndScrollonZoomScrollView()
         self.disableUserInteractionOnDrawingView()
         self.drawingView.redoLatestStep()
     }
