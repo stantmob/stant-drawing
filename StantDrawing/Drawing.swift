@@ -44,11 +44,14 @@ public class Drawing {
         let frame = CGRect.init(x: x, y: y, width: width, height: height)
         
         self.zoomScrollView   = UIScrollView.init(frame: frame)
-        self.zoomScrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//        self.zoomScrollView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         self.zoomScrollView.bouncesZoom = true
+        self.zoomScrollView.contentMode = .scaleToFill
         
-        self.drawingView = ACEDrawingView(frame: frame)
+        let truckDrawingFrame = CGRect.init(x: 0, y: 0, width: placeholderImage.size.width, height: placeholderImage.size.height)
         
+        self.drawingView = ACEDrawingView(frame: truckDrawingFrame)
+        self.drawingView.contentMode = .scaleAspectFit
         if isValid(image: drawingImageToLoad) {
             self.drawingView.loadImage(drawingImageToLoad)
         }
@@ -57,7 +60,10 @@ public class Drawing {
         
         if isValid(image: placeholderImage) {
            let imageView = UIImageView(image: placeholderImage)
-            imageView.frame = frame
+            
+            imageView.frame = truckDrawingFrame
+            
+            imageView.contentMode = .scaleAspectFit
 //            self.contentDrawing.addSubview(imageView)
             self.zoomScrollView.addSubview(imageView)
         }
