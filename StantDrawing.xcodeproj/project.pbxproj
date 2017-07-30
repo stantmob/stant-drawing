@@ -17,6 +17,9 @@
 		070735931F09EC1200E675C6 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070735921F09EC1200E675C6 /* Drawing.swift */; };
 		070735961F09F32600E675C6 /* BrushToolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070735951F09F32600E675C6 /* BrushToolView.swift */; };
 		070735981F09F43A00E675C6 /* BrushToolView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 070735971F09F43A00E675C6 /* BrushToolView.xib */; };
+		0716975E1F0BDFF000D40075 /* move.png in Resources */ = {isa = PBXBuildFile; fileRef = 0716975D1F0BDFF000D40075 /* move.png */; };
+		0765EFF81F2D2CC700AA0090 /* DrawingViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765EFF71F2D2CC700AA0090 /* DrawingViewBuilder.swift */; };
+		0765EFFA1F2D2CDE00AA0090 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765EFF91F2D2CDE00AA0090 /* DrawingView.swift */; };
 		078F3A441F0A883300431451 /* DrawingContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078F3A431F0A883300431451 /* DrawingContract.swift */; };
 		078F3A471F0AB0DC00431451 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078F3A461F0AB0DC00431451 /* UIViewControllerExtensions.swift */; };
 		07F9C3861F09F7FE00E8A4F6 /* BrushToolContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9C3851F09F7FE00E8A4F6 /* BrushToolContract.swift */; };
@@ -49,6 +52,9 @@
 		070735921F09EC1200E675C6 /* Drawing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drawing.swift; sourceTree = "<group>"; };
 		070735951F09F32600E675C6 /* BrushToolView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrushToolView.swift; sourceTree = "<group>"; };
 		070735971F09F43A00E675C6 /* BrushToolView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrushToolView.xib; sourceTree = "<group>"; };
+		0716975D1F0BDFF000D40075 /* move.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = move.png; sourceTree = "<group>"; };
+		0765EFF71F2D2CC700AA0090 /* DrawingViewBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewBuilder.swift; sourceTree = "<group>"; };
+		0765EFF91F2D2CDE00AA0090 /* DrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 		078F3A431F0A883300431451 /* DrawingContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingContract.swift; sourceTree = "<group>"; };
 		078F3A461F0AB0DC00431451 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
 		07F9C3851F09F7FE00E8A4F6 /* BrushToolContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrushToolContract.swift; sourceTree = "<group>"; };
@@ -103,7 +109,10 @@
 		0707354E1F096E8200E675C6 /* StantDrawing */ = {
 			isa = PBXGroup;
 			children = (
+				0716975C1F0BDF8000D40075 /* Assets */,
 				070735921F09EC1200E675C6 /* Drawing.swift */,
+				0765EFF91F2D2CDE00AA0090 /* DrawingView.swift */,
+				0765EFF71F2D2CC700AA0090 /* DrawingViewBuilder.swift */,
 				078F3A431F0A883300431451 /* DrawingContract.swift */,
 				070735941F09F30400E675C6 /* BrushTool */,
 				078F3A451F0AB0BD00431451 /* Extensions */,
@@ -150,6 +159,14 @@
 				07F9C3851F09F7FE00E8A4F6 /* BrushToolContract.swift */,
 			);
 			path = BrushTool;
+			sourceTree = "<group>";
+		};
+		0716975C1F0BDF8000D40075 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				0716975D1F0BDFF000D40075 /* move.png */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		078F3A451F0AB0BD00431451 /* Extensions */ = {
@@ -283,6 +300,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0716975E1F0BDFF000D40075 /* move.png in Resources */,
 				070735981F09F43A00E675C6 /* BrushToolView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -380,10 +398,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0707356D1F096F9300E675C6 /* ACEDrawingTools.m in Sources */,
+				0765EFF81F2D2CC700AA0090 /* DrawingViewBuilder.swift in Sources */,
 				070735961F09F32600E675C6 /* BrushToolView.swift in Sources */,
 				07F9C3861F09F7FE00E8A4F6 /* BrushToolContract.swift in Sources */,
 				0707356F1F096F9300E675C6 /* ACEDrawingView.m in Sources */,
 				078F3A441F0A883300431451 /* DrawingContract.swift in Sources */,
+				0765EFFA1F2D2CDE00AA0090 /* DrawingView.swift in Sources */,
 				070735931F09EC1200E675C6 /* Drawing.swift in Sources */,
 				078F3A471F0AB0DC00431451 /* UIViewControllerExtensions.swift in Sources */,
 			);

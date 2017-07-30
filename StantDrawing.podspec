@@ -103,7 +103,7 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "icon.png"
-  # s.resources = "Resources/*.png"
+   s.resources = "StantDrawing/**/*.png"
   #s.resources = 'StantDrawing/**/*.{storyboard,xib}'
   s.resource_bundle = {
     s.name => 'StantDrawing/BrushTool/*.{xib}'
