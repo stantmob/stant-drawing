@@ -18,6 +18,16 @@
 		070735961F09F32600E675C6 /* BrushToolView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070735951F09F32600E675C6 /* BrushToolView.swift */; };
 		070735981F09F43A00E675C6 /* BrushToolView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 070735971F09F43A00E675C6 /* BrushToolView.xib */; };
 		0716975E1F0BDFF000D40075 /* move.png in Resources */ = {isa = PBXBuildFile; fileRef = 0716975D1F0BDFF000D40075 /* move.png */; };
+		0765A0A61F3E388F00865E41 /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765A09C1F3E388F00865E41 /* cancel.png */; };
+		0765A0A71F3E388F00865E41 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765A09D1F3E388F00865E41 /* close.png */; };
+		0765A0A81F3E388F00865E41 /* eraser.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765A09E1F3E388F00865E41 /* eraser.png */; };
+		0765A0A91F3E388F00865E41 /* eraserfull.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765A09F1F3E388F00865E41 /* eraserfull.png */; };
+		0765A0AA1F3E388F00865E41 /* hide arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765A0A01F3E388F00865E41 /* hide arrow.png */; };
+		0765A0AB1F3E388F00865E41 /* paint-brush.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765A0A11F3E388F00865E41 /* paint-brush.png */; };
+		0765A0AC1F3E388F00865E41 /* redo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765A0A21F3E388F00865E41 /* redo.png */; };
+		0765A0AD1F3E388F00865E41 /* save.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765A0A31F3E388F00865E41 /* save.png */; };
+		0765A0AE1F3E388F00865E41 /* undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765A0A41F3E388F00865E41 /* undo.png */; };
+		0765A0AF1F3E388F00865E41 /* vectorfull.png in Resources */ = {isa = PBXBuildFile; fileRef = 0765A0A51F3E388F00865E41 /* vectorfull.png */; };
 		0765EFF81F2D2CC700AA0090 /* DrawingViewBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765EFF71F2D2CC700AA0090 /* DrawingViewBuilder.swift */; };
 		0765EFFA1F2D2CDE00AA0090 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0765EFF91F2D2CDE00AA0090 /* DrawingView.swift */; };
 		078F3A441F0A883300431451 /* DrawingContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 078F3A431F0A883300431451 /* DrawingContract.swift */; };
@@ -53,6 +63,16 @@
 		070735951F09F32600E675C6 /* BrushToolView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrushToolView.swift; sourceTree = "<group>"; };
 		070735971F09F43A00E675C6 /* BrushToolView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrushToolView.xib; sourceTree = "<group>"; };
 		0716975D1F0BDFF000D40075 /* move.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = move.png; sourceTree = "<group>"; };
+		0765A09C1F3E388F00865E41 /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
+		0765A09D1F3E388F00865E41 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		0765A09E1F3E388F00865E41 /* eraser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eraser.png; sourceTree = "<group>"; };
+		0765A09F1F3E388F00865E41 /* eraserfull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eraserfull.png; sourceTree = "<group>"; };
+		0765A0A01F3E388F00865E41 /* hide arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hide arrow.png"; sourceTree = "<group>"; };
+		0765A0A11F3E388F00865E41 /* paint-brush.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "paint-brush.png"; sourceTree = "<group>"; };
+		0765A0A21F3E388F00865E41 /* redo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redo.png; sourceTree = "<group>"; };
+		0765A0A31F3E388F00865E41 /* save.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = save.png; sourceTree = "<group>"; };
+		0765A0A41F3E388F00865E41 /* undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = undo.png; sourceTree = "<group>"; };
+		0765A0A51F3E388F00865E41 /* vectorfull.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vectorfull.png; sourceTree = "<group>"; };
 		0765EFF71F2D2CC700AA0090 /* DrawingViewBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingViewBuilder.swift; sourceTree = "<group>"; };
 		0765EFF91F2D2CDE00AA0090 /* DrawingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 		078F3A431F0A883300431451 /* DrawingContract.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawingContract.swift; sourceTree = "<group>"; };
@@ -165,6 +185,16 @@
 			isa = PBXGroup;
 			children = (
 				0716975D1F0BDFF000D40075 /* move.png */,
+				0765A09C1F3E388F00865E41 /* cancel.png */,
+				0765A09D1F3E388F00865E41 /* close.png */,
+				0765A09E1F3E388F00865E41 /* eraser.png */,
+				0765A09F1F3E388F00865E41 /* eraserfull.png */,
+				0765A0A01F3E388F00865E41 /* hide arrow.png */,
+				0765A0A11F3E388F00865E41 /* paint-brush.png */,
+				0765A0A21F3E388F00865E41 /* redo.png */,
+				0765A0A31F3E388F00865E41 /* save.png */,
+				0765A0A41F3E388F00865E41 /* undo.png */,
+				0765A0A51F3E388F00865E41 /* vectorfull.png */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -300,8 +330,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0765A0AA1F3E388F00865E41 /* hide arrow.png in Resources */,
+				0765A0A61F3E388F00865E41 /* cancel.png in Resources */,
+				0765A0AC1F3E388F00865E41 /* redo.png in Resources */,
+				0765A0A81F3E388F00865E41 /* eraser.png in Resources */,
+				0765A0A91F3E388F00865E41 /* eraserfull.png in Resources */,
 				0716975E1F0BDFF000D40075 /* move.png in Resources */,
+				0765A0AD1F3E388F00865E41 /* save.png in Resources */,
+				0765A0A71F3E388F00865E41 /* close.png in Resources */,
 				070735981F09F43A00E675C6 /* BrushToolView.xib in Resources */,
+				0765A0AB1F3E388F00865E41 /* paint-brush.png in Resources */,
+				0765A0AE1F3E388F00865E41 /* undo.png in Resources */,
+				0765A0AF1F3E388F00865E41 /* vectorfull.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
