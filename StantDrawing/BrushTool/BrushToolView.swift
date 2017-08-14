@@ -9,17 +9,34 @@
 import UIKit
 import Foundation
 
+struct Button {
+    let uiButton = UIButton()
+    let imageName: String
+    let selector: Selector
+}
+
 public class BrushToolView: UIView {
     var delegate: BrushToolContract?
     
     private let bundle = Bundle(for: BrushToolView.self)
     
-    private let btnWidth  = 45
-    private let btnHeight = 45
+    private let toolInitX:  CGFloat = 10.0
+    private let toolInitY:  CGFloat = 100.0
+    private let toolWidth:  CGFloat = 85.0
+    private let toolHeight: CGFloat = {
+       let screenSize = UIScreen.main.bounds
+        return screenSize.height
+    }()
+    
+    private let btnWidth: CGFloat  = 45
+    private let btnHeight: CGFloat = 45
     
     private let groupToolsView = UIView()
     private let separatorView  = UIView()
     private let groupEndView   = UIView()
+    
+    private var groupToolsButtons = [Button]()
+    private var groupEndButtons   = [Button]()
     
     private let moveBtn   = UIButton()
     private let brushBtn  = UIButton()
@@ -34,94 +51,154 @@ public class BrushToolView: UIView {
     }
     
     init() {
-        let screenSize = UIScreen.main.bounds
-        let frame      = CGRect(x: 10, y: 0, width: 85, height: screenSize.height)
-
+        let frame = CGRect(x: toolInitX, y: toolInitY, width: toolWidth, height: toolHeight)
         super.init(frame: frame)
         
+        loadGroupToolsButtons()
+        loadGroupEndButtons()
+        
+        configureGroupToolsLayout()
+        
         configureLayout()
-        addBtnListeners()
+//        addBtnListeners()
         
         setBtnAsClicked(button: moveBtn)
     }
     
+    private func loadGroupToolsButtons() {
+        let moveBtn  = Button(imageName: "move", selector: #selector(self.moveCanvas))
+        let brushBtn = Button(imageName: "paint-brush", selector: #selector(self.drawOnCanvas))
+        let undoBtn  = Button(imageName: "undo", selector: #selector(self.undo))
+        let redoBtn  = Button(imageName: "redo", selector: #selector(self.redo))
+        let eraseBtn = Button(imageName: "eraser", selector: #selector(self.erase))
+    
+        groupToolsButtons.append(moveBtn)
+        groupToolsButtons.append(brushBtn)
+        groupToolsButtons.append(undoBtn)
+        groupToolsButtons.append(redoBtn)
+        groupToolsButtons.append(eraseBtn)
+    }
+    
+    private func loadGroupEndButtons() {
+        let saveBtn   = Button(imageName: "save", selector: #selector(self.save))
+        let cancelBtn = Button(imageName: "cancel", selector: #selector(self.cancel))
+        
+        groupEndButtons.append(saveBtn)
+        groupEndButtons.append(cancelBtn)
+    }
+
+    private func configureGroupToolsLayout() {
+        let _: [Button] = groupToolsButtons.enumerated().map() { (index, btn) in
+            let uiButton = btn.uiButton
+            if index == 0 {
+                uiButton.frame = btnFrame(y: 20)
+            } else {
+                let referencedBtn = groupToolsButtons[index - 1].uiButton
+                uiButton.frame = nextBtnFrame(referencedBtn: referencedBtn)
+                
+            }
+            
+            setImageEdgeInsets(btn: uiButton)
+            setBtnImage(btn: uiButton, imageName: btn.imageName)
+            addBtnListener(uiButton, action: btn.selector)
+            
+            return btn
+        }
+        
+        setAllGroupdToolsButtonsAsNotClicked()
+        
+        let lastUiButton = groupToolsButtons.last!.uiButton
+        
+        let origin = CGPoint(x: 0, y: 0)
+        let height = lastUiButton.frame.origin.y + lastUiButton.frame.height + 20
+        let size   = CGSize(width: self.frame.width, height: height)
+        let frame  = CGRect.init(origin: origin, size: size)
+        groupToolsView.frame = frame
+        groupToolsView.backgroundColor = UIColor(hex: "F0F0F0")
+        
+        self.addSubview(groupToolsView)
+        
+        groupToolsView.addSubview(moveBtn)
+        groupToolsView.addSubview(brushBtn)
+        groupToolsView.addSubview(undoBtn)
+        groupToolsView.addSubview(redoBtn)
+        groupToolsView.addSubview(eraseBtn)
+    }
+    
     private func configureLayout() {
-        configureBtnPositions()
-        configureBtnIcons()
-        setAllBtnsAsNotClicked()
+//        configureBtnPositions()
+//        configureBtnIcons()
+//        setAllBtnsAsNotClicked()
 
         configureGroupViews()
         
         addSubViews()
     }
     
-    private func configureBtnPositions() {
-        let x = (Int(self.frame.width) - btnWidth) / 2
-        let frame = CGRect(x: x, y: 20, width: btnWidth, height: btnHeight)
-        
-        moveBtn.frame   = frame
-        brushBtn.frame  = nextBtnFrame(referencedBtn: moveBtn)
-        undoBtn.frame   = nextBtnFrame(referencedBtn: brushBtn)
-        redoBtn.frame   = nextBtnFrame(referencedBtn: undoBtn)
-        eraseBtn.frame  = nextBtnFrame(referencedBtn: redoBtn)
-        
-        saveBtn.frame   = frame
-        cancelBtn.frame = nextBtnFrame(referencedBtn: saveBtn)
-        
-        setImageEdgeInsets(btn: moveBtn)
-        setImageEdgeInsets(btn: brushBtn)
-        setImageEdgeInsets(btn: undoBtn)
-        setImageEdgeInsets(btn: redoBtn)
-        setImageEdgeInsets(btn: eraseBtn)
-        setImageEdgeInsets(btn: saveBtn)
-        setImageEdgeInsets(btn: cancelBtn)
-    }
+//    private func configureBtnPositions() {
+//        moveBtn.frame  = btnFrame(y: 20)
+//        brushBtn.frame = nextBtnFrame(referencedBtn: moveBtn)
+//        undoBtn.frame  = nextBtnFrame(referencedBtn: brushBtn)
+//        redoBtn.frame  = nextBtnFrame(referencedBtn: undoBtn)
+//        eraseBtn.frame = nextBtnFrame(referencedBtn: redoBtn)
+//        
+//        saveBtn.frame   = btnFrame(y: 20)
+//        cancelBtn.frame = nextBtnFrame(referencedBtn: saveBtn)
+//        
+//        setImageEdgeInsets(btn: moveBtn)
+//        setImageEdgeInsets(btn: brushBtn)
+//        setImageEdgeInsets(btn: undoBtn)
+//        setImageEdgeInsets(btn: redoBtn)
+//        setImageEdgeInsets(btn: eraseBtn)
+//        setImageEdgeInsets(btn: saveBtn)
+//        setImageEdgeInsets(btn: cancelBtn)
+//    }
     
     private func nextBtnFrame(referencedBtn: UIButton) -> CGRect {
-        let x = (Int(self.frame.width) - btnWidth) / 2
-        return CGRect(x: x, y: Int(referencedBtn.frame.origin.y + 75), width: btnWidth, height: btnHeight)
+        let y = referencedBtn.frame.origin.y + 75
+        return btnFrame(y: y)
+    }
+    
+    private func btnFrame(y: CGFloat) -> CGRect {
+        let x = (self.frame.width - btnWidth) / 2
+        return CGRect(x: x, y: y, width: btnWidth, height: btnHeight)
     }
     
     private func setImageEdgeInsets(btn: UIButton) {
         btn.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
-    private func configureBtnIcons() {
-        setBtnImage(btn: moveBtn,   imageName: "move")
-        setBtnImage(btn: brushBtn,  imageName: "paint-brush")
-        setBtnImage(btn: undoBtn,   imageName: "undo")
-        setBtnImage(btn: redoBtn,   imageName: "redo")
-        setBtnImage(btn: eraseBtn,  imageName: "eraser")
-        setBtnImage(btn: saveBtn,   imageName: "save")
-        setBtnImage(btn: cancelBtn, imageName: "cancel")
-    }
+//    private func configureBtnIcons() {
+//        setBtnImage(btn: moveBtn,   imageName: "move")
+//        setBtnImage(btn: brushBtn,  imageName: "paint-brush")
+//        setBtnImage(btn: undoBtn,   imageName: "undo")
+//        setBtnImage(btn: redoBtn,   imageName: "redo")
+//        setBtnImage(btn: eraseBtn,  imageName: "eraser")
+//        setBtnImage(btn: saveBtn,   imageName: "save")
+//        setBtnImage(btn: cancelBtn, imageName: "cancel")
+//    }
 
     private func setBtnImage(btn: UIButton, imageName: String) {
         let image = UIImage.init(named: imageName, in: bundle, compatibleWith: nil)
         btn.setImage(image, for: .normal)
     }
     
-    private func addBtnListeners() {
-        addBtnListener(moveBtn,   action: #selector(self.moveCanvas))
-        addBtnListener(brushBtn,  action: #selector(self.drawOnCanvas))
-        addBtnListener(undoBtn,   action: #selector(self.undo))
-        addBtnListener(redoBtn,   action: #selector(self.redo))
-        addBtnListener(eraseBtn,  action: #selector(self.erase))
-        addBtnListener(saveBtn,   action: #selector(self.save))
-        addBtnListener(cancelBtn, action: #selector(self.cancel))
-    }
+//    private func addBtnListeners() {
+//        addBtnListener(moveBtn,   action: #selector(self.moveCanvas))
+//        addBtnListener(brushBtn,  action: #selector(self.drawOnCanvas))
+//        addBtnListener(undoBtn,   action: #selector(self.undo))
+//        addBtnListener(redoBtn,   action: #selector(self.redo))
+//        addBtnListener(eraseBtn,  action: #selector(self.erase))
+//        addBtnListener(saveBtn,   action: #selector(self.save))
+//        addBtnListener(cancelBtn, action: #selector(self.cancel))
+//    }
     
     private func addBtnListener(_ btn: UIButton, action: Selector) {
         btn.addTarget(self, action: action, for: .touchUpInside)
     }
     
     private func configureGroupViews() {
-        let origin = CGPoint(x: 0, y: 100)
-        let size   = CGSize(width: self.frame.size.width, height: eraseBtn.frame.origin.y + eraseBtn.frame.height + 20)
-        let frame = CGRect.init(origin: origin, size: size)
-        groupToolsView.frame = frame
         
-        groupToolsView.backgroundColor = UIColor(hex: "F0F0F0")
         
         let origin2 = CGPoint(x: 20, y: groupToolsView.frame.origin.y + groupToolsView.frame.height + 10)
         let size2 = CGSize(width: self.frame.width - 40, height: 1)
@@ -165,12 +242,10 @@ public class BrushToolView: UIView {
         button.backgroundColor = UIColor.white
     }
     
-    private func setAllBtnsAsNotClicked() {
-        setBtnAsNotClicked(button: self.moveBtn)
-        setBtnAsNotClicked(button: self.eraseBtn)
-        setBtnAsNotClicked(button: self.brushBtn)
-        setBtnAsNotClicked(button: self.undoBtn)
-        setBtnAsNotClicked(button: self.redoBtn)
+    private func setAllGroupdToolsButtonsAsNotClicked() {
+        groupToolsButtons.forEach { btn in
+            setBtnAsNotClicked(button: btn.uiButton)
+        }
     }
     
     private func setBtnAsNotClicked(button: UIButton) {
@@ -181,21 +256,21 @@ public class BrushToolView: UIView {
     // MARK: IBActions
     
     func moveCanvas(_ sender: Any) {
-        setAllBtnsAsNotClicked()
+        setAllGroupdToolsButtonsAsNotClicked()
         setBtnAsClicked(button: self.moveBtn)
         
         self.delegate?.moveCanvas()
     }
     
     func erase(_ sender: Any) {
-        setAllBtnsAsNotClicked()
+        setAllGroupdToolsButtonsAsNotClicked()
         setBtnAsClicked(button: self.eraseBtn)
         
         self.delegate?.erase()
     }
     
     func drawOnCanvas(_ sender: Any) {
-        setAllBtnsAsNotClicked()
+        setAllGroupdToolsButtonsAsNotClicked()
         setBtnAsClicked(button: self.brushBtn)
         
         delegate?.draw()
