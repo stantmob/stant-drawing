@@ -16,8 +16,7 @@ public class DrawingView: UIView {
     internal let zoomScrollView:     UIScrollView   = UIScrollView()
     internal let contentDrawingView: ACEDrawingView = ACEDrawingView()
     private  let baseContentView:    UIView         = UIView()
-    private  let brushToolView:      BrushToolView
-//    private  let brushToolView:      BrushToolView  = BrushToolView.instanceFromNib()
+    private  let brushToolView:      BrushToolView  = BrushToolView()
     
     private  let drawImage:                            UIImage
     private  let placeholderImage:                     UIImage
@@ -30,7 +29,7 @@ public class DrawingView: UIView {
     }
     
     public init(frame:                                CGRect,
-                drawingDelegate:                             DrawingDelegate?,
+                drawingDelegate:                      DrawingDelegate?,
                 drawImage:                            UIImage,
                 placeholderImage:                     UIImage,
                 placeholderImageWithLowAlpha:         UIImage,
@@ -44,8 +43,6 @@ public class DrawingView: UIView {
         self.alphaForPlaceholderImageWithLowAlpha = alphaForPlaceholderImageWithLowAlpha
         self.brushColor                           = brushColor
         
-        self.brushToolView = BrushToolView()
-        
         super.init(frame: frame)
         
         initialConfiguration()
@@ -53,7 +50,9 @@ public class DrawingView: UIView {
         moveCanvas()
     }
     
-    public func initialConfiguration() {
+    // MARK: Private methods
+    
+    private func initialConfiguration() {
         brushToolView.delegate = self
         
         configureZoomScrollView()
@@ -69,9 +68,7 @@ public class DrawingView: UIView {
         self.addSubview(zoomScrollView)
         self.addSubview(brushToolView)
     }
-    
-    // MARK: Private methods
-    
+
     private func configureZoomScrollView() {
         zoomScrollView.frame       = frameForZoomScrollView()
         zoomScrollView.contentSize = frameForContentDrawingView().size
