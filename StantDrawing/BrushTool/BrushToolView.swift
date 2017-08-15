@@ -24,12 +24,16 @@ public class BrushToolView: UIView {
     private let toolInitY:  CGFloat = 100.0
     private let toolWidth:  CGFloat = 85.0
     private let toolHeight: CGFloat = {
-       let screenSize = UIScreen.main.bounds
+        let screenSize = UIScreen.main.bounds
         return screenSize.height
     }()
     
     private let btnWidth: CGFloat  = 45
     private let btnHeight: CGFloat = 45
+    
+    private lazy var groupViewWidth: CGFloat = {
+        return self.toolWidth - (self.toolInitX * 2)
+    }()
     
     private let groupToolsView = UIView()
     private let separatorView  = UIView()
@@ -54,7 +58,7 @@ public class BrushToolView: UIView {
         }
         
     }
-
+    
     private func loadButtons() {
         loadGroupToolsButtons()
         loadGroupEndButtons()
@@ -65,14 +69,14 @@ public class BrushToolView: UIView {
         configureSeparatorLayout()
         configureGroupEndLayout()
     }
-
+    
     private func loadGroupToolsButtons() {
         let moveBtn  = Button(imageName: "move",        selector: #selector(self.moveCanvas))
         let brushBtn = Button(imageName: "paint-brush", selector: #selector(self.drawOnCanvas))
         let undoBtn  = Button(imageName: "undo",        selector: #selector(self.undo))
         let redoBtn  = Button(imageName: "redo",        selector: #selector(self.redo))
         let eraseBtn = Button(imageName: "eraser",      selector: #selector(self.erase))
-
+        
         groupToolsButtons.append(moveBtn)
         groupToolsButtons.append(brushBtn)
         groupToolsButtons.append(undoBtn)
@@ -87,7 +91,7 @@ public class BrushToolView: UIView {
         groupEndButtons.append(saveBtn)
         groupEndButtons.append(cancelBtn)
     }
-
+    
     private func configureGroupToolsLayout() {
         let origin = CGPoint(x: 0, y: 0)
         configureGroupLayout(buttons: groupToolsButtons, groupView: groupToolsView, groupViewOirigin: origin)
@@ -96,8 +100,8 @@ public class BrushToolView: UIView {
     }
     
     private func configureSeparatorLayout() {
-        let origin = CGPoint(x: 20, y: groupToolsView.frame.origin.y + groupToolsView.frame.height + 10)
-        let size = CGSize(width: self.frame.width - 40, height: 1)
+        let origin = CGPoint(x: 10, y: groupToolsView.frame.origin.y + groupToolsView.frame.height + 10)
+        let size = CGSize(width: groupViewWidth - 20, height: 1)
         let frame = CGRect.init(origin: origin, size: size)
         separatorView.frame = frame
         
@@ -111,7 +115,7 @@ public class BrushToolView: UIView {
         let origin = CGPoint(x: 0, y: separatorView.frame.height + separatorView.frame.origin.y + 10)
         configureGroupLayout(buttons: groupEndButtons, groupView: groupEndView, groupViewOirigin: origin)
     }
-
+    
     private func configureGroupLayout(buttons: [Button], groupView: UIView, groupViewOirigin: CGPoint) {
         let _: [Button] = buttons.enumerated().map() { (index, btn) in
             let uiButton = btn.uiButton
@@ -135,7 +139,7 @@ public class BrushToolView: UIView {
         let lastUiButton = buttons.last!.uiButton
         
         let height = lastUiButton.frame.origin.y + lastUiButton.frame.height + 20
-        let size   = CGSize(width: self.frame.width, height: height)
+        let size   = CGSize(width: groupViewWidth, height: height)
         let frame  = CGRect.init(origin: groupViewOirigin, size: size)
         
         groupView.frame              = frame
@@ -146,24 +150,24 @@ public class BrushToolView: UIView {
     }
     
     private func nextBtnFrame(referencedBtn: UIButton) -> CGRect {
-        let y = referencedBtn.frame.origin.y + 75
+        let y = referencedBtn.frame.origin.y + 70
         return btnFrame(y: y)
     }
     
     private func btnFrame(y: CGFloat) -> CGRect {
-        let x = (self.frame.width - btnWidth) / 2
+        let x = (groupViewWidth - btnWidth) / 2
         return CGRect(x: x, y: y, width: btnWidth, height: btnHeight)
     }
     
     private func setImageEdgeInsets(btn: UIButton) {
         btn.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
-
+    
     private func setBtnImage(btn: UIButton, imageName: String) {
         let image = UIImage.init(named: imageName, in: bundle, compatibleWith: nil)
         btn.setImage(image, for: .normal)
     }
-
+    
     private func addBtnListener(_ btn: UIButton, action: Selector) {
         btn.addTarget(self, action: action, for: .touchUpInside)
     }
@@ -259,4 +263,3 @@ extension UIColor {
             blue:  CGFloat((Int(hex, radix: 16)!) & 0xFF) / 255.0, alpha: 1.0)
     }
 }
-

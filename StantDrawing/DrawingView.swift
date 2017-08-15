@@ -15,7 +15,7 @@ public class DrawingView: UIView {
     
     internal let zoomScrollView:     UIScrollView   = UIScrollView()
     internal let contentDrawingView: ACEDrawingView = ACEDrawingView()
-    private  let baseContentView:    UIView         = UIView()
+    internal let baseContentView:    UIView         = UIView()
     private  let brushToolView:      BrushToolView  = BrushToolView()
     
     private  let drawImage:                            UIImage
@@ -35,7 +35,7 @@ public class DrawingView: UIView {
                 placeholderImageWithLowAlpha:         UIImage,
                 alphaForPlaceholderImageWithLowAlpha: CGFloat,
                 brushColor:                           UIColor
-                ) {
+        ) {
         self.drawingDelegate                      = drawingDelegate
         self.drawImage                            = drawImage
         self.placeholderImage                     = placeholderImage
@@ -68,8 +68,10 @@ public class DrawingView: UIView {
         self.addSubview(zoomScrollView)
         self.addSubview(brushToolView)
     }
-
+    
     private func configureZoomScrollView() {
+        zoomScrollView.delegate = self
+        
         zoomScrollView.frame       = frameForZoomScrollView()
         zoomScrollView.contentSize = frameForContentDrawingView().size
         
@@ -81,12 +83,13 @@ public class DrawingView: UIView {
     }
     
     private func configureContentDrawingView() {
+        contentDrawingView.frame       = frameForContentDrawingView()
+        contentDrawingView.contentMode = .scaleAspectFit
+        
         if imageIsValid(drawImage) {
             let resizedImage = resizeImage(drawImage, size: frameForContentDrawingView().size)
             contentDrawingView.loadImage(resizedImage)
         }
-        contentDrawingView.frame       = frameForContentDrawingView()
-        contentDrawingView.contentMode = .scaleAspectFit
     }
     
     private func configurePlaceholderImages() {
@@ -221,5 +224,12 @@ extension DrawingView: BrushToolContract {
         if let delegate = drawingDelegate {
             delegate.cancel()
         }
+    }
+}
+
+// MARK: Extension for UIScrollViewDelegate protocol
+extension DrawingView: UIScrollViewDelegate {
+    public func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return baseContentView
     }
 }
