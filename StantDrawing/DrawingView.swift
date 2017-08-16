@@ -24,6 +24,8 @@ public class DrawingView: UIView {
     private  let alphaForPlaceholderImageWithLowAlpha: CGFloat
     internal let brushColor:                           UIColor
     
+    internal var pencilSize: CGFloat = 10.0
+    
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -67,6 +69,10 @@ public class DrawingView: UIView {
         zoomScrollView.addSubview(baseContentView)
         self.addSubview(zoomScrollView)
         self.addSubview(brushToolView)
+        let y = (baseContentView.frame.height - brushToolView.groupPencilSizeView.frame.height) / 2
+        let origin = CGPoint(x: baseContentView.frame.width, y: y)
+        brushToolView.groupPencilSizeView.frame.origin = origin
+        self.addSubview(brushToolView.groupPencilSizeView)
     }
     
     private func configureZoomScrollView() {
@@ -179,6 +185,7 @@ extension DrawingView {
 
 // MARK: Extension for BrushToolContract protocol
 extension DrawingView: BrushToolContract {
+    
     func moveCanvas() {
         startDragAndScrollOnZoomScrollView()
         enableUserInteractionOnZoomScrollView()
@@ -196,7 +203,7 @@ extension DrawingView: BrushToolContract {
     
     func draw() {
         contentDrawingView.drawTool  = ACEDrawingToolTypePen
-        contentDrawingView.lineWidth = 10.0
+        contentDrawingView.lineWidth = pencilSize
         contentDrawingView.lineAlpha = 0.5
         contentDrawingView.lineColor = brushColor
         
@@ -212,7 +219,12 @@ extension DrawingView: BrushToolContract {
     func redo() {
         contentDrawingView.redoLatestStep()
     }
-    
+
+    func changePencilSize(_ size: CGFloat) {
+        pencilSize = size
+        contentDrawingView.lineWidth = pencilSize
+    }
+
     func save() {
         if let delegate = drawingDelegate {
             let drawingImage = contentDrawingView.image!
@@ -225,6 +237,7 @@ extension DrawingView: BrushToolContract {
             delegate.cancel()
         }
     }
+
 }
 
 // MARK: Extension for UIScrollViewDelegate protocol

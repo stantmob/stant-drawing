@@ -14,6 +14,7 @@ protocol BrushToolContract {
     func draw()
     func undo()
     func redo()
+    func changePencilSize(_ size: CGFloat)
     func save()
     func cancel()
 }
