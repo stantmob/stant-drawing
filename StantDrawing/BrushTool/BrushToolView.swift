@@ -38,11 +38,13 @@ public class BrushToolView: UIView {
     private let groupToolsView      = UIView()
     private let separatorView       = UIView()
     private let groupEndView        = UIView()
-     let groupPencilSizeView = UIView()
+    private let groupPencilSizeView = UIView()
+    private let groupEraseSizeView  = UIView()
     
     private var groupToolsButtons      = [Button]()
     private var groupEndButtons        = [Button]()
     private var groupPencilSizeButtons = [Button]()
+    private var groupEraseSizeButtons  = [Button]()
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -61,10 +63,22 @@ public class BrushToolView: UIView {
         
     }
     
+    func addAsSubViewOn(_ view: UIView, x: CGFloat, heightBaseToCenter: CGFloat) {
+        let y = (heightBaseToCenter - groupPencilSizeView.frame.height) / 2
+        let point = CGPoint(x: x, y: y)
+        
+        groupPencilSizeView.frame.origin = point
+        groupEraseSizeView.frame.origin  = point
+        
+        view.addSubview(groupPencilSizeView)
+        view.addSubview(groupEraseSizeView)
+    }
+    
     private func loadButtons() {
         loadGroupToolsButtons()
         loadGroupEndButtons()
         loadGroupPencilSizeButtons()
+        loadGroupEraseSizeButtons()
     }
     
     private func configureLayouts() {
@@ -72,28 +86,21 @@ public class BrushToolView: UIView {
         configureSeparatorLayout()
         configureGroupEndLayout()
         configureGroupPencilSizeLayout()
+        configureGroupEraseSizeLayout()
     }
     
     private func loadGroupToolsButtons() {
         let moveBtn  = Button(imageName: "move",        selector: #selector(self.moveCanvas))
         let brushBtn = Button(imageName: "paint-brush", selector: #selector(self.drawOnCanvas))
+        let eraseBtn = Button(imageName: "eraser",      selector: #selector(self.erase))
         let undoBtn  = Button(imageName: "undo",        selector: #selector(self.undo))
         let redoBtn  = Button(imageName: "redo",        selector: #selector(self.redo))
-        let eraseBtn = Button(imageName: "eraser",      selector: #selector(self.erase))
-        
-        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(self.showPencilSizeView))
-        
-        brushBtn.uiButton.addGestureRecognizer(longPress)
-        
+
         groupToolsButtons.append(moveBtn)
         groupToolsButtons.append(brushBtn)
+        groupToolsButtons.append(eraseBtn)
         groupToolsButtons.append(undoBtn)
         groupToolsButtons.append(redoBtn)
-        groupToolsButtons.append(eraseBtn)
-    }
-    
-    func showPencilSizeView(_ sender: UIButton) {
-        groupPencilSizeView.isHidden = false
     }
     
     private func loadGroupEndButtons() {
@@ -105,24 +112,35 @@ public class BrushToolView: UIView {
     }
     
     private func loadGroupPencilSizeButtons() {
-        let btnSize10   = Button(imageName: "",   selector: #selector(self.pencilSize))
-        let btnSize30   = Button(imageName: "",   selector: #selector(self.pencilSize))
-        let btnSize40   = Button(imageName: "",   selector: #selector(self.pencilSize))
-        let btnSize60   = Button(imageName: "",   selector: #selector(self.pencilSize))
-        btnSize10.uiButton.tag = 10
-        btnSize30.uiButton.tag = 30
-        btnSize40.uiButton.tag = 55
-        btnSize60.uiButton.tag = 80
+        let btnSize1   = Button(imageName: "",   selector: #selector(self.pencilSize))
+        let btnSize2   = Button(imageName: "",   selector: #selector(self.pencilSize))
+        let btnSize3   = Button(imageName: "",   selector: #selector(self.pencilSize))
+        let btnSize4   = Button(imageName: "",   selector: #selector(self.pencilSize))
+        btnSize1.uiButton.tag = 10
+        btnSize2.uiButton.tag = 30
+        btnSize3.uiButton.tag = 55
+        btnSize4.uiButton.tag = 80
         
-        btnSize10.uiButton.frame.size = CGSize(width: 23, height: 23)
-        btnSize30.uiButton.frame.size = CGSize(width: 28, height: 28)
-        btnSize40.uiButton.frame.size = CGSize(width: 33, height: 33)
-        btnSize60.uiButton.frame.size = CGSize(width: 37, height: 37)
+        btnSize1.uiButton.frame.size = CGSize(width: 23, height: 23)
+        btnSize2.uiButton.frame.size = CGSize(width: 28, height: 28)
+        btnSize3.uiButton.frame.size = CGSize(width: 33, height: 33)
+        btnSize4.uiButton.frame.size = CGSize(width: 37, height: 37)
         
-        groupPencilSizeButtons.append(btnSize10)
-        groupPencilSizeButtons.append(btnSize30)
-        groupPencilSizeButtons.append(btnSize40)
-        groupPencilSizeButtons.append(btnSize60)
+        groupPencilSizeButtons.append(btnSize1)
+        groupPencilSizeButtons.append(btnSize2)
+        groupPencilSizeButtons.append(btnSize3)
+        groupPencilSizeButtons.append(btnSize4)
+    }
+    
+    private func loadGroupEraseSizeButtons() {
+        let eraser     = Button(imageName: "eraser",     selector: #selector(self.eraserSize))
+        let eraserFull = Button(imageName: "eraserFull", selector: #selector(self.eraserSize))
+        
+        eraser.uiButton.tag     = 30
+        eraserFull.uiButton.tag = 80
+        
+        groupEraseSizeButtons.append(eraser)
+        groupEraseSizeButtons.append(eraserFull)
     }
     
     private func configureGroupToolsLayout() {
@@ -155,25 +173,21 @@ public class BrushToolView: UIView {
         groupPencilSizeView.isHidden = true
         
         setAllGroupdPencilSizeButtonsAsNotClicked()
-        
-//        let darkGray = UIColor(hex: "606060")
-//        groupPencilSizeButtons.forEach { btn in
-//            btn.uiButton.layer.cornerRadius = btn.uiButton.frame.height / 2
-//            btn.uiButton.backgroundColor    = darkGray
-//        }
-        
-        
-//        btnSize30.uiButton.layer.cornerRadius = btnSize30.uiButton.frame.height / 2
-//        btnSize30.uiButton.backgroundColor    = darkGray
-//        
-//        btnSize40.uiButton.layer.cornerRadius = btnSize40.uiButton.frame.height / 2
-//        btnSize40.uiButton.backgroundColor    = darkGray
-//        
-//        btnSize60.uiButton.layer.cornerRadius = btnSize60.uiButton.frame.height / 2
-//        btnSize60.uiButton.backgroundColor    = darkGray
-        
+
         if let uiButton = groupPencilSizeButtons.first?.uiButton {
             setBtnSizeAsClicked(button: uiButton)
+        }
+    }
+    
+    private func configureGroupEraseSizeLayout() {
+        let origin = CGPoint(x: groupToolsView.frame.width + groupToolsView.frame.origin.x + 10, y: 0)
+        configureGroupLayout(buttons: groupEraseSizeButtons, groupView: groupEraseSizeView, groupViewOirigin: origin, addAsSubview: false)
+        groupEraseSizeView.isHidden = true
+        
+        setAllGroupdEraseSizeButtonsAsNotClicked()
+        
+        if let uiButton = groupEraseSizeButtons.first?.uiButton {
+            setBtnAsClicked(button: uiButton)
         }
     }
     
@@ -267,6 +281,12 @@ public class BrushToolView: UIView {
         }
     }
     
+    private func setAllGroupdEraseSizeButtonsAsNotClicked() {
+        groupEraseSizeButtons.forEach { btn in
+            setBtnAsNotClicked(button: btn.uiButton)
+        }
+    }
+    
     private func setAllGroupdToolsButtonsAsNotClicked() {
         groupToolsButtons.forEach { btn in
             setBtnAsNotClicked(button: btn.uiButton)
@@ -290,13 +310,15 @@ public class BrushToolView: UIView {
     func moveCanvas(_ sender: UIButton) {
         setAllGroupdToolsButtonsAsNotClicked()
         setBtnAsClicked(button: sender)
-        groupPencilSizeView.isHidden = true
+        hideEraseSizeView()
+        hidePencilSizeView()
         self.delegate?.moveCanvas()
     }
     
     func erase(_ sender: UIButton) {
         setAllGroupdToolsButtonsAsNotClicked()
-        groupPencilSizeView.isHidden = true
+        hidePencilSizeView()
+        showEraseSizeView()
         setBtnAsClicked(button: sender)
         
         self.delegate?.erase()
@@ -305,7 +327,8 @@ public class BrushToolView: UIView {
     func drawOnCanvas(_ sender: UIButton) {
         setAllGroupdToolsButtonsAsNotClicked()
         setBtnAsClicked(button: sender)
-        groupPencilSizeView.isHidden = false
+        hideEraseSizeView()
+        showPencilSizeView()
         delegate?.draw()
     }
     
@@ -324,6 +347,13 @@ public class BrushToolView: UIView {
         delegate?.changePencilSize(CGFloat(sender.tag))
     }
     
+    func eraserSize(_ sender: UIButton) {
+        setAllGroupdEraseSizeButtonsAsNotClicked()
+        setBtnAsClicked(button: sender)
+        
+        delegate?.changeEraserSize(CGFloat(sender.tag))
+    }
+
     func save(_ sender: Any) {
         let alert = UIAlertController(title: "Salvar", message: "Deseja salvar as alterações e sair do modo de seleção?", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.default, handler: nil))
@@ -342,6 +372,23 @@ public class BrushToolView: UIView {
             self.delegate?.cancel()
         }))
         UIApplication.shared.keyWindow?.rootViewController!.topMostViewController().present(alert, animated: true, completion: nil)
+    }
+    
+    
+    func showPencilSizeView() {
+        groupPencilSizeView.isHidden = false
+    }
+    
+    func hidePencilSizeView() {
+        groupPencilSizeView.isHidden = true
+    }
+    
+    func showEraseSizeView() {
+        groupEraseSizeView.isHidden = false
+    }
+    
+    func hideEraseSizeView() {
+        groupEraseSizeView.isHidden = true
     }
 }
 

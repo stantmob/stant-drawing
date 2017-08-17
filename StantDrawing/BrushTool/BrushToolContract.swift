@@ -15,6 +15,7 @@ protocol BrushToolContract {
     func undo()
     func redo()
     func changePencilSize(_ size: CGFloat)
+    func changeEraserSize(_ size: CGFloat)
     func save()
     func cancel()
 }

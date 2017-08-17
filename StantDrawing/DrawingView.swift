@@ -25,6 +25,7 @@ public class DrawingView: UIView {
     internal let brushColor:                           UIColor
     
     internal var pencilSize: CGFloat = 10.0
+    internal var eraseSize: CGFloat  = 30.0
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -69,10 +70,8 @@ public class DrawingView: UIView {
         zoomScrollView.addSubview(baseContentView)
         self.addSubview(zoomScrollView)
         self.addSubview(brushToolView)
-        let y = (baseContentView.frame.height - brushToolView.groupPencilSizeView.frame.height) / 2
-        let origin = CGPoint(x: baseContentView.frame.width, y: y)
-        brushToolView.groupPencilSizeView.frame.origin = origin
-        self.addSubview(brushToolView.groupPencilSizeView)
+
+        brushToolView.addAsSubViewOn(self, x: baseContentView.frame.width, heightBaseToCenter: baseContentView.frame.height)
     }
     
     private func configureZoomScrollView() {
@@ -194,7 +193,7 @@ extension DrawingView: BrushToolContract {
     
     func erase() {
         contentDrawingView.drawTool  = ACEDrawingToolTypeEraser
-        contentDrawingView.lineWidth = 10.0
+        contentDrawingView.lineWidth = eraseSize
         
         stopDragAndScrollOnZoomScrollView()
         enableUserInteractionOnZoomScrollView()
@@ -223,6 +222,11 @@ extension DrawingView: BrushToolContract {
     func changePencilSize(_ size: CGFloat) {
         pencilSize = size
         contentDrawingView.lineWidth = pencilSize
+    }
+    
+    func changeEraserSize(_ size: CGFloat) {
+        eraseSize = size
+        contentDrawingView.lineWidth = eraseSize
     }
 
     func save() {
