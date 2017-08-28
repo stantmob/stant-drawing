@@ -134,7 +134,7 @@ public class BrushToolView: UIView {
     
     private func loadGroupEraseSizeButtons() {
         let eraser     = Button(imageName: "eraser",     selector: #selector(self.eraserSize))
-        let eraserFull = Button(imageName: "eraserFull", selector: #selector(self.eraserSize))
+        let eraserFull = Button(imageName: "eraserfull", selector: #selector(self.eraserSize))
         
         eraser.uiButton.tag     = 30
         eraserFull.uiButton.tag = 80
