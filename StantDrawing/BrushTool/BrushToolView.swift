@@ -307,7 +307,7 @@ public class BrushToolView: UIView {
     
     // MARK: IBActions
     
-    func moveCanvas(_ sender: UIButton) {
+    @objc func moveCanvas(_ sender: UIButton) {
         setAllGroupdToolsButtonsAsNotClicked()
         setBtnAsClicked(button: sender)
         hideEraseSizeView()
@@ -315,7 +315,7 @@ public class BrushToolView: UIView {
         self.delegate?.moveCanvas()
     }
     
-    func erase(_ sender: UIButton) {
+    @objc func erase(_ sender: UIButton) {
         setAllGroupdToolsButtonsAsNotClicked()
         hidePencilSizeView()
         showEraseSizeView()
@@ -324,7 +324,7 @@ public class BrushToolView: UIView {
         self.delegate?.erase()
     }
     
-    func drawOnCanvas(_ sender: UIButton) {
+    @objc func drawOnCanvas(_ sender: UIButton) {
         setAllGroupdToolsButtonsAsNotClicked()
         setBtnAsClicked(button: sender)
         hideEraseSizeView()
@@ -332,29 +332,29 @@ public class BrushToolView: UIView {
         delegate?.draw()
     }
     
-    func undo(_ sender: Any) {
+    @objc func undo(_ sender: Any) {
         self.delegate?.undo()
     }
     
-    func redo(_ sender: Any) {
+    @objc func redo(_ sender: Any) {
         self.delegate?.redo()
     }
     
-    func pencilSize(_ sender: UIButton) {
+    @objc func pencilSize(_ sender: UIButton) {
         setAllGroupdPencilSizeButtonsAsNotClicked()
         setBtnSizeAsClicked(button: sender)
 
         delegate?.changePencilSize(CGFloat(sender.tag))
     }
     
-    func eraserSize(_ sender: UIButton) {
+    @objc func eraserSize(_ sender: UIButton) {
         setAllGroupdEraseSizeButtonsAsNotClicked()
         setBtnAsClicked(button: sender)
         
         delegate?.changeEraserSize(CGFloat(sender.tag))
     }
 
-    func save(_ sender: Any) {
+    @objc func save(_ sender: Any) {
         let alert = UIAlertController(title: "Salvar", message: "Deseja salvar as alterações e sair do modo de seleção?", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.default, handler: nil))
         
@@ -364,7 +364,7 @@ public class BrushToolView: UIView {
         UIApplication.shared.keyWindow?.rootViewController!.topMostViewController().present(alert, animated: true, completion: nil)
     }
     
-    func cancel(_ sender: Any) {
+    @objc func cancel(_ sender: Any) {
         let alert = UIAlertController(title: "Atenção", message: "Deseja cancelar a edição? Todas alterações serão perdidas", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Não", style: UIAlertActionStyle.default, handler: nil))
         
