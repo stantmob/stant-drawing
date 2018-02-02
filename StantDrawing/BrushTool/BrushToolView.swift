@@ -92,7 +92,7 @@ public class BrushToolView: UIView {
     private func loadGroupToolsButtons() {
         let moveBtn  = Button(imageName: "move",   selector: #selector(self.moveCanvas))
         let brushBtn = Button(imageName: "pencil", selector: #selector(self.drawOnCanvas))
-        let eraseBtn = Button(imageName: "eraser", selector: #selector(self.erase))
+        let eraseBtn = Button(imageName: "eraserfull", selector: #selector(self.erase))
         let undoBtn  = Button(imageName: "undo",   selector: #selector(self.undo))
         let redoBtn  = Button(imageName: "redo",   selector: #selector(self.redo))
 
