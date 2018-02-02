@@ -1,0 +1,22 @@
+PODS:
+  - StantDrawing (0.0.1)
+
+DEPENDENCIES:
+  - StantDrawing (from `https://github.com/stantmob/stant-drawing.git`, branch `master`)
+
+EXTERNAL SOURCES:
+  StantDrawing:
+    :branch: master
+    :git: https://github.com/stantmob/stant-drawing.git
+
+CHECKOUT OPTIONS:
+  StantDrawing:
+    :commit: 48a9ae6e8f699b2ec80ca0ceb42517ee761762d9
+    :git: https://github.com/stantmob/stant-drawing.git
+
+SPEC CHECKSUMS:
+  StantDrawing: e2bbb3ccaeaf6700e3bf713183fe6a416a3fa42f
+
+PODFILE CHECKSUM: 7c36d9964256425662bf9d3463dbb2ceb704c500
+
+COCOAPODS: 1.4.0
