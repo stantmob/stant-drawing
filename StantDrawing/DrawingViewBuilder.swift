@@ -14,6 +14,7 @@ public class DrawingViewBuilder {
     private  var placeholderImage:                     UIImage = UIImage()
     private  var placeholderImageWithLowAlpha:         UIImage = UIImage()
     private  var alphaForPlaceholderImageWithLowAlpha: CGFloat = 0.5
+    private var brushHexColor:                         String  = "#000000"
     
     public init() {
         let screenSize = UIScreen.main.bounds
@@ -27,6 +28,12 @@ public class DrawingViewBuilder {
     
     public func brushColor(_ color: UIColor) -> DrawingViewBuilder {
         brushColor = color
+        return self
+    }
+    
+    public func brushHexColor(_ color: String) -> DrawingViewBuilder {
+        brushColor    = UIColor(hex: color)
+        brushHexColor = color
         return self
     }
     
@@ -58,7 +65,8 @@ public class DrawingViewBuilder {
                                 placeholderImage:                     placeholderImage,
                                 placeholderImageWithLowAlpha:         placeholderImageWithLowAlpha,
                                 alphaForPlaceholderImageWithLowAlpha: alphaForPlaceholderImageWithLowAlpha,
-                                brushColor:                           brushColor
+                                brushColor:                           brushColor,
+                                brushHexColor:                        brushHexColor
         )
     }
    

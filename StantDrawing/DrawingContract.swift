@@ -9,6 +9,6 @@
 import Foundation
 
 public protocol DrawingDelegate {
-    func save(drawingImage: UIImage)
+    func save(drawingImage: UIImage, drawingColor: String)
     func cancel()
 }

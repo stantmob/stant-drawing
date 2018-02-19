@@ -22,6 +22,7 @@ public class DrawingView: UIView {
     private  let placeholderImage:                     UIImage
     private  let placeholderImageWithLowAlpha:         UIImage
     private  let alphaForPlaceholderImageWithLowAlpha: CGFloat
+    private  let brushHexColor:                        String
     internal let brushColor:                           UIColor
     
     internal var pencilSize: CGFloat = 10.0
@@ -37,7 +38,8 @@ public class DrawingView: UIView {
                 placeholderImage:                     UIImage,
                 placeholderImageWithLowAlpha:         UIImage,
                 alphaForPlaceholderImageWithLowAlpha: CGFloat,
-                brushColor:                           UIColor
+                brushColor:                           UIColor,
+                brushHexColor:                        String
         ) {
         self.drawingDelegate                      = drawingDelegate
         self.drawImage                            = drawImage
@@ -45,6 +47,7 @@ public class DrawingView: UIView {
         self.placeholderImageWithLowAlpha         = placeholderImageWithLowAlpha
         self.alphaForPlaceholderImageWithLowAlpha = alphaForPlaceholderImageWithLowAlpha
         self.brushColor                           = brushColor
+        self.brushHexColor                        = brushHexColor
         
         super.init(frame: frame)
         
@@ -231,8 +234,8 @@ extension DrawingView: BrushToolContract {
 
     func save() {
         if let delegate = drawingDelegate {
-            let drawingImage = contentDrawingView.image!
-            delegate.save(drawingImage: drawingImage)
+            let drawingImage = contentDrawingView.image!            
+            delegate.save(drawingImage: drawingImage, drawingColor: brushHexColor)
         }
     }
     
