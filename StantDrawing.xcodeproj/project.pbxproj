@@ -33,6 +33,9 @@
 		07F9C3861F09F7FE00E8A4F6 /* BrushToolContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F9C3851F09F7FE00E8A4F6 /* BrushToolContract.swift */; };
 		406B4BF4AFD8FBD1CF2DB076 /* Pods_StantDrawingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 184F3DF706D22E4D486DA2E1 /* Pods_StantDrawingTests.framework */; };
 		6DCDA6EDCA5A700F03B65380 /* Pods_StantDrawing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3F3CEF0AA9EC8A615988A /* Pods_StantDrawing.framework */; };
+		F4DE39D6203B4A3F00FE1651 /* SelectColorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4DE39D5203B4A3F00FE1651 /* SelectColorView.xib */; };
+		F4DE39D8203B4A5F00FE1651 /* SelectColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE39D7203B4A5F00FE1651 /* SelectColorView.swift */; };
+		F4DE39DA203B4D9400FE1651 /* selectColor.png in Resources */ = {isa = PBXBuildFile; fileRef = F4DE39D9203B4D9400FE1651 /* selectColor.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +81,9 @@
 		3037F8E8A2B773AC75A74BF4 /* Pods-StantDrawing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StantDrawing.release.xcconfig"; path = "Pods/Target Support Files/Pods-StantDrawing/Pods-StantDrawing.release.xcconfig"; sourceTree = "<group>"; };
 		7368C2565A1BE2C0CD7CC0C8 /* Pods-StantDrawingTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StantDrawingTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StantDrawingTests/Pods-StantDrawingTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8CA3F3CEF0AA9EC8A615988A /* Pods_StantDrawing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StantDrawing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F4DE39D5203B4A3F00FE1651 /* SelectColorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectColorView.xib; sourceTree = "<group>"; };
+		F4DE39D7203B4A5F00FE1651 /* SelectColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectColorView.swift; sourceTree = "<group>"; };
+		F4DE39D9203B4D9400FE1651 /* selectColor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectColor.png; sourceTree = "<group>"; };
 		FCF1C08A2F28128B91DA0749 /* Pods-StantDrawing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StantDrawing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StantDrawing/Pods-StantDrawing.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -169,6 +175,7 @@
 		070735941F09F30400E675C6 /* BrushTool */ = {
 			isa = PBXGroup;
 			children = (
+				F4DE39D3203B4A0400FE1651 /* View */,
 				070735951F09F32600E675C6 /* BrushToolView.swift */,
 				07F9C3851F09F7FE00E8A4F6 /* BrushToolContract.swift */,
 			);
@@ -186,6 +193,7 @@
 				0765A09F1F3E388F00865E41 /* eraserfull.png */,
 				0765A0A01F3E388F00865E41 /* hide arrow.png */,
 				0765A0A21F3E388F00865E41 /* redo.png */,
+				F4DE39D9203B4D9400FE1651 /* selectColor.png */,
 				0765A0A31F3E388F00865E41 /* save.png */,
 				0765A0A41F3E388F00865E41 /* undo.png */,
 				0765A0A51F3E388F00865E41 /* vectorfull.png */,
@@ -210,6 +218,23 @@
 				06DE2A065D2F15797CBBE2FC /* Pods-StantDrawingTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		F4DE39D3203B4A0400FE1651 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F4DE39D4203B4A2D00FE1651 /* SelectColorView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F4DE39D4203B4A2D00FE1651 /* SelectColorView */ = {
+			isa = PBXGroup;
+			children = (
+				F4DE39D5203B4A3F00FE1651 /* SelectColorView.xib */,
+				F4DE39D7203B4A5F00FE1651 /* SelectColorView.swift */,
+			);
+			path = SelectColorView;
 			sourceTree = "<group>";
 		};
 		F7624C5A646C08F78D6FD279 /* Frameworks */ = {
@@ -327,6 +352,8 @@
 			files = (
 				078CD1641F45E3030078E525 /* pencil.png in Resources */,
 				0765A0AA1F3E388F00865E41 /* hide arrow.png in Resources */,
+				F4DE39D6203B4A3F00FE1651 /* SelectColorView.xib in Resources */,
+				F4DE39DA203B4D9400FE1651 /* selectColor.png in Resources */,
 				0765A0A61F3E388F00865E41 /* cancel.png in Resources */,
 				0765A0AC1F3E388F00865E41 /* redo.png in Resources */,
 				0765A0A81F3E388F00865E41 /* eraser.png in Resources */,
@@ -439,6 +466,7 @@
 			files = (
 				0707356D1F096F9300E675C6 /* ACEDrawingTools.m in Sources */,
 				0765EFF81F2D2CC700AA0090 /* DrawingViewBuilder.swift in Sources */,
+				F4DE39D8203B4A5F00FE1651 /* SelectColorView.swift in Sources */,
 				070735961F09F32600E675C6 /* BrushToolView.swift in Sources */,
 				07F9C3861F09F7FE00E8A4F6 /* BrushToolContract.swift in Sources */,
 				0707356F1F096F9300E675C6 /* ACEDrawingView.m in Sources */,
