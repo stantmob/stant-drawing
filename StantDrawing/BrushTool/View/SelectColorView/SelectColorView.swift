@@ -13,7 +13,11 @@ public class SelectColorView: UIView {
     public static let NIB_NAME = "SelectColorView"
     
     @IBOutlet var contentView: UIView!
-            
+    @IBOutlet weak var expandButton: UIButton!
+    @IBOutlet weak var viewWhole: UIView!
+    
+    var isExpanded = false
+    
     override public init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -33,8 +37,44 @@ public class SelectColorView: UIView {
         initalConfiguration()
     }
     
+
+    @IBAction func expandDidTapped(_ sender: Any) {
+        
+        if isExpanded {
+            
+            UIView.animate(withDuration: 0.5) {
+                self.expandButton.imageView?.transform = CGAffineTransform(rotationAngle: 0)
+//                self.contentView.frame = CGRect(x: self.contentView.frame.origin.x,
+//                                                y: self.contentView.frame.origin.y,
+//                                                width: 90,
+//                                                height: self.contentView.frame.height)
+//                self.contentView.frame.size.width = self.contentView.frame.width
+            }
+            
+            print("clicked expanded")
+            isExpanded = false
+            
+        } else {
+
+            UIView.animate(withDuration: 0.5) {
+                self.expandButton.imageView?.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(Double.pi)) / 180.0)
+                
+//                self.contentView.frame.origin = CGPoint(x: contentView.frame.origin.x + 30, y: y)
+//                self.contentView.frame.size.width = 450
+            }
+            
+            print("clicked collapsed")
+            
+            isExpanded = true
+        }
+        
+        
+        
+        
+    }
+    
     
     private func initalConfiguration() {
-        
+        viewWhole.layer.cornerRadius = 35
     }
 }

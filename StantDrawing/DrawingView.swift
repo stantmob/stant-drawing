@@ -22,7 +22,7 @@ public class DrawingView: UIView {
     private  let placeholderImage:                     UIImage
     private  let placeholderImageWithLowAlpha:         UIImage
     private  let alphaForPlaceholderImageWithLowAlpha: CGFloat
-    private  let brushHexColor:                        String
+    private  var brushHexColor:                        String
     internal let brushColor:                           UIColor
     
     internal var pencilSize: CGFloat = 10.0
@@ -221,6 +221,11 @@ extension DrawingView: BrushToolContract {
     func redo() {
         contentDrawingView.redoLatestStep()
     }
+    
+    func selectColor() {
+        
+        
+    }
 
     func changePencilSize(_ size: CGFloat) {
         pencilSize = size
@@ -230,6 +235,10 @@ extension DrawingView: BrushToolContract {
     func changeEraserSize(_ size: CGFloat) {
         eraseSize = size
         contentDrawingView.lineWidth = eraseSize
+    }
+    
+    func changeColor(_ color: String) {
+        brushHexColor = color
     }
 
     func save() {
