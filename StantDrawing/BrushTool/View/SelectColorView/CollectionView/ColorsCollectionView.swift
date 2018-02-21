@@ -10,6 +10,7 @@ import Foundation
 
 public class ColorsCollectionView: UICollectionView, UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    public var brushDelegate: BrushToolContract?
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -46,12 +47,12 @@ public class ColorsCollectionView: UICollectionView, UICollectionViewDelegateFlo
         
         let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.alert)
         alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-//        self.   presentViewController
+
         self.inputViewController?.present(alert, animated: true, completion: nil)
-        
         
         let cell = collectionView.cellForItem(at: indexPath) as! ColorCell
         
+        brushDelegate?.changeColor(ColorGenerator.getAll()[indexPath.row])
         
         cell.selectedView.backgroundColor = UIColor.white
         
@@ -77,6 +78,5 @@ public class ColorsCollectionView: UICollectionView, UICollectionViewDelegateFlo
         return CGSize(width: 60,
                       height: 50)
     }
-    
     
 }

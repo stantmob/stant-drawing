@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol BrushToolContract {
+public protocol BrushToolContract {
     func moveCanvas()
     func erase()
     func draw()

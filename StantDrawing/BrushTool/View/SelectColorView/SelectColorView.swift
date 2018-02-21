@@ -15,6 +15,7 @@ public class SelectColorView: UIView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var expandButton: UIButton!
     @IBOutlet weak var viewWhole: UIView!
+    @IBOutlet weak var selectColorCollectionView: ColorsCollectionView!
     
     var isExpanded = false
     
@@ -67,12 +68,15 @@ public class SelectColorView: UIView {
             
             isExpanded = true
         }
-        
-        
-        
-        
     }
     
+    public func showSelectColorGroup() {
+        self.contentView.isHidden = false
+    }
+    
+    public func hideSelectColorGroup() {
+        self.contentView.isHidden = true
+    }
     
     private func initalConfiguration() {
         viewWhole.layer.cornerRadius = 35

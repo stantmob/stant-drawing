@@ -77,11 +77,6 @@ public class BrushToolView: UIView {
         groupEraseSizeView.frame.origin  = point
         groupSelectHexColorView?.frame.origin = CGPoint(x: x - 10, y: groupPencilSizeView.frame.height - 50)
         
-//        groupSelectHexColorView?.frame = CGRect(x: x,
-//                                                y: y,
-//                                                width: (groupSelectHexColorView?.contentView.frame.width)!,
-//                                                height: (groupSelectHexColorView?.contentView.frame.width)!)
-        
         view.addSubview(groupPencilSizeView)
         view.addSubview(groupEraseSizeView)
         view.addSubview(groupSelectHexColorView!)
@@ -381,8 +376,7 @@ public class BrushToolView: UIView {
         showSelectColorView()
         
         setBtnAsClicked(button: sender)
-        
-//        self.delegate?.changeColor("")
+        groupSelectHexColorView?.selectColorCollectionView.brushDelegate = delegate
     }
     
     @objc func pencilSize(_ sender: UIButton) {
@@ -437,11 +431,11 @@ public class BrushToolView: UIView {
     }
     
     func showSelectColorView() {
-        groupSelectHexColorView!.isHidden = false
+        groupSelectHexColorView?.showSelectColorGroup()
     }
     
     func hideSelectColorView() {
-        groupSelectHexColorView!.isHidden = true
+        groupSelectHexColorView!.hideSelectColorGroup()
     }
 }
 

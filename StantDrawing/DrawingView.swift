@@ -188,13 +188,13 @@ extension DrawingView {
 // MARK: Extension for BrushToolContract protocol
 extension DrawingView: BrushToolContract {
     
-    func moveCanvas() {
+    public func moveCanvas() {
         startDragAndScrollOnZoomScrollView()
         enableUserInteractionOnZoomScrollView()
         disableUserInteractionOnContentDrawingView()
     }
     
-    func erase() {
+    public func erase() {
         contentDrawingView.drawTool  = ACEDrawingToolTypeEraser
         contentDrawingView.lineWidth = eraseSize
         
@@ -203,7 +203,7 @@ extension DrawingView: BrushToolContract {
         enableUserInteractionOnContentDrawingView()
     }
     
-    func draw() {
+    public func draw() {
         contentDrawingView.drawTool  = ACEDrawingToolTypePen
         contentDrawingView.lineWidth = pencilSize
         contentDrawingView.lineAlpha = 0.5
@@ -214,41 +214,41 @@ extension DrawingView: BrushToolContract {
         enableUserInteractionOnContentDrawingView()
     }
     
-    func undo() {
+    public func undo() {
         contentDrawingView.undoLatestStep()
     }
     
-    func redo() {
+    public func redo() {
         contentDrawingView.redoLatestStep()
     }
     
-    func selectColor() {
+    public func selectColor() {
         
         
     }
 
-    func changePencilSize(_ size: CGFloat) {
+    public func changePencilSize(_ size: CGFloat) {
         pencilSize = size
         contentDrawingView.lineWidth = pencilSize
     }
     
-    func changeEraserSize(_ size: CGFloat) {
+    public func changeEraserSize(_ size: CGFloat) {
         eraseSize = size
         contentDrawingView.lineWidth = eraseSize
     }
     
-    func changeColor(_ color: String) {
+    public func changeColor(_ color: String) {
         brushHexColor = color
     }
 
-    func save() {
+    public func save() {
         if let delegate = drawingDelegate {
             let drawingImage = contentDrawingView.image!            
             delegate.save(drawingImage: drawingImage, drawingColor: brushHexColor)
         }
     }
     
-    func cancel(){
+    public func cancel(){
         if let delegate = drawingDelegate {
             delegate.cancel()
         }
