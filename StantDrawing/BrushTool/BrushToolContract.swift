@@ -19,4 +19,5 @@ public protocol BrushToolContract {
     func changeColor(_ color: String)
     func save()
     func cancel()
+    func getMessage() -> String
 }

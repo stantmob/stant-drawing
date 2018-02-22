@@ -44,17 +44,23 @@ public class ColorsCollectionView: UICollectionView, UICollectionViewDelegateFlo
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        
-        let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.alert)
-        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-
-        self.inputViewController?.present(alert, animated: true, completion: nil)
-        
         let cell = collectionView.cellForItem(at: indexPath) as! ColorCell
         
-        brushDelegate?.changeColor(ColorGenerator.getAll()[indexPath.row])
+        
         
         cell.selectedView.backgroundColor = UIColor.white
+        
+        let alert = UIAlertController(title: "Atenção", message: brushDelegate?.getMessage(), preferredStyle: UIAlertControllerStyle.alert)
+        
+        alert.addAction(UIAlertAction(title: "Cancelar", style: UIAlertActionStyle.default, handler: { (alertAction) in
+            cell.selectedView.backgroundColor = UIColor(hex: ColorGenerator.getAll()[indexPath.row])
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Continuar", style: UIAlertActionStyle.default, handler: { (alertAction) in
+            self.brushDelegate?.changeColor(ColorGenerator.getAll()[indexPath.row])
+        }))
+        
+        UIApplication.shared.keyWindow?.rootViewController!.topMostViewController().present(alert, animated: true, completion: nil)
         
         print("selected")
     }

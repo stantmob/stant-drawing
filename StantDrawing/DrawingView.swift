@@ -23,6 +23,7 @@ public class DrawingView: UIView {
     private  let placeholderImageWithLowAlpha:         UIImage
     private  let alphaForPlaceholderImageWithLowAlpha: CGFloat
     private  var brushHexColor:                        String
+    private  var message:                              String
     internal let brushColor:                           UIColor
     
     internal var pencilSize: CGFloat = 10.0
@@ -39,7 +40,8 @@ public class DrawingView: UIView {
                 placeholderImageWithLowAlpha:         UIImage,
                 alphaForPlaceholderImageWithLowAlpha: CGFloat,
                 brushColor:                           UIColor,
-                brushHexColor:                        String
+                brushHexColor:                        String,
+                message:                              String
         ) {
         self.drawingDelegate                      = drawingDelegate
         self.drawImage                            = drawImage
@@ -48,6 +50,7 @@ public class DrawingView: UIView {
         self.alphaForPlaceholderImageWithLowAlpha = alphaForPlaceholderImageWithLowAlpha
         self.brushColor                           = brushColor
         self.brushHexColor                        = brushHexColor
+        self.message                              = message
         
         super.init(frame: frame)
         
@@ -135,7 +138,6 @@ public class DrawingView: UIView {
     
     
     // MARK: Image Utils
-    
     private func imageIsValid(_ image: UIImage) -> Bool {
         return image.size.width > 0 && image.size.height > 0
     }
@@ -207,7 +209,7 @@ extension DrawingView: BrushToolContract {
         contentDrawingView.drawTool  = ACEDrawingToolTypePen
         contentDrawingView.lineWidth = pencilSize
         contentDrawingView.lineAlpha = 0.5
-        contentDrawingView.lineColor = brushColor
+        contentDrawingView.lineColor = UIColor(hex: brushHexColor)
         
         stopDragAndScrollOnZoomScrollView()
         enableUserInteractionOnZoomScrollView()
@@ -222,11 +224,6 @@ extension DrawingView: BrushToolContract {
         contentDrawingView.redoLatestStep()
     }
     
-    public func selectColor() {
-        
-        
-    }
-
     public func changePencilSize(_ size: CGFloat) {
         pencilSize = size
         contentDrawingView.lineWidth = pencilSize
@@ -238,7 +235,19 @@ extension DrawingView: BrushToolContract {
     }
     
     public func changeColor(_ color: String) {
-        brushHexColor = color
+                                
+        self.brushHexColor                = color
+        self.contentDrawingView.lineColor = UIColor(hex: color)
+        
+        stopDragAndScrollOnZoomScrollView()
+        enableUserInteractionOnZoomScrollView()
+        disableUserInteractionOnContentDrawingView()
+        
+        contentDrawingView.loadImage(UIImage())
+    }
+    
+    public func getMessage() -> String {
+        return self.message
     }
 
     public func save() {
@@ -253,7 +262,6 @@ extension DrawingView: BrushToolContract {
             delegate.cancel()
         }
     }
-
 }
 
 // MARK: Extension for UIScrollViewDelegate protocol

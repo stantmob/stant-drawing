@@ -14,7 +14,8 @@ public class DrawingViewBuilder {
     private  var placeholderImage:                     UIImage = UIImage()
     private  var placeholderImageWithLowAlpha:         UIImage = UIImage()
     private  var alphaForPlaceholderImageWithLowAlpha: CGFloat = 0.5
-    private var brushHexColor:                         String  = "#000000"
+    private  var brushHexColor:                        String  = "#000000"
+    private  var message:                              String  = ""
     
     public init() {
         let screenSize = UIScreen.main.bounds
@@ -53,6 +54,11 @@ public class DrawingViewBuilder {
         return self
     }
     
+    public func alertMessage(_ message: String = "Caso confirme, todo desenho desta sessão serão perdido(s)") -> DrawingViewBuilder {
+        self.message = message
+        return self
+    }
+    
     public func containerDrawingViewFrame(_ frame: CGRect) -> DrawingViewBuilder {
         containerDrawingViewFrame = frame
         return self
@@ -66,7 +72,8 @@ public class DrawingViewBuilder {
                                 placeholderImageWithLowAlpha:         placeholderImageWithLowAlpha,
                                 alphaForPlaceholderImageWithLowAlpha: alphaForPlaceholderImageWithLowAlpha,
                                 brushColor:                           brushColor,
-                                brushHexColor:                        brushHexColor
+                                brushHexColor:                        brushHexColor,
+                                message:                              message
         )
     }
    
