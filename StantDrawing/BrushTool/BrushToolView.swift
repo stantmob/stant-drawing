@@ -76,10 +76,10 @@ public class BrushToolView: UIView {
         groupPencilSizeView.frame.origin = point
         groupEraseSizeView.frame.origin  = point
         groupSelectHexColorView?.frame.origin = CGPoint(x: x - 10, y: groupPencilSizeView.frame.height - 50)
-        
+
+        view.addSubview(groupSelectHexColorView!)
         view.addSubview(groupPencilSizeView)
         view.addSubview(groupEraseSizeView)
-        view.addSubview(groupSelectHexColorView!)
     }
     
     private func loadButtons() {

@@ -38,10 +38,12 @@ public class SelectColorView: UIView {
     }
     
     public func showSelectColorGroup() {
+        self.viewWhole.isHidden   = false
         self.contentView.isHidden = false
     }
     
     public func hideSelectColorGroup() {
+        self.viewWhole.isHidden   = true 
         self.contentView.isHidden = true
     }
     
