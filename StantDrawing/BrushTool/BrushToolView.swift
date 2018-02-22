@@ -113,7 +113,7 @@ public class BrushToolView: UIView {
         let eraseBtn = Button(imageName: "eraser", selector: #selector(self.erase))
         let undoBtn  = Button(imageName: "undo",   selector: #selector(self.undo))
         let redoBtn  = Button(imageName: "redo",   selector: #selector(self.redo))
-        let colorBtn = Button(imageName: "selectColor", selector: #selector(self.selectColor))
+        let colorBtn = Button(imageName: "colorPalette", selector: #selector(self.selectColor))
         
         
         groupToolsButtons.append(moveBtn)

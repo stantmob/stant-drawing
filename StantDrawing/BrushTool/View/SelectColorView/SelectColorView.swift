@@ -12,8 +12,7 @@ public class SelectColorView: UIView {
     
     public static let NIB_NAME = "SelectColorView"
     
-    @IBOutlet var contentView: UIView!
-    @IBOutlet weak var expandButton: UIButton!
+    @IBOutlet var contentView: UIView!    
     @IBOutlet weak var viewWhole: UIView!
     @IBOutlet weak var selectColorCollectionView: ColorsCollectionView!
     
@@ -36,38 +35,6 @@ public class SelectColorView: UIView {
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         initalConfiguration()
-    }
-    
-
-    @IBAction func expandDidTapped(_ sender: Any) {
-        
-        if isExpanded {
-            
-            UIView.animate(withDuration: 0.5) {
-                self.expandButton.imageView?.transform = CGAffineTransform(rotationAngle: 0)
-//                self.contentView.frame = CGRect(x: self.contentView.frame.origin.x,
-//                                                y: self.contentView.frame.origin.y,
-//                                                width: 90,
-//                                                height: self.contentView.frame.height)
-//                self.contentView.frame.size.width = self.contentView.frame.width
-            }
-            
-            print("clicked expanded")
-            isExpanded = false
-            
-        } else {
-
-            UIView.animate(withDuration: 0.5) {
-                self.expandButton.imageView?.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(Double.pi)) / 180.0)
-                
-//                self.contentView.frame.origin = CGPoint(x: contentView.frame.origin.x + 30, y: y)
-//                self.contentView.frame.size.width = 450
-            }
-            
-            print("clicked collapsed")
-            
-            isExpanded = true
-        }
     }
     
     public func showSelectColorGroup() {
