@@ -46,8 +46,6 @@ public class ColorsCollectionView: UICollectionView, UICollectionViewDelegateFlo
         
         let cell = collectionView.cellForItem(at: indexPath) as! ColorCell
         
-        
-        
         cell.selectedView.backgroundColor = UIColor.white
         
         let alert = UIAlertController(title: "Atenção", message: brushDelegate?.getMessage(), preferredStyle: UIAlertControllerStyle.alert)
@@ -68,7 +66,7 @@ public class ColorsCollectionView: UICollectionView, UICollectionViewDelegateFlo
         if collectionView.cellForItem(at: indexPath) == nil { return }
         
         let cell: ColorCell = collectionView.cellForItem(at: indexPath) as! ColorCell
-                
+        
         cell.selectedView.backgroundColor = UIColor(hex: ColorGenerator.getAll()[indexPath.row])
     }
     
