@@ -153,10 +153,6 @@ public class BrushToolView: UIView {
         groupPencilSizeButtons.append(btnSize4)
     }
     
-    private func loadGroupSelectColorsButtons() {
-        
-    }
-    
     private func loadGroupEraseSizeButtons() {
         let eraser     = Button(imageName: "eraser",     selector: #selector(self.eraserSize))
         let eraserFull = Button(imageName: "eraserfull", selector: #selector(self.eraserSize))
@@ -435,7 +431,7 @@ public class BrushToolView: UIView {
     }
     
     func hideSelectColorView() {
-        groupSelectHexColorView!.hideSelectColorGroup()
+        groupSelectHexColorView?.hideSelectColorGroup()
     }
 }
 

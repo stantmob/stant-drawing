@@ -61,8 +61,6 @@ public class ColorsCollectionView: UICollectionView, UICollectionViewDelegateFlo
         }))
         
         UIApplication.shared.keyWindow?.rootViewController!.topMostViewController().present(alert, animated: true, completion: nil)
-        
-        print("selected")
     }
     
     public func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -70,12 +68,8 @@ public class ColorsCollectionView: UICollectionView, UICollectionViewDelegateFlo
         if collectionView.cellForItem(at: indexPath) == nil { return }
         
         let cell: ColorCell = collectionView.cellForItem(at: indexPath) as! ColorCell
-        
-        
+                
         cell.selectedView.backgroundColor = UIColor(hex: ColorGenerator.getAll()[indexPath.row])
-        
-        print("unselected")
-        
     }
     
     public func collectionView(_ collectionView: UICollectionView,
