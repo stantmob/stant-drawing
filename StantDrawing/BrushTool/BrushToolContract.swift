@@ -20,4 +20,5 @@ public protocol BrushToolContract {
     func save()
     func cancel()
     func getMessage() -> String
+    func getHexColor() -> String
 }

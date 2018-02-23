@@ -35,7 +35,6 @@
 		6DCDA6EDCA5A700F03B65380 /* Pods_StantDrawing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CA3F3CEF0AA9EC8A615988A /* Pods_StantDrawing.framework */; };
 		F41AA228203CABF100DFE2B9 /* arrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = F41AA227203CABF100DFE2B9 /* arrowRight.png */; };
 		F438090D203DB1A700D1365B /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F438090C203DB1A700D1365B /* ColorCell.xib */; };
-		F446CA31203F0C6F00377E80 /* colorPalette.png in Resources */ = {isa = PBXBuildFile; fileRef = F446CA30203F0C6F00377E80 /* colorPalette.png */; };
 		F44AF407203DE0EB004497E6 /* ColorGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44AF406203DE0EB004497E6 /* ColorGenerator.swift */; };
 		F44AF409203DE168004497E6 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44AF408203DE168004497E6 /* UIColorExtension.swift */; };
 		F44B9169203DA9B40089FD6A /* ColorsCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44B9168203DA9B30089FD6A /* ColorsCollectionView.swift */; };
@@ -92,7 +91,6 @@
 		8CA3F3CEF0AA9EC8A615988A /* Pods_StantDrawing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StantDrawing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F41AA227203CABF100DFE2B9 /* arrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrowRight.png; sourceTree = "<group>"; };
 		F438090C203DB1A700D1365B /* ColorCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorCell.xib; sourceTree = "<group>"; };
-		F446CA30203F0C6F00377E80 /* colorPalette.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colorPalette.png; sourceTree = "<group>"; };
 		F44AF406203DE0EB004497E6 /* ColorGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGenerator.swift; sourceTree = "<group>"; };
 		F44AF408203DE168004497E6 /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		F44B9168203DA9B30089FD6A /* ColorsCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsCollectionView.swift; sourceTree = "<group>"; };
@@ -212,7 +210,6 @@
 				0765A0A01F3E388F00865E41 /* hide arrow.png */,
 				0765A0A21F3E388F00865E41 /* redo.png */,
 				F4DE39D9203B4D9400FE1651 /* selectColor.png */,
-				F446CA30203F0C6F00377E80 /* colorPalette.png */,
 				0765A0A31F3E388F00865E41 /* save.png */,
 				0765A0A41F3E388F00865E41 /* undo.png */,
 				F4D8DDF2203CA299009729C1 /* arrowLeft.png */,
@@ -398,7 +395,6 @@
 				F4DE39D6203B4A3F00FE1651 /* SelectColorView.xib in Resources */,
 				F41AA228203CABF100DFE2B9 /* arrowRight.png in Resources */,
 				F4DE39DA203B4D9400FE1651 /* selectColor.png in Resources */,
-				F446CA31203F0C6F00377E80 /* colorPalette.png in Resources */,
 				0765A0A61F3E388F00865E41 /* cancel.png in Resources */,
 				F4EAF44E203F072F00C63FDD /* arrowDown.png in Resources */,
 				0765A0AC1F3E388F00865E41 /* redo.png in Resources */,

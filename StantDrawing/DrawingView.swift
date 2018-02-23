@@ -244,12 +244,17 @@ extension DrawingView: BrushToolContract {
         disableUserInteractionOnContentDrawingView()
         
         contentDrawingView.loadImage(UIImage())
+        brushToolView.groupToolsButtons.last?.uiButton.tintColor = UIColor(hex: color)
     }
     
     public func getMessage() -> String {
         return self.message
     }
-
+    
+    public func getHexColor() -> String {
+        return brushHexColor
+    }
+    
     public func save() {
         if let delegate = drawingDelegate {
             let drawingImage = contentDrawingView.image!            
