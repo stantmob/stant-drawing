@@ -16,6 +16,12 @@ public class SelectColorView: UIView {
     @IBOutlet weak var viewWhole: UIView!
     @IBOutlet weak var selectColorCollectionView: ColorsCollectionView!
     
+    @IBOutlet weak var expandButton: UIButton!
+    
+    @IBOutlet weak var animationBaseContentView: UIView!
+    @IBOutlet weak var animationBaseViewWhole: UIView!
+    @IBOutlet weak var animationBaseCollectionView: UIView!
+    
     var isExpanded = false
     
     override public init(frame: CGRect) {
@@ -35,6 +41,43 @@ public class SelectColorView: UIView {
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         initalConfiguration()
+    }
+    
+    @IBAction func expandButton(_ sender: Any) {
+        
+        if isExpanded {
+            
+            UIView.animate(withDuration: 0.5) {
+                self.expandButton.imageView?.transform = CGAffineTransform(rotationAngle: 0)
+                
+                self.frame.size.width = 90
+                self.frame.origin.x   = (self.superview?.frame.width)! - self.frame.width
+                
+                self.viewWhole.frame.size.width = 70
+                self.viewWhole.frame.origin.x   = 10
+                
+                self.selectColorCollectionView.frame.size.width = 60
+                self.selectColorCollectionView.frame.origin.x   = 10
+            }
+            
+            isExpanded = false
+        } else {
+            
+            UIView.animate(withDuration: 0.5) {                
+                self.expandButton.imageView?.transform = CGAffineTransform(rotationAngle: (180.0 * CGFloat(Double.pi)) / 180.0)
+                
+                self.frame.size.width = self.animationBaseViewWhole.frame.width
+                self.frame.origin.x   = (self.superview?.frame.width)! - (self.frame.width + 30)
+                
+                self.viewWhole.frame.size.width = self.animationBaseViewWhole.frame.width + 20
+                self.viewWhole.frame.origin.x   = self.animationBaseViewWhole.frame.origin.x
+                
+                self.selectColorCollectionView.frame.size.width = self.animationBaseCollectionView.frame.width + 20
+                self.selectColorCollectionView.frame.origin.x   = self.animationBaseCollectionView.frame.origin.x
+            }
+            
+            isExpanded = true
+        }
     }
     
     public func showSelectColorGroup() {

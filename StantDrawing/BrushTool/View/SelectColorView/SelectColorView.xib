@@ -12,7 +12,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectColorView" customModule="StantDrawing" customModuleProvider="target">
             <connections>
+                <outlet property="animationBaseCollectionView" destination="4u1-dd-llU" id="etv-c0-oeH"/>
+                <outlet property="animationBaseContentView" destination="Zb9-PK-1xS" id="NXX-ME-sUq"/>
+                <outlet property="animationBaseViewWhole" destination="fKK-Lb-T64" id="l8F-Jk-GsZ"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="2dO-FU-MKQ"/>
+                <outlet property="expandButton" destination="fbi-sG-HQr" id="d1H-Ab-GJ5"/>
                 <outlet property="selectColorCollectionView" destination="lCh-vL-aRf" id="I90-Rb-pzh"/>
                 <outlet property="viewWhole" destination="2UW-oO-N8V" id="6I6-5q-IxI"/>
             </connections>
@@ -22,6 +26,25 @@
             <rect key="frame" x="0.0" y="0.0" width="90" height="500"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zb9-PK-1xS">
+                    <rect key="frame" x="-190" y="457" width="280" height="45"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fKK-Lb-T64">
+                            <rect key="frame" x="0.0" y="0.0" width="270" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4u1-dd-llU">
+                                    <rect key="frame" x="4.7999999999998408" y="0.0" width="260" height="45"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2UW-oO-N8V">
                     <rect key="frame" x="10" y="0.0" width="70" height="500"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -40,7 +63,11 @@
                         <button opaque="NO" alpha="0.40000000000000002" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbi-sG-HQr">
                             <rect key="frame" x="15" y="445" width="40" height="37"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            <state key="normal" image="arrowDown.png"/>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="5" maxY="0.0"/>
+                            <state key="normal" image="arrowLeft.png"/>
+                            <connections>
+                                <action selector="expandButton:" destination="-1" eventType="touchUpInside" id="k4a-sp-1hI"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" red="0.85812014250000002" green="0.85812014250000002" blue="0.85812014250000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -52,6 +79,6 @@
         </view>
     </objects>
     <resources>
-        <image name="arrowDown.png" width="512" height="512"/>
+        <image name="arrowLeft.png" width="512" height="512"/>
     </resources>
 </document>

@@ -70,9 +70,16 @@ public class ColorsCollectionView: UICollectionView, UICollectionViewDelegateFlo
         cell.selectedView.backgroundColor = UIColor(hex: ColorGenerator.getAll()[indexPath.row])
     }
     
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    
+    
     public func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         return CGSize(width: 60,
                       height: 50)
     }
