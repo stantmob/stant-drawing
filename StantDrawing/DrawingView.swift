@@ -211,7 +211,9 @@ extension DrawingView: BrushToolContract {
         contentDrawingView.lineAlpha = 0.5
         contentDrawingView.lineColor = UIColor(hex: brushHexColor)
         
-        drawImage = contentDrawingView.image!
+        if let contentDrawing = contentDrawingView.image {
+            drawImage = contentDrawing
+        }
         
         stopDragAndScrollOnZoomScrollView()
         enableUserInteractionOnZoomScrollView()
@@ -260,6 +262,9 @@ extension DrawingView: BrushToolContract {
     }
     
     public func haveDrawingImage() -> Bool {
+        if let contentDrawing = contentDrawingView.image {
+            return imageIsValid(contentDrawing)
+        }        
         return imageIsValid(drawImage)
     }
     
