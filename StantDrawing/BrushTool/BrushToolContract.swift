@@ -21,4 +21,5 @@ public protocol BrushToolContract {
     func cancel()
     func getMessage() -> String
     func getHexColor() -> String
+    func haveDrawingImage() -> Bool
 }

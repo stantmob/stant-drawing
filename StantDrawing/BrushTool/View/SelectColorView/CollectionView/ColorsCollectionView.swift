@@ -58,7 +58,11 @@ public class ColorsCollectionView: UICollectionView, UICollectionViewDelegateFlo
             self.brushDelegate?.changeColor(ColorGenerator.getAll()[indexPath.row])
         }))
         
-        UIApplication.shared.keyWindow?.rootViewController!.topMostViewController().present(alert, animated: true, completion: nil)
+        if (brushDelegate?.haveDrawingImage())! {
+            UIApplication.shared.keyWindow?.rootViewController!.topMostViewController().present(alert, animated: true, completion: nil)
+        } else {
+            self.brushDelegate?.changeColor(ColorGenerator.getAll()[indexPath.row])
+        }
     }
     
     public func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

@@ -18,7 +18,7 @@ public class DrawingView: UIView {
     internal let baseContentView:    UIView         = UIView()
     private  let brushToolView:      BrushToolView  = BrushToolView()
     
-    private  let drawImage:                            UIImage
+    private  var drawImage:                            UIImage
     private  let placeholderImage:                     UIImage
     private  let placeholderImageWithLowAlpha:         UIImage
     private  let alphaForPlaceholderImageWithLowAlpha: CGFloat
@@ -211,6 +211,8 @@ extension DrawingView: BrushToolContract {
         contentDrawingView.lineAlpha = 0.5
         contentDrawingView.lineColor = UIColor(hex: brushHexColor)
         
+        drawImage = contentDrawingView.image!
+        
         stopDragAndScrollOnZoomScrollView()
         enableUserInteractionOnZoomScrollView()
         enableUserInteractionOnContentDrawingView()
@@ -243,7 +245,9 @@ extension DrawingView: BrushToolContract {
         enableUserInteractionOnZoomScrollView()
         disableUserInteractionOnContentDrawingView()
         
-        contentDrawingView.loadImage(UIImage())
+        drawImage = UIImage()
+        
+        contentDrawingView.loadImage(drawImage)
         brushToolView.groupToolsButtons.last?.uiButton.tintColor = UIColor(hex: color)
     }
     
@@ -253,6 +257,10 @@ extension DrawingView: BrushToolContract {
     
     public func getHexColor() -> String {
         return brushHexColor
+    }
+    
+    public func haveDrawingImage() -> Bool {
+        return imageIsValid(drawImage)
     }
     
     public func save() {
