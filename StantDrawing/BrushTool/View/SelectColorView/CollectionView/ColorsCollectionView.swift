@@ -50,6 +50,8 @@ public class ColorsCollectionView: UICollectionView, UICollectionViewDelegateFlo
         
         let cell = collectionView.cellForItem(at: indexPath) as! ColorCell
         
+        self.reloadData()
+        
         cell.selectedView.backgroundColor = UIColor.white
         
         let alert = UIAlertController(title: "Atenção", message: brushDelegate?.getMessage(), preferredStyle: UIAlertControllerStyle.alert)
@@ -60,6 +62,7 @@ public class ColorsCollectionView: UICollectionView, UICollectionViewDelegateFlo
         
         alert.addAction(UIAlertAction(title: "Continuar", style: UIAlertActionStyle.default, handler: { (alertAction) in
             self.brushDelegate?.changeColor(ColorGenerator.getAll()[indexPath.row])
+            self.reloadData()
         }))
         
         if (brushDelegate?.haveDrawingImage())! {

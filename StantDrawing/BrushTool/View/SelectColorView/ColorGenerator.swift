@@ -90,7 +90,11 @@ public class ColorGenerator {
         let Cute_Blue        = colorWithHexString(hex:"#1B9DFC")
         let Cute_Pink        = colorWithHexString(hex:"#E662BD")
         
-        return [Black, Green, Blue, Red, Cyan, Light_Pink, Pale_Yellow,
+        return [Black,
+                Green,
+                Blue,
+                Red,
+                Cyan, Light_Pink, Pale_Yellow,
                 Tree_Green, Deep_Purple, Burgundy, Pale_Blue, Tree_Brown,
                 Light_Green, Baby_Blue, Lemonade_Green, Salmon, Greyish,
                 Orange, Light_Purple, Purple, Algae_Green, Hot_Red, Red_Brown,
