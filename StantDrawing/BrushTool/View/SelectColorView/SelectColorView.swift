@@ -89,6 +89,7 @@ public class SelectColorView: UIView {
     public func showSelectColorGroup() {
         self.viewWhole.isHidden   = false
         self.contentView.isHidden = false
+        self.selectColorCollectionView.reloadData()
     }
     
     public func hideSelectColorGroup() {

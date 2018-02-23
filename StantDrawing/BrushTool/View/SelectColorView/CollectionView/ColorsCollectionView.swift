@@ -38,6 +38,10 @@ public class ColorsCollectionView: UICollectionView, UICollectionViewDelegateFlo
         cell.palleteView.backgroundColor  = currentColor
         cell.selectedView.backgroundColor = currentColor
         
+        if ColorGenerator.getAll()[indexPath.row] == brushDelegate?.getHexColor() {
+            cell.selectedView.backgroundColor = UIColor.white
+        }
+        
         return cell
     }
     
@@ -77,8 +81,6 @@ public class ColorsCollectionView: UICollectionView, UICollectionViewDelegateFlo
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
-    
-    
     
     public func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
