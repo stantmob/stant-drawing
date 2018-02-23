@@ -37,6 +37,8 @@ public class SelectColorView: UIView {
     func commonInit() {
         let bundle = Bundle.init(for: type(of: self))
         bundle.loadNibNamed(SelectColorView.NIB_NAME, owner: self, options: nil)
+        self.viewWhole.backgroundColor = UIColor(hex: "#F0F0F0")
+        self.selectColorCollectionView.backgroundColor = UIColor(hex: "#F0F0F0")
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
