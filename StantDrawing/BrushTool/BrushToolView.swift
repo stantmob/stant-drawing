@@ -428,6 +428,7 @@ public class BrushToolView: UIView {
     }
     
     func hideSelectColorView() {
+        groupSelectHexColorView?.setupCollapsed()
         groupSelectHexColorView?.hideSelectColorGroup()
     }
 }

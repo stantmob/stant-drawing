@@ -50,16 +50,7 @@ public class SelectColorView: UIView {
         if isExpanded {
             
             UIView.animate(withDuration: 0.5) {
-                self.expandButton.imageView?.transform = CGAffineTransform(rotationAngle: 0)
-                
-                self.frame.size.width = 90
-                self.frame.origin.x   = (self.superview?.frame.width)! - self.frame.width
-                
-                self.viewWhole.frame.size.width = 70
-                self.viewWhole.frame.origin.x   = 10
-                
-                self.selectColorCollectionView.frame.size.width = 60
-                self.selectColorCollectionView.frame.origin.x   = 10
+                self.setupCollapsed()
             }
             
             isExpanded = false
@@ -80,6 +71,19 @@ public class SelectColorView: UIView {
             
             isExpanded = true
         }
+    }
+    
+    public func setupCollapsed() {
+        self.expandButton.imageView?.transform = CGAffineTransform(rotationAngle: 0)
+        
+        self.frame.size.width = 90
+        self.frame.origin.x   = (self.superview?.frame.width)! - self.frame.width
+        
+        self.viewWhole.frame.size.width = 70
+        self.viewWhole.frame.origin.x   = 10
+        
+        self.selectColorCollectionView.frame.size.width = 60
+        self.selectColorCollectionView.frame.origin.x   = 10
     }
     
     public func showSelectColorGroup() {
