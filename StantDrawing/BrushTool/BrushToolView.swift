@@ -103,7 +103,7 @@ public class BrushToolView: UIView {
                 
         let moveBtn  = Button(imageName: "move", imageColor: blackHexColor,   selector: #selector(self.moveCanvas))
         let brushBtn = Button(imageName: "pencil", imageColor: blackHexColor, selector: #selector(self.drawOnCanvas))
-        let eraseBtn = Button(imageName: "eraser", imageColor: blackHexColor, selector: #selector(self.erase))
+        let eraseBtn = Button(imageName: "eraserfull", imageColor: blackHexColor, selector: #selector(self.erase))
         let undoBtn  = Button(imageName: "undo", imageColor: blackHexColor,   selector: #selector(self.undo))
         let redoBtn  = Button(imageName: "redo", imageColor: blackHexColor,   selector: #selector(self.redo))
         let colorBtn = Button(imageName: "selectColor", imageColor: (delegate?.getHexColor())!, selector: #selector(self.selectColor))
