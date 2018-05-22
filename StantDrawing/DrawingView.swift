@@ -26,7 +26,7 @@ public class DrawingView: UIView {
     private  var message:                              String
     internal let brushColor:                           UIColor
     
-    internal var pencilSize: CGFloat = 10.0
+    internal var pencilSize: CGFloat = 5.0
     internal var eraseSize: CGFloat  = 30.0
     
     required public init?(coder aDecoder: NSCoder) {
