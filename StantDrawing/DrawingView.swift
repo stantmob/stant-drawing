@@ -106,11 +106,13 @@ public class DrawingView: UIView {
     private func configurePlaceholderImages() {
         if imageIsValid(placeholderImage) {
             let imageView = UIImageView(frame: frameForContentDrawingView())
+            imageView.contentMode = .scaleAspectFit
             imageView.image = placeholderImage
             baseContentView.addSubview(imageView)
         }
         if imageIsValid(placeholderImageWithLowAlpha) {
             let imageView = UIImageView(frame: frameForContentDrawingView())
+            imageView.contentMode = .scaleAspectFit
             imageView.image           = placeholderImageWithLowAlpha
             imageView.backgroundColor = UIColor.clear
             imageView.alpha           = alphaForPlaceholderImageWithLowAlpha
