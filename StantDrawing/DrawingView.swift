@@ -74,6 +74,7 @@ public class DrawingView: UIView {
         baseContentView.contentMode = .scaleAspectFit
         
         zoomScrollView.addSubview(baseContentView)
+        
         self.addSubview(zoomScrollView)
         self.addSubview(brushToolView)
 
@@ -95,10 +96,10 @@ public class DrawingView: UIView {
     
     private func configureContentDrawingView() {
         contentDrawingView.frame       = frameForContentDrawingView()
-        contentDrawingView.contentMode = .scaleAspectFit
         
         if imageIsValid(drawImage) {
-            let resizedImage = resizeImage(drawImage, size: frameForContentDrawingView().size)
+            let resizedImage = resizeImage(drawImage, size: contentDrawingView.frame.size)
+            
             contentDrawingView.loadImage(resizedImage)
         }
     }
@@ -106,13 +107,11 @@ public class DrawingView: UIView {
     private func configurePlaceholderImages() {
         if imageIsValid(placeholderImage) {
             let imageView = UIImageView(frame: frameForContentDrawingView())
-            imageView.contentMode = .scaleAspectFit
             imageView.image = placeholderImage
             baseContentView.addSubview(imageView)
         }
         if imageIsValid(placeholderImageWithLowAlpha) {
             let imageView = UIImageView(frame: frameForContentDrawingView())
-            imageView.contentMode = .scaleAspectFit
             imageView.image           = placeholderImageWithLowAlpha
             imageView.backgroundColor = UIColor.clear
             imageView.alpha           = alphaForPlaceholderImageWithLowAlpha
@@ -272,7 +271,10 @@ extension DrawingView: BrushToolContract {
     
     public func save() {
         if let delegate = drawingDelegate {
-            let drawingImage = contentDrawingView.image!            
+            guard let drawingImage = contentDrawingView.image else {
+                self.drawingDelegate?.saveWithoutChanges()
+                return
+            }
             delegate.save(drawingImage: drawingImage, drawingColor: brushHexColor)
         }
     }
