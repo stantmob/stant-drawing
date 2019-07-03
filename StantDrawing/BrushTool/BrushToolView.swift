@@ -131,24 +131,28 @@ public class BrushToolView: UIView {
         let btnSize3   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.pencilSize))
         let btnSize4   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.pencilSize))
         let btnSize5   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.pencilSize))
+        let btnSize6   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.pencilSize))
         
-        btnSize1.uiButton.tag = 5
-        btnSize2.uiButton.tag = 10
-        btnSize3.uiButton.tag = 30
-        btnSize4.uiButton.tag = 55
-        btnSize5.uiButton.tag = 80
+        btnSize1.uiButton.tag = 2
+        btnSize2.uiButton.tag = 5
+        btnSize3.uiButton.tag = 10
+        btnSize4.uiButton.tag = 30
+        btnSize5.uiButton.tag = 55
+        btnSize6.uiButton.tag = 80
         
-        btnSize1.uiButton.frame.size = CGSize(width: 18, height: 18)
-        btnSize2.uiButton.frame.size = CGSize(width: 23, height: 23)
-        btnSize3.uiButton.frame.size = CGSize(width: 28, height: 28)
-        btnSize4.uiButton.frame.size = CGSize(width: 33, height: 33)
-        btnSize5.uiButton.frame.size = CGSize(width: 37, height: 37)
+        btnSize1.uiButton.frame.size = CGSize(width: 9, height: 9)
+        btnSize2.uiButton.frame.size = CGSize(width: 18, height: 18)
+        btnSize3.uiButton.frame.size = CGSize(width: 23, height: 23)
+        btnSize4.uiButton.frame.size = CGSize(width: 28, height: 28)
+        btnSize5.uiButton.frame.size = CGSize(width: 33, height: 33)
+        btnSize6.uiButton.frame.size = CGSize(width: 37, height: 37)
         
         groupPencilSizeButtons.append(btnSize1)
         groupPencilSizeButtons.append(btnSize2)
         groupPencilSizeButtons.append(btnSize3)
         groupPencilSizeButtons.append(btnSize4)
-        groupPencilSizeButtons.append(btnSize5)                
+        groupPencilSizeButtons.append(btnSize5)
+        groupPencilSizeButtons.append(btnSize6) 
     }
     
     private func loadGroupEraseSizeButtons() {
