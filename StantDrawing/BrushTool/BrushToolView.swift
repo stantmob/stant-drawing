@@ -140,7 +140,7 @@ public class BrushToolView: UIView {
         btnSize5.uiButton.tag = 55
         btnSize6.uiButton.tag = 80
         
-        btnSize1.uiButton.frame.size = CGSize(width: 9, height: 9)
+        btnSize1.uiButton.frame.size = CGSize(width: 13, height: 13)
         btnSize2.uiButton.frame.size = CGSize(width: 18, height: 18)
         btnSize3.uiButton.frame.size = CGSize(width: 23, height: 23)
         btnSize4.uiButton.frame.size = CGSize(width: 28, height: 28)
@@ -152,7 +152,7 @@ public class BrushToolView: UIView {
         groupPencilSizeButtons.append(btnSize3)
         groupPencilSizeButtons.append(btnSize4)
         groupPencilSizeButtons.append(btnSize5)
-        groupPencilSizeButtons.append(btnSize6) 
+        groupPencilSizeButtons.append(btnSize6)
     }
     
     private func loadGroupEraseSizeButtons() {
@@ -191,6 +191,35 @@ public class BrushToolView: UIView {
     }
     
     private func configureGroupPencilSizeLayout() {
+        // Pencil Icon
+        let pencilView = UIImageView()
+        
+        let originIcon =  CGPoint(x: groupToolsView.frame.width + groupToolsView.frame.origin.x + 10, y: -20)
+        let sizeIcon   = CGSize(width: groupViewWidth - 20, height: 1)
+        let frameIcon  = CGRect.init(origin: originIcon, size: sizeIcon)
+        
+        pencilView.frame = frameIcon
+        pencilView.image = UIImage(named: "pencil")
+        pencilView.backgroundColor = UIColor.black
+        pencilView.alpha = 0.2
+        
+        self.addSubview(pencilView)
+        
+        // Separator
+        let separatorView = UIView()
+        
+        let originSeparator =  CGPoint(x: groupToolsView.frame.width + groupToolsView.frame.origin.x + 10, y: -10)
+        let sizeSeparator   = CGSize(width: groupViewWidth - 20, height: 1)
+        let frameSeparator  = CGRect.init(origin: originSeparator, size: sizeSeparator)
+        
+        separatorView.frame = frameSeparator
+        separatorView.backgroundColor = UIColor.black
+        separatorView.alpha = 0.2
+        
+        self.addSubview(separatorView)
+        
+        // After separator
+        
         let origin = CGPoint(x: groupToolsView.frame.width + groupToolsView.frame.origin.x + 10, y: 0)
         configureGroupLayout(buttons: groupPencilSizeButtons, groupView: groupPencilSizeView, groupViewOirigin: origin, addAsSubview: false)
         groupPencilSizeView.isHidden = true
