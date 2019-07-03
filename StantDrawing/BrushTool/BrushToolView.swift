@@ -193,22 +193,22 @@ public class BrushToolView: UIView {
     private func configureGroupPencilSizeLayout() {
         // Pencil Icon
         let pencilView = UIImageView()
-        
+
         let originIcon =  CGPoint(x: groupToolsView.frame.width + groupToolsView.frame.origin.x + 10, y: -20)
         let sizeIcon   = CGSize(width: groupViewWidth - 20, height: 1)
         let frameIcon  = CGRect.init(origin: originIcon, size: sizeIcon)
-        
+
         pencilView.frame = frameIcon
         pencilView.image = UIImage(named: "pencil")
         pencilView.backgroundColor = UIColor.black
         pencilView.alpha = 0.2
-        
+
         self.addSubview(pencilView)
         
         // Separator
         let separatorView = UIView()
         
-        let originSeparator =  CGPoint(x: groupToolsView.frame.width + groupToolsView.frame.origin.x + 10, y: -10)
+        let originSeparator =  CGPoint(x: groupToolsView.frame.width + groupToolsView.frame.origin.x + 10, y: 20)
         let sizeSeparator   = CGSize(width: groupViewWidth - 20, height: 1)
         let frameSeparator  = CGRect.init(origin: originSeparator, size: sizeSeparator)
         
@@ -218,7 +218,7 @@ public class BrushToolView: UIView {
         
         self.addSubview(separatorView)
         
-        // After separator
+        // Group Sizes
         
         let origin = CGPoint(x: groupToolsView.frame.width + groupToolsView.frame.origin.x + 10, y: 0)
         configureGroupLayout(buttons: groupPencilSizeButtons, groupView: groupPencilSizeView, groupViewOirigin: origin, addAsSubview: false)
