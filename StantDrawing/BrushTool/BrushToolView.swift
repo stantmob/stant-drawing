@@ -156,14 +156,33 @@ public class BrushToolView: UIView {
     }
     
     private func loadGroupEraseSizeButtons() {
-        let eraser     = Button(imageName: "eraser", imageColor: blackHexColor,     selector: #selector(self.eraserSize))
-        let eraserFull = Button(imageName: "eraserfull", imageColor: blackHexColor, selector: #selector(self.eraserSize))
+        let btnSize1   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.eraserSize))
+        let btnSize2   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.eraserSize))
+        let btnSize3   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.eraserSize))
+        let btnSize4   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.eraserSize))
+        let btnSize5   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.eraserSize))
+        let btnSize6   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.eraserSize))
         
-        eraser.uiButton.tag     = 30
-        eraserFull.uiButton.tag = 80
+        btnSize1.uiButton.tag = 2
+        btnSize2.uiButton.tag = 5
+        btnSize3.uiButton.tag = 10
+        btnSize4.uiButton.tag = 30
+        btnSize5.uiButton.tag = 55
+        btnSize6.uiButton.tag = 80
         
-        groupEraseSizeButtons.append(eraser)
-        groupEraseSizeButtons.append(eraserFull)
+        btnSize1.uiButton.frame.size = CGSize(width: 13, height: 13)
+        btnSize2.uiButton.frame.size = CGSize(width: 18, height: 18)
+        btnSize3.uiButton.frame.size = CGSize(width: 23, height: 23)
+        btnSize4.uiButton.frame.size = CGSize(width: 28, height: 28)
+        btnSize5.uiButton.frame.size = CGSize(width: 33, height: 33)
+        btnSize6.uiButton.frame.size = CGSize(width: 37, height: 37)
+        
+        groupEraseSizeButtons.append(btnSize1)
+        groupEraseSizeButtons.append(btnSize2)
+        groupEraseSizeButtons.append(btnSize3)
+        groupEraseSizeButtons.append(btnSize4)
+        groupEraseSizeButtons.append(btnSize5)
+        groupEraseSizeButtons.append(btnSize6)
     }
     
     private func configureGroupToolsLayout() {
@@ -232,10 +251,9 @@ public class BrushToolView: UIView {
         
         setAllGroupdPencilSizeButtonsAsNotClicked()
         
-        if let uiButton = groupPencilSizeButtons.first?.uiButton {
-            setBtnSizeAsClicked(button: uiButton)
-        }
+        setBtnSizeAsClicked(button: groupPencilSizeButtons[1].uiButton)
         
+        // GroupPencilSizeView Configs
         let height    = pencilIconView.frame.size.height + separatorView.frame.size.height + groupPencilBtns.frame.size.height
         let sizeGroup = CGSize(width: self.frame.width, height: height)
         groupPencilSizeView.frame.size = sizeGroup
@@ -247,15 +265,58 @@ public class BrushToolView: UIView {
     }
     
     private func configureGroupEraseSizeLayout() {
-        let origin = CGPoint(x: groupToolsView.frame.width + groupToolsView.frame.origin.x + 10, y: 0)
-        configureGroupLayout(buttons: groupEraseSizeButtons, groupView: groupEraseSizeView, groupViewOirigin: origin, addAsSubview: false)
-        groupEraseSizeView.isHidden = true
+        // Erase Icon
+        let eraseIconView   = UIView()
+        
+        let originIconView = CGPoint(x: 0, y: 0)
+        let sizeIconView   = CGSize(width: groupViewWidth, height: 60)
+        let frameIconView  = CGRect.init(origin: originIconView, size: sizeIconView)
+        
+        eraseIconView.frame              = frameIconView
+        eraseIconView.backgroundColor    = UIColor(hex: "F0F0F0")
+        eraseIconView.layer.cornerRadius = eraseIconView.frame.width / 2
+        
+        let originIconImg = CGPoint(x: (groupViewWidth - 25) / 2, y: 18)
+        let sizeIconImg   = CGSize(width: 25, height: 25)
+        let frameIconImg  = CGRect.init(origin: originIconImg, size: sizeIconImg)
+        
+        let eraseIconImageView = UIImageView(image: UIImage(named: "eraserfull", in: bundle, compatibleWith: nil))
+        
+        eraseIconImageView.frame = frameIconImg
+        
+        eraseIconView.addSubview(eraseIconImageView)
+        
+        // Separator
+        let separatorView   = UIView()
+        let originSeparator = CGPoint(x: 10, y: eraseIconView.frame.origin.y + eraseIconView.frame.height + 10)
+        let sizeSeparator   = CGSize(width: groupViewWidth - 20, height: 1)
+        let frameSeparator  = CGRect.init(origin: originSeparator, size: sizeSeparator)
+        
+        separatorView.frame = frameSeparator
+        separatorView.backgroundColor = UIColor.black
+        separatorView.alpha = 0.2
+        
+        // Group Erase Buttons
+        let groupEraseBtns = UIView()
+        let origin          = CGPoint(x: 0, y: separatorView.frame.origin.y + separatorView.frame.height + 10)
+        
+        groupEraseBtns.frame.origin = origin
+        
+        configureGroupLayout(buttons: groupEraseSizeButtons, groupView: groupEraseBtns, groupViewOirigin: origin, addAsSubview: false)
         
         setAllGroupdEraseSizeButtonsAsNotClicked()
         
-        if let uiButton = groupEraseSizeButtons.first?.uiButton {
-            setBtnAsClicked(button: uiButton)
-        }
+        setBtnSizeAsClicked(button: groupEraseSizeButtons[1].uiButton)
+        
+        // GroupPencilSizeView Configs
+        let height    = eraseIconView.frame.size.height + separatorView.frame.size.height + groupEraseBtns.frame.size.height
+        let sizeGroup = CGSize(width: self.frame.width, height: height)
+        groupEraseSizeView.frame.size = sizeGroup
+        groupEraseSizeView.isHidden   = true
+        
+        groupEraseSizeView.addSubview(eraseIconView)
+        groupEraseSizeView.addSubview(separatorView)
+        groupEraseSizeView.addSubview(groupEraseBtns)
     }
     
     private func configureGroupLayout(buttons: [Button], groupView: UIView, groupViewOirigin: CGPoint, addAsSubview: Bool = true) {
@@ -356,7 +417,7 @@ public class BrushToolView: UIView {
     
     private func setAllGroupdEraseSizeButtonsAsNotClicked() {
         groupEraseSizeButtons.forEach { btn in
-            setBtnAsNotClicked(button: btn.uiButton)
+            setBtnSizeAsNotClicked(button: btn.uiButton)
         }
     }
     
@@ -435,7 +496,7 @@ public class BrushToolView: UIView {
     
     @objc func eraserSize(_ sender: UIButton) {
         setAllGroupdEraseSizeButtonsAsNotClicked()
-        setBtnAsClicked(button: sender)
+        setBtnSizeAsClicked(button: sender)
         
         delegate?.changeEraserSize(CGFloat(sender.tag))
     }
