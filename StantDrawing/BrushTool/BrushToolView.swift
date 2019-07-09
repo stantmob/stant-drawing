@@ -15,6 +15,17 @@ public struct Button {
     let imageColor: String
     let selector : Selector
 
+    init(imageName: String, imageColor: String, selector: Selector) {
+        self.imageName  = imageName
+        self.imageColor = imageColor
+        self.selector   = selector
+        
+        setUiButtonIdentifier()
+    }
+    
+    private func setUiButtonIdentifier() {
+        self.uiButton.accessibilityIdentifier = "\(self.imageName)Identifier"
+    }
 }
 
 public class BrushToolView: UIView {
@@ -126,12 +137,12 @@ public class BrushToolView: UIView {
     }
     
     private func loadGroupPencilSizeButtons() {
-        let btnSize1   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.pencilSize))
-        let btnSize2   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.pencilSize))
-        let btnSize3   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.pencilSize))
-        let btnSize4   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.pencilSize))
-        let btnSize5   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.pencilSize))
-        let btnSize6   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.pencilSize))
+        let btnSize1   = Button(imageName: "pencilSize1", imageColor: blackHexColor, selector: #selector(self.pencilSize))
+        let btnSize2   = Button(imageName: "pencilSize2", imageColor: blackHexColor, selector: #selector(self.pencilSize))
+        let btnSize3   = Button(imageName: "pencilSize3", imageColor: blackHexColor, selector: #selector(self.pencilSize))
+        let btnSize4   = Button(imageName: "pencilSize4", imageColor: blackHexColor, selector: #selector(self.pencilSize))
+        let btnSize5   = Button(imageName: "pencilSize5", imageColor: blackHexColor, selector: #selector(self.pencilSize))
+        let btnSize6   = Button(imageName: "pencilSize6", imageColor: blackHexColor, selector: #selector(self.pencilSize))
         
         btnSize1.uiButton.tag = 2
         btnSize2.uiButton.tag = 5
@@ -156,12 +167,12 @@ public class BrushToolView: UIView {
     }
     
     private func loadGroupEraseSizeButtons() {
-        let btnSize1   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.eraserSize))
-        let btnSize2   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.eraserSize))
-        let btnSize3   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.eraserSize))
-        let btnSize4   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.eraserSize))
-        let btnSize5   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.eraserSize))
-        let btnSize6   = Button(imageName: "", imageColor: blackHexColor, selector: #selector(self.eraserSize))
+        let btnSize1   = Button(imageName: "eraserSize1", imageColor: blackHexColor, selector: #selector(self.eraserSize))
+        let btnSize2   = Button(imageName: "eraserSize2", imageColor: blackHexColor, selector: #selector(self.eraserSize))
+        let btnSize3   = Button(imageName: "eraserSize3", imageColor: blackHexColor, selector: #selector(self.eraserSize))
+        let btnSize4   = Button(imageName: "eraserSize4", imageColor: blackHexColor, selector: #selector(self.eraserSize))
+        let btnSize5   = Button(imageName: "eraserSize5", imageColor: blackHexColor, selector: #selector(self.eraserSize))
+        let btnSize6   = Button(imageName: "eraserSize6", imageColor: blackHexColor, selector: #selector(self.eraserSize))
         
         btnSize1.uiButton.tag = 2
         btnSize2.uiButton.tag = 5
@@ -227,7 +238,8 @@ public class BrushToolView: UIView {
         
         let pencilIconImageView = UIImageView(image: UIImage(named: "pencil", in: bundle, compatibleWith: nil))
         
-        pencilIconImageView.frame = frameIconImg
+        pencilIconImageView.accessibilityIdentifier = "pencilSizeReferenceIdentifier"
+        pencilIconImageView.frame                   = frameIconImg
         
         pencilIconView.addSubview(pencilIconImageView)
 
@@ -282,7 +294,8 @@ public class BrushToolView: UIView {
         
         let eraseIconImageView = UIImageView(image: UIImage(named: "eraserfull", in: bundle, compatibleWith: nil))
         
-        eraseIconImageView.frame = frameIconImg
+        eraseIconImageView.accessibilityIdentifier = "eraserfullReferenceIdentifier"
+        eraseIconImageView.frame                    = frameIconImg
         
         eraseIconView.addSubview(eraseIconImageView)
         
