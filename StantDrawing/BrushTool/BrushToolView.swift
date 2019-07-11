@@ -75,21 +75,15 @@ public class BrushToolView: UIView {
                                                                 height: 500))
         
     }
-    
+
     func addAsSubViewOn(_ view: UIView, x: CGFloat, heightBaseToCenter: CGFloat) {
         loadButtons()
-        configureLayouts()
+        configureLayouts(heightBaseToCenter: heightBaseToCenter, xBaseToCenter: x)
+        
         if let uiButton = groupToolsButtons.first?.uiButton {
             setBtnAsClicked(button: uiButton)
         }
-        
-        let y = (heightBaseToCenter - groupPencilSizeView.frame.height) / 2
-        let point = CGPoint(x: x, y: y)
-
-        groupPencilSizeView.frame.origin = point
-        groupEraseSizeView.frame.origin  = point
-        groupSelectHexColorView?.frame.origin = CGPoint(x: x - 10, y: groupPencilSizeView.frame.height - 50)
-
+ 
         view.addSubview(groupSelectHexColorView!)
         view.addSubview(groupPencilSizeView)
         view.addSubview(groupEraseSizeView)
@@ -102,12 +96,13 @@ public class BrushToolView: UIView {
         loadGroupEraseSizeButtons()
     }
     
-    private func configureLayouts() {
+    private func configureLayouts(heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
         configureGroupToolsLayout()
         configureSeparatorLayout()
         configureGroupEndLayout()
-        configureGroupPencilSizeLayout()
-        configureGroupEraseSizeLayout()
+        configureGroupPencilSizeLayout(heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
+        configureGroupEraseSizeLayout(heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
+        configureGroupSelectHexColorView(heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
     }
     
     private func loadGroupToolsButtons() {
@@ -220,7 +215,7 @@ public class BrushToolView: UIView {
         configureGroupLayout(buttons: groupEndButtons, groupView: groupEndView, groupViewOirigin: origin)
     }
     
-    private func configureGroupPencilSizeLayout() {
+    private func configureGroupPencilSizeLayout(heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
         // Pencil Icon
         let pencilIconView   = UIView()
         
@@ -274,9 +269,11 @@ public class BrushToolView: UIView {
         groupPencilSizeView.addSubview(pencilIconView)
         groupPencilSizeView.addSubview(separatorView)
         groupPencilSizeView.addSubview(groupPencilBtns)
+        
+       centrilizeVerticalView(view: groupPencilSizeView, heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
     }
     
-    private func configureGroupEraseSizeLayout() {
+    private func configureGroupEraseSizeLayout(heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
         // Erase Icon
         let eraseIconView   = UIView()
         
@@ -330,6 +327,15 @@ public class BrushToolView: UIView {
         groupEraseSizeView.addSubview(eraseIconView)
         groupEraseSizeView.addSubview(separatorView)
         groupEraseSizeView.addSubview(groupEraseBtns)
+        
+        centrilizeVerticalView(view: groupEraseSizeView, heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
+    }
+    
+    private func configureGroupSelectHexColorView(heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
+        let y     = (heightBaseToCenter - groupSelectHexColorView!.frame.height)
+        let point = CGPoint(x: xBaseToCenter, y: y)
+        
+        groupSelectHexColorView!.frame.origin = point
     }
     
     private func configureGroupLayout(buttons: [Button], groupView: UIView, groupViewOirigin: CGPoint, addAsSubview: Bool = true) {
@@ -373,6 +379,13 @@ public class BrushToolView: UIView {
             self.addSubview(groupView)
         }
         
+    }
+
+    private func centrilizeVerticalView(view: UIView, heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
+        let y     = (heightBaseToCenter - view.frame.height) / 2
+        let point = CGPoint(x: xBaseToCenter, y: y)
+        
+        view.frame.origin = point
     }
     
     private func nextBtnFrame(referencedY: CGFloat, size: CGSize) -> CGRect {

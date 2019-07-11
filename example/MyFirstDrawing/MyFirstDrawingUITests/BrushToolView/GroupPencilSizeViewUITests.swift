@@ -21,9 +21,7 @@ class GroupPencilSizeViewUITests: XCTestCase {
         let btnPencil = app.buttons["pencilIdentifier"]
         btnPencil.tap()
     }
-    
-    override func tearDown() {}
-    
+
     func testClickOnGroupPencilSizeViewAndShowAllButtons() {
         let pencilSizeReference = app.images.matching(identifier: "pencilSizeReferenceIdentifier")
         

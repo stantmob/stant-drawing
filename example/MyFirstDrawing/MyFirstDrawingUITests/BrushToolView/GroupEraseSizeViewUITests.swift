@@ -22,8 +22,6 @@ class GroupEraseSizeViewUITests: XCTestCase {
         btnErase.tap()
     }
     
-    override func tearDown() {}
-    
     func testClickOnGroupEraseSizeViewAndShowAllButtons() {
         let eraseSizeReference = app.images.matching(identifier: "eraserfullReferenceIdentifier")
         
