@@ -30,7 +30,9 @@ public struct Button {
 
 public class BrushToolView: UIView {
     var delegate: BrushToolContract?
-    let blackHexColor  = "#000000"
+    
+    let blackHexColor            = "#000000"
+    let backgroundGroupGrayColor = UIColor(hex: "F0F0F0")
     
     private let bundle = Bundle(for: BrushToolView.self)
     
@@ -224,7 +226,7 @@ public class BrushToolView: UIView {
         let frameIconView  = CGRect.init(origin: originIconView, size: sizeIconView)
         
         pencilIconView.frame              = frameIconView
-        pencilIconView.backgroundColor    = UIColor(hex: "F0F0F0")
+        pencilIconView.backgroundColor    = backgroundGroupGrayColor
         pencilIconView.layer.cornerRadius = pencilIconView.frame.width / 2
         
         let originIconImg = CGPoint(x: (groupViewWidth - 25) / 2, y: 18)
@@ -282,7 +284,7 @@ public class BrushToolView: UIView {
         let frameIconView  = CGRect.init(origin: originIconView, size: sizeIconView)
         
         eraseIconView.frame              = frameIconView
-        eraseIconView.backgroundColor    = UIColor(hex: "F0F0F0")
+        eraseIconView.backgroundColor    = backgroundGroupGrayColor
         eraseIconView.layer.cornerRadius = eraseIconView.frame.width / 2
         
         let originIconImg = CGPoint(x: (groupViewWidth - 25) / 2, y: 18)
@@ -371,7 +373,7 @@ public class BrushToolView: UIView {
         let frame  = CGRect.init(origin: groupViewOirigin, size: size)
         
         groupView.frame              = frame
-        groupView.backgroundColor    = UIColor(hex: "F0F0F0")
+        groupView.backgroundColor    = backgroundGroupGrayColor
         
         groupView.layer.cornerRadius = groupView.frame.width / 2
         
