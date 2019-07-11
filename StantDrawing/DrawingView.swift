@@ -27,7 +27,7 @@ public class DrawingView: UIView {
     internal let brushColor:                           UIColor
     
     internal var pencilSize: CGFloat = 5.0
-    internal var eraseSize: CGFloat  = 30.0
+    internal var eraseSize: CGFloat  = 5.0
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
