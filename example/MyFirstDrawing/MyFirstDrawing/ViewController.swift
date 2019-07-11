@@ -32,6 +32,13 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: DrawingDelegate {
+    func save(drawingImage: UIImage, drawingColor: String) {
+        print("Saved with drawingColor")
+    }
+    
+    func saveWithoutChanges() {
+        print("Saved without changes")
+    }
     
     func save(drawingImage: UIImage) {
         print("Saved")

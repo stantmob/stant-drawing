@@ -4,9 +4,8 @@
 target 'MyFirstDrawing' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
+
+  pod 'StantDrawing', path: '../../StantDrawing.podspec'
   
-  pod 'StantDrawing',        git: 'https://github.com/stantmob/stant-drawing.git',           branch: 'master'
-
-  # Pods for MyFirstDrawing
-
+  target 'MyFirstDrawingUITests'
 end

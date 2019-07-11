@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		67ECFD3C25214EEA740C60DD /* Pods_MyFirstDrawing_MyFirstDrawingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7458A27A2064F4F89B20787E /* Pods_MyFirstDrawing_MyFirstDrawingUITests.framework */; };
 		77ADA3592CAA29EA9B1DAEB4 /* Pods_MyFirstDrawing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A898209FE7DD7EBADB512A /* Pods_MyFirstDrawing.framework */; };
+		8F73BA5E22D3C17D000175DB /* GroupPencilSizeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F73BA5D22D3C17D000175DB /* GroupPencilSizeViewUITests.swift */; };
+		8F73BA6022D52763000175DB /* GroupEraseSizeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F73BA5F22D52763000175DB /* GroupEraseSizeViewUITests.swift */; };
 		F45AEF9A2024AFF40055FE4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45AEF992024AFF40055FE4D /* AppDelegate.swift */; };
 		F45AEF9C2024AFF40055FE4D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45AEF9B2024AFF40055FE4D /* ViewController.swift */; };
 		F45AEF9F2024AFF40055FE4D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F45AEF9D2024AFF40055FE4D /* Main.storyboard */; };
@@ -15,10 +18,28 @@
 		F45AEFA42024AFF40055FE4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F45AEFA22024AFF40055FE4D /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8F73BA5722CF9752000175DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F45AEF8E2024AFF40055FE4D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F45AEF952024AFF40055FE4D;
+			remoteInfo = MyFirstDrawing;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		307FCACE138124000A38D648 /* Pods-MyFirstDrawing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstDrawing.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyFirstDrawing/Pods-MyFirstDrawing.release.xcconfig"; sourceTree = "<group>"; };
 		3403A806E34BA094967AB066 /* Pods-MyFirstDrawing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstDrawing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyFirstDrawing/Pods-MyFirstDrawing.debug.xcconfig"; sourceTree = "<group>"; };
+		7458A27A2064F4F89B20787E /* Pods_MyFirstDrawing_MyFirstDrawingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyFirstDrawing_MyFirstDrawingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86A898209FE7DD7EBADB512A /* Pods_MyFirstDrawing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyFirstDrawing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		87D26CAD899EDAD55A1ED971 /* Pods-MyFirstDrawingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstDrawingUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyFirstDrawingUITests/Pods-MyFirstDrawingUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8BAA618292C8D7E9FF92C010 /* Pods-MyFirstDrawing-MyFirstDrawingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstDrawing-MyFirstDrawingUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyFirstDrawing-MyFirstDrawingUITests/Pods-MyFirstDrawing-MyFirstDrawingUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8F73BA5222CF9751000175DB /* MyFirstDrawingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyFirstDrawingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F73BA5622CF9752000175DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8F73BA5D22D3C17D000175DB /* GroupPencilSizeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPencilSizeViewUITests.swift; sourceTree = "<group>"; };
+		8F73BA5F22D52763000175DB /* GroupEraseSizeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupEraseSizeViewUITests.swift; sourceTree = "<group>"; };
+		A6DF926522F84EBBAE2AB753 /* Pods-MyFirstDrawing-MyFirstDrawingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstDrawing-MyFirstDrawingUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyFirstDrawing-MyFirstDrawingUITests/Pods-MyFirstDrawing-MyFirstDrawingUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F45AEF962024AFF40055FE4D /* MyFirstDrawing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFirstDrawing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F45AEF992024AFF40055FE4D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F45AEF9B2024AFF40055FE4D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -26,9 +47,18 @@
 		F45AEFA02024AFF40055FE4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F45AEFA32024AFF40055FE4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F45AEFA52024AFF40055FE4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC8ABCB4830203555546CDB3 /* Pods-MyFirstDrawingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstDrawingUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MyFirstDrawingUITests/Pods-MyFirstDrawingUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8F73BA4F22CF9751000175DB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				67ECFD3C25214EEA740C60DD /* Pods_MyFirstDrawing_MyFirstDrawingUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F45AEF932024AFF40055FE4D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -40,10 +70,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8F73BA5322CF9752000175DB /* MyFirstDrawingUITests */ = {
+			isa = PBXGroup;
+			children = (
+				8F73BA5C22CF98E1000175DB /* BrushToolView */,
+				8F73BA5622CF9752000175DB /* Info.plist */,
+			);
+			path = MyFirstDrawingUITests;
+			sourceTree = "<group>";
+		};
+		8F73BA5C22CF98E1000175DB /* BrushToolView */ = {
+			isa = PBXGroup;
+			children = (
+				8F73BA5D22D3C17D000175DB /* GroupPencilSizeViewUITests.swift */,
+				8F73BA5F22D52763000175DB /* GroupEraseSizeViewUITests.swift */,
+			);
+			path = BrushToolView;
+			sourceTree = "<group>";
+		};
 		A8B94F9CDD878115B2F61E19 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				86A898209FE7DD7EBADB512A /* Pods_MyFirstDrawing.framework */,
+				7458A27A2064F4F89B20787E /* Pods_MyFirstDrawing_MyFirstDrawingUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -53,6 +102,10 @@
 			children = (
 				3403A806E34BA094967AB066 /* Pods-MyFirstDrawing.debug.xcconfig */,
 				307FCACE138124000A38D648 /* Pods-MyFirstDrawing.release.xcconfig */,
+				87D26CAD899EDAD55A1ED971 /* Pods-MyFirstDrawingUITests.debug.xcconfig */,
+				FC8ABCB4830203555546CDB3 /* Pods-MyFirstDrawingUITests.release.xcconfig */,
+				8BAA618292C8D7E9FF92C010 /* Pods-MyFirstDrawing-MyFirstDrawingUITests.debug.xcconfig */,
+				A6DF926522F84EBBAE2AB753 /* Pods-MyFirstDrawing-MyFirstDrawingUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -61,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				F45AEF982024AFF40055FE4D /* MyFirstDrawing */,
+				8F73BA5322CF9752000175DB /* MyFirstDrawingUITests */,
 				F45AEF972024AFF40055FE4D /* Products */,
 				DA12E75EF9D5FEF182618BDD /* Pods */,
 				A8B94F9CDD878115B2F61E19 /* Frameworks */,
@@ -71,6 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				F45AEF962024AFF40055FE4D /* MyFirstDrawing.app */,
+				8F73BA5222CF9751000175DB /* MyFirstDrawingUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,6 +146,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8F73BA5122CF9751000175DB /* MyFirstDrawingUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8F73BA5B22CF9752000175DB /* Build configuration list for PBXNativeTarget "MyFirstDrawingUITests" */;
+			buildPhases = (
+				E8F31C987600353452E91B4C /* [CP] Check Pods Manifest.lock */,
+				8F73BA4E22CF9751000175DB /* Sources */,
+				8F73BA4F22CF9751000175DB /* Frameworks */,
+				8F73BA5022CF9751000175DB /* Resources */,
+				DA8CED1231556C4768D1636D /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8F73BA5822CF9752000175DB /* PBXTargetDependency */,
+			);
+			name = MyFirstDrawingUITests;
+			productName = MyFirstDrawingUITests;
+			productReference = 8F73BA5222CF9751000175DB /* MyFirstDrawingUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		F45AEF952024AFF40055FE4D /* MyFirstDrawing */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F45AEFA82024AFF40055FE4D /* Build configuration list for PBXNativeTarget "MyFirstDrawing" */;
@@ -100,7 +175,6 @@
 				F45AEF932024AFF40055FE4D /* Frameworks */,
 				F45AEF942024AFF40055FE4D /* Resources */,
 				C4129CAD9C04B13B6EAA546D /* [CP] Embed Pods Frameworks */,
-				7F11F80398B06CADBCD09EF3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -117,10 +191,15 @@
 		F45AEF8E2024AFF40055FE4D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "Stant 02";
 				TargetAttributes = {
+					8F73BA5122CF9751000175DB = {
+						CreatedOnToolsVersion = 10.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F45AEF952024AFF40055FE4D;
+					};
 					F45AEF952024AFF40055FE4D = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
@@ -141,11 +220,19 @@
 			projectRoot = "";
 			targets = (
 				F45AEF952024AFF40055FE4D /* MyFirstDrawing */,
+				8F73BA5122CF9751000175DB /* MyFirstDrawingUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8F73BA5022CF9751000175DB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F45AEF942024AFF40055FE4D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -159,21 +246,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7F11F80398B06CADBCD09EF3 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyFirstDrawing/Pods-MyFirstDrawing-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		B6C39A2E89B25DCD3AE4A839 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -198,7 +270,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-MyFirstDrawing/Pods-MyFirstDrawing-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-MyFirstDrawing/Pods-MyFirstDrawing-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/StantDrawing/StantDrawing.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -207,12 +279,61 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MyFirstDrawing/Pods-MyFirstDrawing-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyFirstDrawing/Pods-MyFirstDrawing-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DA8CED1231556C4768D1636D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MyFirstDrawing-MyFirstDrawingUITests/Pods-MyFirstDrawing-MyFirstDrawingUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/StantDrawing/StantDrawing.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StantDrawing.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MyFirstDrawing-MyFirstDrawingUITests/Pods-MyFirstDrawing-MyFirstDrawingUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E8F31C987600353452E91B4C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MyFirstDrawing-MyFirstDrawingUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8F73BA4E22CF9751000175DB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8F73BA6022D52763000175DB /* GroupEraseSizeViewUITests.swift in Sources */,
+				8F73BA5E22D3C17D000175DB /* GroupPencilSizeViewUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		F45AEF922024AFF40055FE4D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -223,6 +344,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8F73BA5822CF9752000175DB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F45AEF952024AFF40055FE4D /* MyFirstDrawing */;
+			targetProxy = 8F73BA5722CF9752000175DB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F45AEF9D2024AFF40055FE4D /* Main.storyboard */ = {
@@ -244,6 +373,47 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8F73BA5922CF9752000175DB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8BAA618292C8D7E9FF92C010 /* Pods-MyFirstDrawing-MyFirstDrawingUITests.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MyFirstDrawingUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stant.MyFirstDrawingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyFirstDrawing;
+			};
+			name = Debug;
+		};
+		8F73BA5A22CF9752000175DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A6DF926522F84EBBAE2AB753 /* Pods-MyFirstDrawing-MyFirstDrawingUITests.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MyFirstDrawingUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.stant.MyFirstDrawingUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MyFirstDrawing;
+			};
+			name = Release;
+		};
 		F45AEFA62024AFF40055FE4D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -384,6 +554,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8F73BA5B22CF9752000175DB /* Build configuration list for PBXNativeTarget "MyFirstDrawingUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8F73BA5922CF9752000175DB /* Debug */,
+				8F73BA5A22CF9752000175DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F45AEF912024AFF40055FE4D /* Build configuration list for PBXProject "MyFirstDrawing" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
