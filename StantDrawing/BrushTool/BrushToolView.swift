@@ -246,9 +246,9 @@ public class BrushToolView: UIView {
         let sizeSeparator   = CGSize(width: groupViewWidth - 20, height: 1)
         let frameSeparator  = CGRect.init(origin: originSeparator, size: sizeSeparator)
 
-        separatorView.frame = frameSeparator
+        separatorView.frame           = frameSeparator
         separatorView.backgroundColor = UIColor.black
-        separatorView.alpha = 0.2
+        separatorView.alpha           = 0.2
 
         // Group Pencil Buttons
         let groupPencilBtns = UIView()
@@ -265,6 +265,7 @@ public class BrushToolView: UIView {
         // GroupPencilSizeView Configs
         let height    = pencilIconView.frame.size.height + separatorView.frame.size.height + groupPencilBtns.frame.size.height
         let sizeGroup = CGSize(width: self.frame.width, height: height)
+        
         groupPencilSizeView.frame.size = sizeGroup
         groupPencilSizeView.isHidden   = true
         
@@ -304,13 +305,13 @@ public class BrushToolView: UIView {
         let sizeSeparator   = CGSize(width: groupViewWidth - 20, height: 1)
         let frameSeparator  = CGRect.init(origin: originSeparator, size: sizeSeparator)
         
-        separatorView.frame = frameSeparator
+        separatorView.frame           = frameSeparator
         separatorView.backgroundColor = UIColor.black
-        separatorView.alpha = 0.2
+        separatorView.alpha           = 0.2
         
         // Group Erase Buttons
         let groupEraseBtns = UIView()
-        let origin          = CGPoint(x: 0, y: separatorView.frame.origin.y + separatorView.frame.height + 10)
+        let origin         = CGPoint(x: 0, y: separatorView.frame.origin.y + separatorView.frame.height + 10)
         
         groupEraseBtns.frame.origin = origin
         
@@ -323,6 +324,7 @@ public class BrushToolView: UIView {
         // GroupPencilSizeView Configs
         let height    = eraseIconView.frame.size.height + separatorView.frame.size.height + groupEraseBtns.frame.size.height
         let sizeGroup = CGSize(width: self.frame.width, height: height)
+        
         groupEraseSizeView.frame.size = sizeGroup
         groupEraseSizeView.isHidden   = true
         
