@@ -415,21 +415,7 @@ public class BrushToolView: UIView {
             setButtonSizeAsNotClicked(button: button.uiButton)
         }
     }
-    
-    // TODO REMOVE
-    private func setAllGroupdPencilSizeButtonsAsNotClicked() {
-        groupPencilSizeButtons.forEach { button in
-            setButtonSizeAsNotClicked(button: button.uiButton)
-        }
-    }
-    
-    // TODO REMOVE
-    private func setAllGroupdEraseSizeButtonsAsNotClicked() {
-        groupEraseSizeButtons.forEach { button in
-            setButtonSizeAsNotClicked(button: button.uiButton)
-        }
-    }
-    
+ 
     private func setAllGroupdToolsButtonsAsNotClicked() {
         groupToolsButtons.forEach { button in
             setButtonAsNotClicked(button: button.uiButton)
@@ -497,14 +483,14 @@ public class BrushToolView: UIView {
     }
     
     @objc func pencilSize(_ sender: UIButton) {
-        setAllGroupdPencilSizeButtonsAsNotClicked()
+        setButtonsAsNotClicked(buttons: groupPencilSizeButtons)
         setButtonSizeAsClicked(button: sender)
 
         delegate?.changePencilSize(CGFloat(sender.tag))
     }
     
     @objc func eraserSize(_ sender: UIButton) {
-        setAllGroupdEraseSizeButtonsAsNotClicked()
+        setButtonsAsNotClicked(buttons: groupEraseSizeButtons)
         setButtonSizeAsClicked(button: sender)
         
         delegate?.changeEraserSize(CGFloat(sender.tag))
