@@ -18,23 +18,23 @@ class GroupEraseSizeViewUITests: XCTestCase {
         
         app.launch()
         
-        let btnErase = app.buttons["eraserfullIdentifier"]
-        btnErase.tap()
+        let buttonErase = app.buttons["eraserfullIdentifier"]
+        buttonErase.tap()
     }
     
     func testClickOnGroupEraseSizeViewAndShowAllButtons() {
         let eraseSizeReference = app.images.matching(identifier: "eraserfullSizeReferenceIdentifier")
         
-        let btnEraseSize1 = app.buttons["eraserSize1Identifier"]
-        let btnEraseSize2 = app.buttons["eraserSize2Identifier"]
-        let btnEraseSize3 = app.buttons["eraserSize3Identifier"]
-        let btnEraseSize4 = app.buttons["eraserSize4Identifier"]
-        let btnEraseSize5 = app.buttons["eraserSize5Identifier"]
-        let btnEraseSize6 = app.buttons["eraserSize6Identifier"]
+        let buttonEraseSize1 = app.buttons["eraserSize1Identifier"]
+        let buttonEraseSize2 = app.buttons["eraserSize2Identifier"]
+        let buttonEraseSize3 = app.buttons["eraserSize3Identifier"]
+        let buttonEraseSize4 = app.buttons["eraserSize4Identifier"]
+        let buttonEraseSize5 = app.buttons["eraserSize5Identifier"]
+        let buttonEraseSize6 = app.buttons["eraserSize6Identifier"]
         
-        let btns = [btnEraseSize1, btnEraseSize2, btnEraseSize3, btnEraseSize4, btnEraseSize5, btnEraseSize6]
+        let buttons = [buttonEraseSize1, buttonEraseSize2, buttonEraseSize3, buttonEraseSize4, buttonEraseSize5, buttonEraseSize6]
         
         XCTAssertTrue(eraseSizeReference.count == 1)
-        btns.forEach { btn in XCTAssertTrue(btn.exists) }
+        buttons.forEach { button in XCTAssertTrue(button.exists) }
     }
 }
