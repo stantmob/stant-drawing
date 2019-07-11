@@ -23,7 +23,7 @@ class GroupEraseSizeViewUITests: XCTestCase {
     }
     
     func testClickOnGroupEraseSizeViewAndShowAllButtons() {
-        let eraseSizeReference = app.images.matching(identifier: "eraserfullReferenceIdentifier")
+        let eraseSizeReference = app.images.matching(identifier: "eraserfullSizeReferenceIdentifier")
         
         let btnEraseSize1 = app.buttons["eraserSize1Identifier"]
         let btnEraseSize2 = app.buttons["eraserSize2Identifier"]
