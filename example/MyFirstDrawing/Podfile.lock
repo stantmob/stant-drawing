@@ -1,0 +1,16 @@
+PODS:
+  - StantDrawing (0.0.1)
+
+DEPENDENCIES:
+  - StantDrawing (from `../../StantDrawing.podspec`)
+
+EXTERNAL SOURCES:
+  StantDrawing:
+    :path: "../../StantDrawing.podspec"
+
+SPEC CHECKSUMS:
+  StantDrawing: 65b951cfc8aa281545b3a78941803bafd5375e3e
+
+PODFILE CHECKSUM: 73cdc3cfe325ebd34d2449920e63e323a6a746a9
+
+COCOAPODS: 1.7.3

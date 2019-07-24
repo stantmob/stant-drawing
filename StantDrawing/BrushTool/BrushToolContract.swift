@@ -8,14 +8,18 @@
 
 import Foundation
 
-protocol BrushToolContract {
+public protocol BrushToolContract {
     func moveCanvas()
     func erase()
     func draw()
     func undo()
-    func redo()
+    func redo()    
     func changePencilSize(_ size: CGFloat)
     func changeEraserSize(_ size: CGFloat)
+    func changeColor(_ color: String)
     func save()
     func cancel()
+    func getMessage() -> String
+    func getHexColor() -> String
+    func haveDrawingImage() -> Bool
 }

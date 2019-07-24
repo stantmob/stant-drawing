@@ -18,14 +18,16 @@ public class DrawingView: UIView {
     internal let baseContentView:    UIView         = UIView()
     private  let brushToolView:      BrushToolView  = BrushToolView()
     
-    private  let drawImage:                            UIImage
+    private  var drawImage:                            UIImage
     private  let placeholderImage:                     UIImage
     private  let placeholderImageWithLowAlpha:         UIImage
     private  let alphaForPlaceholderImageWithLowAlpha: CGFloat
+    private  var brushHexColor:                        String
+    private  var message:                              String
     internal let brushColor:                           UIColor
     
-    internal var pencilSize: CGFloat = 10.0
-    internal var eraseSize: CGFloat  = 30.0
+    internal var pencilSize: CGFloat = 5.0
+    internal var eraseSize: CGFloat  = 5.0
     
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -37,7 +39,9 @@ public class DrawingView: UIView {
                 placeholderImage:                     UIImage,
                 placeholderImageWithLowAlpha:         UIImage,
                 alphaForPlaceholderImageWithLowAlpha: CGFloat,
-                brushColor:                           UIColor
+                brushColor:                           UIColor,
+                brushHexColor:                        String,
+                message:                              String
         ) {
         self.drawingDelegate                      = drawingDelegate
         self.drawImage                            = drawImage
@@ -45,6 +49,8 @@ public class DrawingView: UIView {
         self.placeholderImageWithLowAlpha         = placeholderImageWithLowAlpha
         self.alphaForPlaceholderImageWithLowAlpha = alphaForPlaceholderImageWithLowAlpha
         self.brushColor                           = brushColor
+        self.brushHexColor                        = brushHexColor
+        self.message                              = message
         
         super.init(frame: frame)
         
@@ -68,6 +74,7 @@ public class DrawingView: UIView {
         baseContentView.contentMode = .scaleAspectFit
         
         zoomScrollView.addSubview(baseContentView)
+        
         self.addSubview(zoomScrollView)
         self.addSubview(brushToolView)
 
@@ -89,10 +96,10 @@ public class DrawingView: UIView {
     
     private func configureContentDrawingView() {
         contentDrawingView.frame       = frameForContentDrawingView()
-        contentDrawingView.contentMode = .scaleAspectFit
         
         if imageIsValid(drawImage) {
-            let resizedImage = resizeImage(drawImage, size: frameForContentDrawingView().size)
+            let resizedImage = resizeImage(drawImage, size: contentDrawingView.frame.size)
+            
             contentDrawingView.loadImage(resizedImage)
         }
     }
@@ -100,11 +107,13 @@ public class DrawingView: UIView {
     private func configurePlaceholderImages() {
         if imageIsValid(placeholderImage) {
             let imageView = UIImageView(frame: frameForContentDrawingView())
+            imageView.contentMode = .scaleAspectFit
             imageView.image = placeholderImage
             baseContentView.addSubview(imageView)
         }
         if imageIsValid(placeholderImageWithLowAlpha) {
             let imageView = UIImageView(frame: frameForContentDrawingView())
+            imageView.contentMode = .scaleAspectFit
             imageView.image           = placeholderImageWithLowAlpha
             imageView.backgroundColor = UIColor.clear
             imageView.alpha           = alphaForPlaceholderImageWithLowAlpha
@@ -132,7 +141,6 @@ public class DrawingView: UIView {
     
     
     // MARK: Image Utils
-    
     private func imageIsValid(_ image: UIImage) -> Bool {
         return image.size.width > 0 && image.size.height > 0
     }
@@ -185,13 +193,13 @@ extension DrawingView {
 // MARK: Extension for BrushToolContract protocol
 extension DrawingView: BrushToolContract {
     
-    func moveCanvas() {
+    public func moveCanvas() {
         startDragAndScrollOnZoomScrollView()
         enableUserInteractionOnZoomScrollView()
         disableUserInteractionOnContentDrawingView()
     }
     
-    func erase() {
+    public func erase() {
         contentDrawingView.drawTool  = ACEDrawingToolTypeEraser
         contentDrawingView.lineWidth = eraseSize
         
@@ -200,48 +208,84 @@ extension DrawingView: BrushToolContract {
         enableUserInteractionOnContentDrawingView()
     }
     
-    func draw() {
+    public func draw() {
         contentDrawingView.drawTool  = ACEDrawingToolTypePen
         contentDrawingView.lineWidth = pencilSize
         contentDrawingView.lineAlpha = 0.5
-        contentDrawingView.lineColor = brushColor
+        contentDrawingView.lineColor = UIColor(hex: brushHexColor)
+        
+        if let contentDrawing = contentDrawingView.image {
+            drawImage = contentDrawing
+        }
         
         stopDragAndScrollOnZoomScrollView()
         enableUserInteractionOnZoomScrollView()
         enableUserInteractionOnContentDrawingView()
     }
     
-    func undo() {
+    public func undo() {
         contentDrawingView.undoLatestStep()
     }
     
-    func redo() {
+    public func redo() {
         contentDrawingView.redoLatestStep()
     }
-
-    func changePencilSize(_ size: CGFloat) {
+    
+    public func changePencilSize(_ size: CGFloat) {
         pencilSize = size
         contentDrawingView.lineWidth = pencilSize
     }
     
-    func changeEraserSize(_ size: CGFloat) {
+    public func changeEraserSize(_ size: CGFloat) {
         eraseSize = size
         contentDrawingView.lineWidth = eraseSize
     }
-
-    func save() {
+    
+    public func changeColor(_ color: String) {
+                                
+        self.brushHexColor                = color
+        self.contentDrawingView.lineColor = UIColor(hex: color)
+        
+        stopDragAndScrollOnZoomScrollView()
+        enableUserInteractionOnZoomScrollView()
+        disableUserInteractionOnContentDrawingView()
+        
+        drawImage = UIImage()
+        
+        contentDrawingView.loadImage(drawImage)
+        brushToolView.groupToolsButtons.last?.uiButton.tintColor = UIColor(hex: color)
+    }
+    
+    public func getMessage() -> String {
+        return self.message
+    }
+    
+    public func getHexColor() -> String {
+        return brushHexColor
+    }
+    
+    public func haveDrawingImage() -> Bool {
+        if let contentDrawing = contentDrawingView.image {
+            return imageIsValid(contentDrawing)
+        }        
+        return imageIsValid(drawImage)
+    }
+    
+    public func save() {
         if let delegate = drawingDelegate {
-            let drawingImage = contentDrawingView.image!
-            delegate.save(drawingImage: drawingImage)
+            guard let drawingImage = contentDrawingView.image else {
+                self.drawingDelegate?.saveWithoutChanges()
+                return
+            }
+            delegate.save(drawingImage: drawingImage, drawingColor: brushHexColor)
         }
     }
     
-    func cancel(){
+    public func cancel(){
         if let delegate = drawingDelegate {
             delegate.cancel()
         }
     }
-
 }
 
 // MARK: Extension for UIScrollViewDelegate protocol

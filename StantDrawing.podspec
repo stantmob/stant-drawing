@@ -103,10 +103,10 @@ Pod::Spec.new do |s|
   #
 
   # s.resource  = "icon.png"
-   s.resources = "StantDrawing/**/*.png"
-  #s.resources = 'StantDrawing/**/*.{storyboard,xib}'
+#   s.resources = "StantDrawing/**/*.png"
+  s.resources = "StantDrawing/**/*.{storyboard,xib,png}"
   s.resource_bundle = {
-    s.name => 'StantDrawing/BrushTool/*.{xib}'
+    s.name => "StantDrawing/**/*.{xib,storyboard,png}"
   }
 
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
