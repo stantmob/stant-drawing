@@ -28,7 +28,8 @@ public struct Button {
     }
 }
 
-public class BrushToolView: UIView {
+public class BrushToolView: UIView, GroupSizeContract {
+
     var delegate: BrushToolContract?
     
     let blackHexColor            = "#000000"
@@ -56,13 +57,12 @@ public class BrushToolView: UIView {
     private let groupToolsView           = UIView()
     private var separatorView            = UIView()
     private let groupEndView             = UIView()
-    private let groupPencilSizeView      = UIView()
+    private var groupPencilSizeView      = UIView()
     private let groupEraseSizeView       = UIView()
-    private var groupSelectHexColorView: SelectColorView?
+    private lazy var groupSelectHexColorView = { return SelectColorView(frame: CGRect(x: 0, y: 0, width: 90, height: 500)) }()
     
     public  var groupToolsButtons      = [Button]()
     private var groupEndButtons        = [Button]()
-    private var groupPencilSizeButtons = [Button]()
     private var groupEraseSizeButtons  = [Button]()
     
     private let groupPencilSizeViewIdentifier     = "groupPencilSizeView"
@@ -91,7 +91,6 @@ public class BrushToolView: UIView {
     private func loadButtons() {
         loadGroupToolsButtons()
         loadGroupEndButtons()
-        loadGroupPencilSizeButtons()
         loadGroupEraseSizeButtons()
     }
     
@@ -129,37 +128,7 @@ public class BrushToolView: UIView {
         groupEndButtons.append(saveButton)
         groupEndButtons.append(cancelButton)
     }
-    
-    private func loadGroupPencilSizeButtons() {
-        let buttonSize1   = Button(imageName: "pencilSize1", imageColor: blackHexColor, selector: #selector(self.pencilSize))
-        let buttonSize2   = Button(imageName: "pencilSize2", imageColor: blackHexColor, selector: #selector(self.pencilSize))
-        let buttonSize3   = Button(imageName: "pencilSize3", imageColor: blackHexColor, selector: #selector(self.pencilSize))
-        let buttonSize4   = Button(imageName: "pencilSize4", imageColor: blackHexColor, selector: #selector(self.pencilSize))
-        let buttonSize5   = Button(imageName: "pencilSize5", imageColor: blackHexColor, selector: #selector(self.pencilSize))
-        let buttonSize6   = Button(imageName: "pencilSize6", imageColor: blackHexColor, selector: #selector(self.pencilSize))
-        
-        buttonSize1.uiButton.tag = 2
-        buttonSize2.uiButton.tag = 5
-        buttonSize3.uiButton.tag = 10
-        buttonSize4.uiButton.tag = 30
-        buttonSize5.uiButton.tag = 55
-        buttonSize6.uiButton.tag = 80
-        
-        buttonSize1.uiButton.frame.size = CGSize(width: 13, height: 13)
-        buttonSize2.uiButton.frame.size = CGSize(width: 18, height: 18)
-        buttonSize3.uiButton.frame.size = CGSize(width: 23, height: 23)
-        buttonSize4.uiButton.frame.size = CGSize(width: 28, height: 28)
-        buttonSize5.uiButton.frame.size = CGSize(width: 33, height: 33)
-        buttonSize6.uiButton.frame.size = CGSize(width: 37, height: 37)
-        
-        groupPencilSizeButtons.append(buttonSize1)
-        groupPencilSizeButtons.append(buttonSize2)
-        groupPencilSizeButtons.append(buttonSize3)
-        groupPencilSizeButtons.append(buttonSize4)
-        groupPencilSizeButtons.append(buttonSize5)
-        groupPencilSizeButtons.append(buttonSize6)
-    }
-    
+
     private func loadGroupEraseSizeButtons() {
         let buttonSize1   = Button(imageName: "eraserSize1", imageColor: blackHexColor, selector: #selector(self.eraserSize))
         let buttonSize2   = Button(imageName: "eraserSize2", imageColor: blackHexColor, selector: #selector(self.eraserSize))
@@ -211,9 +180,11 @@ public class BrushToolView: UIView {
     }
     
     private func configureGroupPencilSizeLayout(heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
-        configureGroupSizeLayout(groupButtons: groupPencilSizeButtons, groupSizeView: groupPencilSizeView, iconReferenceName: "pencil", heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
+        let groupPencilSizeView = GroupPencilSizeView()
         
-        setIdentifierForView(view: groupPencilSizeView, identifierName: groupPencilSizeViewIdentifier)
+        groupPencilSizeView.conf(delegate: self, bundle: bundle, rootGroupView: groupViewWidth, heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
+        
+        self.groupPencilSizeView = groupPencilSizeView
     }
     
     private func configureGroupEraseSizeLayout(heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
@@ -223,19 +194,14 @@ public class BrushToolView: UIView {
     }
     
     private func configureGroupSelectHexColorView(heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
-        groupSelectHexColorView = SelectColorView(frame: CGRect(x: 0,
-                                                                y: 0,
-                                                                width: 90,
-                                                                height: 500))
-        
-        let y     = (heightBaseToCenter - groupSelectHexColorView!.frame.height)
+        let y     = (heightBaseToCenter - groupSelectHexColorView.frame.height)
         let point = CGPoint(x: xBaseToCenter, y: y)
         
-        groupSelectHexColorView!.frame.origin = point
+        groupSelectHexColorView.frame.origin = point
         
-        setIdentifierForView(view: groupSelectHexColorView!, identifierName: groupSelectHexColorViewIdentifier)
+        setIdentifierForView(view: groupSelectHexColorView, identifierName: groupSelectHexColorViewIdentifier)
 
-        groupSelectHexColorView?.selectColorCollectionView.brushDelegate = delegate
+        groupSelectHexColorView.selectColorCollectionView.brushDelegate = delegate
     }
 
     private func configureGroupSizeLayout(groupButtons: [Button], groupSizeView: UIView, iconReferenceName: String, heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
@@ -377,15 +343,14 @@ public class BrushToolView: UIView {
     }
     
     private func buttonFrame(y: CGFloat, size: CGSize) -> CGRect {
-        
         if size == CGSize(width: 0, height: 0) {
             let x = (groupViewWidth - buttonWidth) / 2
             return CGRect(x: x, y: y, width: buttonWidth, height: buttonHeight)
-        } else {
-            let x = (groupViewWidth - size.width) / 2
-            let origin = CGPoint(x: x, y: y)
-            return CGRect(origin: origin, size: size)
         }
+        
+        let x = (groupViewWidth - size.width) / 2
+        let origin = CGPoint(x: x, y: y)
+        return CGRect(origin: origin, size: size)
     }
     
     private func setImageEdgeInsets(button: UIButton) {
@@ -455,22 +420,22 @@ public class BrushToolView: UIView {
     
     @objc func erase(_ sender: UIButton) {
         removeSubViews()
+        rootView.addSubview(groupEraseSizeView)
         
         setAllGroupdToolsButtonsAsNotClicked()
         setButtonAsClicked(button: sender)
 
-                rootView.addSubview(groupEraseSizeView)
         self.delegate?.erase()
     }
     
     @objc func drawOnCanvas(_ sender: UIButton) {
         removeSubViews()
+        rootView.addSubview(groupPencilSizeView)
         
         setAllGroupdToolsButtonsAsNotClicked()
         setButtonAsClicked(button: sender)
 
         delegate?.draw()
-        rootView.addSubview(groupPencilSizeView)
     }
     
     @objc func undo(_ sender: Any) {
@@ -483,12 +448,11 @@ public class BrushToolView: UIView {
     
     @objc func selectColor(_ sender: UIButton) {
         removeSubViews()
+        rootView.addSubview(groupSelectHexColorView)
         
         setAllGroupdToolsButtonsAsNotClicked()
         
         setButtonAsClicked(button: sender)
-
-        rootView.addSubview(groupSelectHexColorView!)
     }
     
     fileprivate func removeSubViews() {
@@ -506,11 +470,8 @@ public class BrushToolView: UIView {
         }
     }
     
-    @objc func pencilSize(_ sender: UIButton) {
-        setButtonsAsNotClicked(buttons: groupPencilSizeButtons)
-        setButtonSizeAsClicked(button: sender)
-
-        delegate?.changePencilSize(CGFloat(sender.tag))
+    public func pencilSize(_ size: CGFloat) {
+        delegate?.changePencilSize(size)
     }
     
     @objc func eraserSize(_ sender: UIButton) {
