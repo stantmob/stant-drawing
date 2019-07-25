@@ -58,15 +58,12 @@ public class BrushToolView: UIView, GroupSizeContract {
     private var separatorView            = UIView()
     private let groupEndView             = UIView()
     private var groupPencilSizeView      = UIView()
-    private let groupEraseSizeView       = UIView()
+    private var groupEraseSizeView       = UIView()
     private lazy var groupSelectHexColorView = { return SelectColorView(frame: CGRect(x: 0, y: 0, width: 90, height: 500)) }()
     
     public  var groupToolsButtons      = [Button]()
     private var groupEndButtons        = [Button]()
-    private var groupEraseSizeButtons  = [Button]()
     
-    private let groupPencilSizeViewIdentifier     = "groupPencilSizeView"
-    private let groupEraseSizeViewIdentifier      = "groupEraseSizeView"
     private let groupSelectHexColorViewIdentifier = "groupSelectHexColorView"
     
     required public init?(coder aDecoder: NSCoder) {
@@ -91,7 +88,6 @@ public class BrushToolView: UIView, GroupSizeContract {
     private func loadButtons() {
         loadGroupToolsButtons()
         loadGroupEndButtons()
-        loadGroupEraseSizeButtons()
     }
     
     private func configureLayouts(heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
@@ -128,37 +124,7 @@ public class BrushToolView: UIView, GroupSizeContract {
         groupEndButtons.append(saveButton)
         groupEndButtons.append(cancelButton)
     }
-
-    private func loadGroupEraseSizeButtons() {
-        let buttonSize1   = Button(imageName: "eraserSize1", imageColor: blackHexColor, selector: #selector(self.eraserSize))
-        let buttonSize2   = Button(imageName: "eraserSize2", imageColor: blackHexColor, selector: #selector(self.eraserSize))
-        let buttonSize3   = Button(imageName: "eraserSize3", imageColor: blackHexColor, selector: #selector(self.eraserSize))
-        let buttonSize4   = Button(imageName: "eraserSize4", imageColor: blackHexColor, selector: #selector(self.eraserSize))
-        let buttonSize5   = Button(imageName: "eraserSize5", imageColor: blackHexColor, selector: #selector(self.eraserSize))
-        let buttonSize6   = Button(imageName: "eraserSize6", imageColor: blackHexColor, selector: #selector(self.eraserSize))
-        
-        buttonSize1.uiButton.tag = 2
-        buttonSize2.uiButton.tag = 5
-        buttonSize3.uiButton.tag = 10
-        buttonSize4.uiButton.tag = 30
-        buttonSize5.uiButton.tag = 55
-        buttonSize6.uiButton.tag = 80
-        
-        buttonSize1.uiButton.frame.size = CGSize(width: 13, height: 13)
-        buttonSize2.uiButton.frame.size = CGSize(width: 18, height: 18)
-        buttonSize3.uiButton.frame.size = CGSize(width: 23, height: 23)
-        buttonSize4.uiButton.frame.size = CGSize(width: 28, height: 28)
-        buttonSize5.uiButton.frame.size = CGSize(width: 33, height: 33)
-        buttonSize6.uiButton.frame.size = CGSize(width: 37, height: 37)
-        
-        groupEraseSizeButtons.append(buttonSize1)
-        groupEraseSizeButtons.append(buttonSize2)
-        groupEraseSizeButtons.append(buttonSize3)
-        groupEraseSizeButtons.append(buttonSize4)
-        groupEraseSizeButtons.append(buttonSize5)
-        groupEraseSizeButtons.append(buttonSize6)
-    }
-    
+   
     private func configureGroupToolsLayout() {
         let origin = CGPoint(x: 0, y: 0)
         configureGroupLayout(buttons: groupToolsButtons, groupView: groupToolsView, groupViewOirigin: origin)
@@ -188,9 +154,11 @@ public class BrushToolView: UIView, GroupSizeContract {
     }
     
     private func configureGroupEraseSizeLayout(heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
-        configureGroupSizeLayout(groupButtons: groupEraseSizeButtons, groupSizeView: groupEraseSizeView, iconReferenceName: "eraserfull", heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
+        let groupEraseSizeView = GroupEraseSizeView()
         
-        setIdentifierForView(view: groupEraseSizeView, identifierName: groupEraseSizeViewIdentifier)
+        groupEraseSizeView.conf(delegate: self, bundle: bundle, rootGroupView: groupViewWidth, heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
+        
+        self.groupEraseSizeView = groupEraseSizeView
     }
     
     private func configureGroupSelectHexColorView(heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
@@ -202,73 +170,6 @@ public class BrushToolView: UIView, GroupSizeContract {
         setIdentifierForView(view: groupSelectHexColorView, identifierName: groupSelectHexColorViewIdentifier)
 
         groupSelectHexColorView.selectColorCollectionView.brushDelegate = delegate
-    }
-
-    private func configureGroupSizeLayout(groupButtons: [Button], groupSizeView: UIView, iconReferenceName: String, heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
-        // Icon
-        let iconView = createReferenceIconSizeView(iconReferenceName: iconReferenceName)
-        
-        // Separator
-        let yReference    = iconView.frame.origin.y + iconView.frame.height + 10
-        let separatorView = createSeparatorView(yReference: yReference)
-        
-        // Group Buttons
-        let yButtonsReference = separatorView.frame.origin.y + separatorView.frame.height + 10
-        let groupButtonsView  = configGroupButtonsView(groupButtons: groupButtons, yReference: yButtonsReference)
-        
-        // GroupSizeView Configs
-        let height    = iconView.frame.size.height + separatorView.frame.size.height + groupButtonsView.frame.size.height
-        let sizeGroup = CGSize(width: self.frame.width, height: height)
-        
-        groupSizeView.frame.size = sizeGroup
-        
-        groupSizeView.addSubview(iconView)
-        groupSizeView.addSubview(separatorView)
-        groupSizeView.addSubview(groupButtonsView)
-        
-        centrilizeVerticalView(view: groupSizeView, heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
-    }
-    
-    private func configGroupButtonsView(groupButtons: [Button], yReference: CGFloat) -> UIView {
-        let groupButtonsView = UIView()
-        let origin           = CGPoint(x: 0, y: yReference)
-        
-        groupButtonsView.frame.origin = origin
-        
-        configureGroupLayout(buttons: groupButtons, groupView: groupButtonsView, groupViewOirigin: origin, addAsSubview: false)
-        
-        setButtonsAsNotClicked(buttons: groupButtons)
-        
-        // Set the second SizeButton as Default
-        setButtonSizeAsClicked(button: groupButtons[1].uiButton)
-        
-        return groupButtonsView
-    }
-    
-    private func createReferenceIconSizeView(iconReferenceName: String) -> UIView {
-        let iconView = UIView()
-        
-        let originIconView = CGPoint(x: 0, y: 0)
-        let sizeIconView   = CGSize(width: groupViewWidth, height: 60)
-        let frameIconView  = CGRect.init(origin: originIconView, size: sizeIconView)
-        
-        iconView.frame              = frameIconView
-        iconView.backgroundColor    = backgroundGroupGrayColor
-        iconView.layer.cornerRadius = iconView.frame.width / 2
-        
-        let originIconImage = CGPoint(x: (groupViewWidth - 25) / 2, y: 18)
-        let sizeIconImage   = CGSize(width: 25, height: 25)
-        let frameIconImage  = CGRect.init(origin: originIconImage, size: sizeIconImage)
-        
-        let iconImageView = UIImageView(image: UIImage(named: iconReferenceName, in: bundle, compatibleWith: nil))
-        
-        let identifierName = "\(iconReferenceName)SizeReferenceIdentifier"
-        setIdentifierForView(view: iconImageView, identifierName: identifierName)
-        iconImageView.frame                   = frameIconImage
-        
-        iconView.addSubview(iconImageView)
-        
-        return iconView
     }
     
     private func createSeparatorView(yReference: CGFloat) -> UIView {
@@ -329,13 +230,6 @@ public class BrushToolView: UIView, GroupSizeContract {
             self.addSubview(groupView)
         }
         
-    }
-
-    private func centrilizeVerticalView(view: UIView, heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
-        let y     = (heightBaseToCenter - view.frame.height) / 2
-        let point = CGPoint(x: xBaseToCenter, y: y)
-        
-        view.frame.origin = point
     }
     
     private func nextButtonFrame(referencedY: CGFloat, size: CGSize) -> CGRect {
@@ -457,10 +351,10 @@ public class BrushToolView: UIView, GroupSizeContract {
     
     fileprivate func removeSubViews() {
         for subView in rootView.subviews {
-            if subView.accessibilityIdentifier == groupPencilSizeViewIdentifier {
+            if subView.accessibilityIdentifier == GroupPencilSizeView.groupPencilSizeViewIdentifier {
                 subView.removeFromSuperview()
             }
-            if subView.accessibilityIdentifier == groupEraseSizeViewIdentifier {
+            if subView.accessibilityIdentifier == GroupEraseSizeView.groupEraseSizeViewIdentifier {
                 subView.removeFromSuperview()
             }
             if subView.accessibilityIdentifier == groupSelectHexColorViewIdentifier {
@@ -474,11 +368,8 @@ public class BrushToolView: UIView, GroupSizeContract {
         delegate?.changePencilSize(size)
     }
     
-    @objc func eraserSize(_ sender: UIButton) {
-        setButtonsAsNotClicked(buttons: groupEraseSizeButtons)
-        setButtonSizeAsClicked(button: sender)
-        
-        delegate?.changeEraserSize(CGFloat(sender.tag))
+    public func eraserSize(_ size: CGFloat) {
+        delegate?.changeEraserSize(size)
     }
 
     @objc func save(_ sender: Any) {

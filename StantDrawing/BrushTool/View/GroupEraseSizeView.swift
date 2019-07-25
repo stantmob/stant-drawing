@@ -1,5 +1,5 @@
 //
-//  GroupPencilSizeView.swift
+//  GroupEraseSizeView.swift
 //  Pods-MyFirstDrawing
 //
 //  Created by Stant Macmini n04 on 25/07/19.
@@ -8,14 +8,9 @@
 import UIKit
 import Foundation
 
-public protocol GroupSizeContract {
-    func pencilSize(_ size: CGFloat)
-    func eraserSize(_ size: CGFloat)
-}
-
-public class GroupPencilSizeView: UIView {
+public class GroupEraseSizeView: UIView {
     
-    public static let groupPencilSizeViewIdentifier = "groupPencilSizeView"
+    public static let groupEraseSizeViewIdentifier = "groupEraseSizeView"
     private let backgroundGroupGrayColor      = UIColor(hex: "F0F0F0")
     private let blackHexColor            = "#000000"
     
@@ -24,7 +19,7 @@ public class GroupPencilSizeView: UIView {
     
     private var bundle = Bundle()
     
-    private var groupPencilSizeButtons = [Button]()
+    private var groupEraseSizeButtons = [Button]()
     
     private var groupViewWidth = CGFloat()
     
@@ -33,7 +28,7 @@ public class GroupPencilSizeView: UIView {
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     init() {
         let frame = CGRect(x: 0, y: 0, width: 100, height: 100)
         super.init(frame: frame)
@@ -46,20 +41,20 @@ public class GroupPencilSizeView: UIView {
         
         loadGroupPencilSizeButtons()
         
-//        self.groupPencilSizeButtons = groupPencilSizeButtons
+        //        self.groupPencilSizeButtons = groupPencilSizeButtons
         
-        configureGroupSizeLayout(groupButtons: groupPencilSizeButtons, groupSizeView: self, iconReferenceName: "pencil", heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
+        configureGroupSizeLayout(groupButtons: groupEraseSizeButtons, groupSizeView: self, iconReferenceName: "eraserfull", heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
         
-        setIdentifierForView(view: self, identifierName: GroupPencilSizeView.groupPencilSizeViewIdentifier)
+        setIdentifierForView(view: self, identifierName: GroupEraseSizeView.groupEraseSizeViewIdentifier)
     }
     
     private func loadGroupPencilSizeButtons() {
-        let buttonSize1   = Button(imageName: "pencilSize1", imageColor: blackHexColor, selector: #selector(pencilSize))
-        let buttonSize2   = Button(imageName: "pencilSize2", imageColor: blackHexColor, selector: #selector(pencilSize))
-        let buttonSize3   = Button(imageName: "pencilSize3", imageColor: blackHexColor, selector: #selector(pencilSize))
-        let buttonSize4   = Button(imageName: "pencilSize4", imageColor: blackHexColor, selector: #selector(pencilSize))
-        let buttonSize5   = Button(imageName: "pencilSize5", imageColor: blackHexColor, selector: #selector(pencilSize))
-        let buttonSize6   = Button(imageName: "pencilSize6", imageColor: blackHexColor, selector: #selector(pencilSize))
+        let buttonSize1   = Button(imageName: "eraserSize1", imageColor: blackHexColor, selector: #selector(eraserSize))
+        let buttonSize2   = Button(imageName: "eraserSize2", imageColor: blackHexColor, selector: #selector(eraserSize))
+        let buttonSize3   = Button(imageName: "eraserSize3", imageColor: blackHexColor, selector: #selector(eraserSize))
+        let buttonSize4   = Button(imageName: "eraserSize4", imageColor: blackHexColor, selector: #selector(eraserSize))
+        let buttonSize5   = Button(imageName: "eraserSize5", imageColor: blackHexColor, selector: #selector(eraserSize))
+        let buttonSize6   = Button(imageName: "eraserSize6", imageColor: blackHexColor, selector: #selector(eraserSize))
         
         buttonSize1.uiButton.tag = 2
         buttonSize2.uiButton.tag = 5
@@ -75,12 +70,12 @@ public class GroupPencilSizeView: UIView {
         buttonSize5.uiButton.frame.size = CGSize(width: 33, height: 33)
         buttonSize6.uiButton.frame.size = CGSize(width: 37, height: 37)
         
-        groupPencilSizeButtons.append(buttonSize1)
-        groupPencilSizeButtons.append(buttonSize2)
-        groupPencilSizeButtons.append(buttonSize3)
-        groupPencilSizeButtons.append(buttonSize4)
-        groupPencilSizeButtons.append(buttonSize5)
-        groupPencilSizeButtons.append(buttonSize6)
+        groupEraseSizeButtons.append(buttonSize1)
+        groupEraseSizeButtons.append(buttonSize2)
+        groupEraseSizeButtons.append(buttonSize3)
+        groupEraseSizeButtons.append(buttonSize4)
+        groupEraseSizeButtons.append(buttonSize5)
+        groupEraseSizeButtons.append(buttonSize6)
     }
     
     private func configureGroupSizeLayout(groupButtons: [Button], groupSizeView: UIView, iconReferenceName: String, heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
@@ -269,11 +264,11 @@ public class GroupPencilSizeView: UIView {
         
         button.tintColor = UIColor(hex: imageColor)
     }
-    
-    @objc func pencilSize(_ sender: UIButton) {
-        setButtonsAsNotClicked(buttons: groupPencilSizeButtons)
+
+    @objc func eraserSize(_ sender: UIButton) {
+        setButtonsAsNotClicked(buttons: groupEraseSizeButtons)
         setButtonSizeAsClicked(button: sender)
         
-        delegate?.pencilSize(CGFloat(sender.tag))
+        delegate?.eraserSize(CGFloat(sender.tag))
     }
 }
