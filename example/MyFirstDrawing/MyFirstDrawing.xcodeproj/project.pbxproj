@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		67ECFD3C25214EEA740C60DD /* Pods_MyFirstDrawing_MyFirstDrawingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7458A27A2064F4F89B20787E /* Pods_MyFirstDrawing_MyFirstDrawingUITests.framework */; };
 		77ADA3592CAA29EA9B1DAEB4 /* Pods_MyFirstDrawing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86A898209FE7DD7EBADB512A /* Pods_MyFirstDrawing.framework */; };
+		8F4C07FF22E902EA0049C1E6 /* BrushToolViewUiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F4C07FE22E902EA0049C1E6 /* BrushToolViewUiTests.swift */; };
 		8F73BA5E22D3C17D000175DB /* GroupPencilSizeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F73BA5D22D3C17D000175DB /* GroupPencilSizeViewUITests.swift */; };
 		8F73BA6022D52763000175DB /* GroupEraseSizeViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F73BA5F22D52763000175DB /* GroupEraseSizeViewUITests.swift */; };
 		F45AEF9A2024AFF40055FE4D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45AEF992024AFF40055FE4D /* AppDelegate.swift */; };
@@ -35,6 +36,7 @@
 		86A898209FE7DD7EBADB512A /* Pods_MyFirstDrawing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MyFirstDrawing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		87D26CAD899EDAD55A1ED971 /* Pods-MyFirstDrawingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstDrawingUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyFirstDrawingUITests/Pods-MyFirstDrawingUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		8BAA618292C8D7E9FF92C010 /* Pods-MyFirstDrawing-MyFirstDrawingUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MyFirstDrawing-MyFirstDrawingUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MyFirstDrawing-MyFirstDrawingUITests/Pods-MyFirstDrawing-MyFirstDrawingUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8F4C07FE22E902EA0049C1E6 /* BrushToolViewUiTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrushToolViewUiTests.swift; sourceTree = "<group>"; };
 		8F73BA5222CF9751000175DB /* MyFirstDrawingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyFirstDrawingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F73BA5622CF9752000175DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8F73BA5D22D3C17D000175DB /* GroupPencilSizeViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPencilSizeViewUITests.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 			children = (
 				8F73BA5D22D3C17D000175DB /* GroupPencilSizeViewUITests.swift */,
 				8F73BA5F22D52763000175DB /* GroupEraseSizeViewUITests.swift */,
+				8F4C07FE22E902EA0049C1E6 /* BrushToolViewUiTests.swift */,
 			);
 			path = BrushToolView;
 			sourceTree = "<group>";
@@ -330,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8F73BA6022D52763000175DB /* GroupEraseSizeViewUITests.swift in Sources */,
+				8F4C07FF22E902EA0049C1E6 /* BrushToolViewUiTests.swift in Sources */,
 				8F73BA5E22D3C17D000175DB /* GroupPencilSizeViewUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

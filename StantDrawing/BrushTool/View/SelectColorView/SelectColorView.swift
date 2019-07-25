@@ -85,19 +85,14 @@ public class SelectColorView: UIView {
         self.selectColorCollectionView.frame.size.width = 60
         self.selectColorCollectionView.frame.origin.x   = 10
     }
-    
-    public func showSelectColorGroup() {
-        self.viewWhole.isHidden   = false
-        self.contentView.isHidden = false
-        self.selectColorCollectionView.reloadData()
-    }
-    
-    public func hideSelectColorGroup() {
-        self.viewWhole.isHidden   = true 
-        self.contentView.isHidden = true
-    }
-    
+
     private func initalConfiguration() {
+        expandButton.accessibilityIdentifier = "expandButton"
+        
         viewWhole.layer.cornerRadius = 35
+        viewWhole.isHidden           = false
+        contentView.isHidden         = false
+        
+        selectColorCollectionView.reloadData()
     }
 }
