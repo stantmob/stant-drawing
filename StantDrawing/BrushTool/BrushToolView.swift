@@ -364,12 +364,14 @@ public class BrushToolView: UIView, GroupSizeContract {
         }
     }
     
-    public func pencilSize(_ size: CGFloat) {
-        delegate?.changePencilSize(size)
-    }
-    
-    public func eraserSize(_ size: CGFloat) {
-        delegate?.changeEraserSize(size)
+    public func selectSize(_ size: CGFloat, groupSize: GroupSizeType) {
+        switch groupSize {
+            
+        case .pencil:
+            delegate?.changePencilSize(size)
+        case .erase:
+            delegate?.changeEraserSize(size)
+        }
     }
 
     @objc func save(_ sender: Any) {
