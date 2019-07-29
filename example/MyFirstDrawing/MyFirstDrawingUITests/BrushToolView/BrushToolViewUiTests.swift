@@ -17,11 +17,9 @@ class BrushToolViewUiTests: XCTestCase {
         continueAfterFailure = false
         
         app.launch()
-        
-     
     }
     
-    func testGroupSizeViewAndEraseSizeViewToggleVisible() {
+    func testGroupToolsToggleVisible() {
         let buttonMove   = app.buttons["moveIdentifier"]
         let buttonPencil = app.buttons["pencilIdentifier"]
         let buttonErase  = app.buttons["eraserfullIdentifier"]
@@ -64,4 +62,3 @@ class BrushToolViewUiTests: XCTestCase {
         XCTAssertFalse(groupPencilSizeView.exists)
     }
 }
-
