@@ -225,8 +225,6 @@ public class GroupSizeView: UIView {
         groupView.frame              = frame
         groupView.backgroundColor    = backgroundGroupGrayColor
         groupView.layer.cornerRadius = groupView.frame.width / 2
-        
-        self.addSubview(groupView)
     }
     
     private func addButtonListener(_ button: UIButton, action: Selector) {
