@@ -193,6 +193,8 @@ public class GroupSizeView: UIView {
     }
 
     private func configureGroupLayout(buttons: [Button], groupView: UIView, groupViewOirigin: CGPoint) {
+        guard let lastUiButton = buttons.last?.uiButton else { return }
+        
         for (index, button) in buttons.enumerated() {
             let uiButton = button.uiButton
             let size     = uiButton.frame.size
@@ -215,8 +217,6 @@ public class GroupSizeView: UIView {
             
             groupView.addSubview(uiButton)
         }
-        
-        let lastUiButton = buttons.last!.uiButton
         
         let height = lastUiButton.frame.origin.y + lastUiButton.frame.height + 20
         let size   = CGSize(width: groupViewWidth, height: height)
