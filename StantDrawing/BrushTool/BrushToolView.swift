@@ -146,17 +146,13 @@ public class BrushToolView: UIView, GroupSizeContract {
     }
     
     private func configureGroupPencilSizeLayout(heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
-        let groupPencilSizeView = GroupPencilSizeView()
-        
-        groupPencilSizeView.conf(delegate: self, bundle: bundle, rootGroupView: groupViewWidth, heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
+        let groupPencilSizeView = GroupPencilSizeView(delegate: self, bundle: bundle, rootGroupView: groupViewWidth, heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
         
         self.groupPencilSizeView = groupPencilSizeView
     }
     
     private func configureGroupEraseSizeLayout(heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
-        let groupEraseSizeView = GroupEraseSizeView()
-        
-        groupEraseSizeView.conf(delegate: self, bundle: bundle, rootGroupView: groupViewWidth, heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
+        let groupEraseSizeView = GroupEraseSizeView(delegate: self, bundle: bundle, rootGroupView: groupViewWidth, heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
         
         self.groupEraseSizeView = groupEraseSizeView
     }
@@ -350,17 +346,14 @@ public class BrushToolView: UIView, GroupSizeContract {
     }
     
     fileprivate func removeSubViews() {
+        let identifiersToRemove = [GroupPencilSizeView.groupPencilSizeViewIdentifier, GroupEraseSizeView.groupEraseSizeViewIdentifier, groupSelectHexColorViewIdentifier]
+        
         for subView in rootView.subviews {
-            if subView.accessibilityIdentifier == GroupPencilSizeView.groupPencilSizeViewIdentifier {
-                subView.removeFromSuperview()
+            if let identifier = subView.accessibilityIdentifier {
+                if identifiersToRemove.contains(identifier) {
+                    subView.removeFromSuperview()
+                }
             }
-            if subView.accessibilityIdentifier == GroupEraseSizeView.groupEraseSizeViewIdentifier {
-                subView.removeFromSuperview()
-            }
-            if subView.accessibilityIdentifier == groupSelectHexColorViewIdentifier {
-                subView.removeFromSuperview()
-            }
-            
         }
     }
     

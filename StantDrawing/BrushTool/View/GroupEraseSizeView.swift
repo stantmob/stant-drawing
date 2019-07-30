@@ -15,8 +15,8 @@ public class GroupEraseSizeView: GroupSizeView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init() {
-        super.init(groupSizeType: .erase, iconReferenceName: "eraserfull", buttonSizeImageName: "eraserSize")
+    init(delegate: GroupSizeContract, bundle: Bundle, rootGroupView: CGFloat, heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {
+        super.init(groupSizeType: .erase, iconReferenceName: "eraserfull", buttonSizeImageName: "eraserSize", delegate: delegate, bundle: bundle, rootGroupView: rootGroupView, heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
         
         setIdentifierForView(view: self, identifierName: GroupEraseSizeView.groupEraseSizeViewIdentifier)
     }

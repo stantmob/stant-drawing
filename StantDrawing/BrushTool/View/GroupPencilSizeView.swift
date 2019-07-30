@@ -15,8 +15,8 @@ public class GroupPencilSizeView: GroupSizeView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init() {
-        super.init(groupSizeType: .pencil, iconReferenceName: "pencil", buttonSizeImageName: "pencilSize")
+    init(delegate: GroupSizeContract, bundle: Bundle, rootGroupView: CGFloat, heightBaseToCenter: CGFloat, xBaseToCenter: CGFloat) {        
+        super.init(groupSizeType: .pencil, iconReferenceName: "pencil", buttonSizeImageName: "pencilSize", delegate: delegate, bundle: bundle, rootGroupView: rootGroupView, heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
         
         setIdentifierForView(view: self, identifierName: GroupPencilSizeView.groupPencilSizeViewIdentifier)
     }
