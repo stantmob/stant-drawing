@@ -55,6 +55,8 @@ public class GroupSizeView: UIView {
         loadGroupPencilSizeButtons()
         
         configureGroupSizeLayout(groupButtons: groupSizeButtons, groupSizeView: self, iconReferenceName: iconReferenceName, heightBaseToCenter: heightBaseToCenter, xBaseToCenter: xBaseToCenter)
+        
+        
     }
 
     func setIdentifierForView(view: UIView, identifierName: String) {
@@ -62,12 +64,42 @@ public class GroupSizeView: UIView {
     }
     
     private func loadGroupPencilSizeButtons() {
-        let buttonSize1   = buildButton(buttonName: "1", sizeTool: 2, buttonWidth: 13, buttonHeight: 13)
-        let buttonSize2   = buildButton(buttonName: "2", sizeTool: 5, buttonWidth: 18, buttonHeight: 18)
-        let buttonSize3   = buildButton(buttonName: "3", sizeTool: 10, buttonWidth: 23, buttonHeight: 23)
-        let buttonSize4   = buildButton(buttonName: "4", sizeTool: 30, buttonWidth: 28, buttonHeight: 28)
-        let buttonSize5   = buildButton(buttonName: "5", sizeTool: 55, buttonWidth: 33, buttonHeight: 33)
-        let buttonSize6   = buildButton(buttonName: "6", sizeTool: 80, buttonWidth: 37, buttonHeight: 37)
+        let buttonSize1 = buildButton(buttonName: "1",
+                                      sizeTool: 2,
+                                      buttonWidth: 37,
+                                      buttonHeight: 37,
+                                      imageWidth: 13,
+                                      imageHeight: 13)
+        let buttonSize2 = buildButton(buttonName: "2",
+                                      sizeTool: 5,
+                                      buttonWidth: 37,
+                                      buttonHeight: 37,
+                                      imageWidth: 18,
+                                      imageHeight: 18)
+        let buttonSize3 = buildButton(buttonName: "3",
+                                      sizeTool: 10,
+                                      buttonWidth: 37,
+                                      buttonHeight: 37,
+                                      imageWidth: 23,
+                                      imageHeight: 23)
+        let buttonSize4 = buildButton(buttonName: "4",
+                                      sizeTool: 30,
+                                      buttonWidth: 37,
+                                      buttonHeight: 37,
+                                      imageWidth: 28,
+                                      imageHeight: 28)
+        let buttonSize5 = buildButton(buttonName: "5",
+                                      sizeTool: 55,
+                                      buttonWidth: 37,
+                                      buttonHeight: 37,
+                                      imageWidth: 33,
+                                      imageHeight: 33)
+        let buttonSize6 = buildButton(buttonName: "6",
+                                      sizeTool: 80,
+                                      buttonWidth: 37,
+                                      buttonHeight: 37,
+                                      imageWidth: 37,
+                                      imageHeight: 37)
 
         groupSizeButtons.append(buttonSize1)
         groupSizeButtons.append(buttonSize2)
@@ -77,9 +109,13 @@ public class GroupSizeView: UIView {
         groupSizeButtons.append(buttonSize6)
     }
     
-    private func buildButton(buttonName: String, sizeTool: Int, buttonWidth: Int, buttonHeight: Int) -> Button {
-        let blackHexColor = "#000000"
-        let buttonSize    = Button(imageName: "\(buttonSizeImageName)\(buttonName)", imageColor: blackHexColor, selector: #selector(selectSize))
+    private func buildButton(buttonName: String, sizeTool: Int, buttonWidth: Int, buttonHeight: Int, imageWidth: Int = 0, imageHeight: Int = 0) -> Button {
+        let blackHexColor = "#FFFFFF"
+        let buttonSize    = Button(imageName: "\(buttonSizeImageName)\(buttonName)",
+                                   imageColor: blackHexColor,
+                                   imageSize: CGSize(width: imageWidth,
+                                                     height: imageHeight),
+                                   selector: #selector(selectSize))
         
         buttonSize.uiButton.tag        = sizeTool
         buttonSize.uiButton.frame.size = CGSize(width: buttonWidth, height: buttonHeight)
@@ -133,10 +169,24 @@ public class GroupSizeView: UIView {
     private func setButtonsAsNotClicked(buttons: [Button]) {
         buttons.forEach { button in
             setButtonSizeAsNotClicked(button: button.uiButton)
+            
+            let generatedImage = UIImage.createBy(color: UIColor(hex: "606060"), size: button.imageSize!)
+            
+            button.uiButton.setImage(generatedImage, for: .normal)
+            
+            let difference = (button.uiButton.frame.height - button.imageSize!.height) / 2
+                
+            button.uiButton.imageEdgeInsets = UIEdgeInsetsMake(difference,
+                                                               difference,
+                                                               difference,
+                                                               difference)
+            
+            button.uiButton.imageView?.layer.cornerRadius = button.imageSize!.height / 2
+            
         }
     }
     private func setButtonSizeAsClicked(button: UIButton) {
-        let darkGray = UIColor(hex: "606060")
+        let darkGray = UIColor(hex: "FFFFFF")
         
         button.alpha              = 1
         button.layer.cornerRadius = button.frame.height / 2
@@ -144,13 +194,10 @@ public class GroupSizeView: UIView {
     }
     
     private func setButtonSizeAsNotClicked(button: UIButton) {
-        let darkGray = UIColor(hex: "606060")
-        
         button.alpha              = 0.4
         button.layer.cornerRadius = button.frame.height / 2
-        button.backgroundColor    = darkGray
+        button.backgroundColor    = .clear
     }
-    
     
     private func createReferenceIconSizeView(iconReferenceName: String) -> UIView {
         let iconView = UIView()
@@ -212,7 +259,7 @@ public class GroupSizeView: UIView {
             }
             
             setImageEdgeInsets(button: uiButton)
-            setButtonImage(button: uiButton, imageName: button.imageName, imageColor: button.imageColor)
+            setButtonImage(button: button, imageName: button.imageName, imageColor: button.imageColor)
             addButtonListener(uiButton, action: button.selector)
             
             groupView.addSubview(uiButton)
@@ -258,15 +305,18 @@ public class GroupSizeView: UIView {
         button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
-    private func setButtonImage(button: UIButton, imageName: String, imageColor: String) {
+    private func setButtonImage(button: Button, imageName: String, imageColor: String) {
         let selectColorIcon      = UIImage(named: imageName, in: bundle, compatibleWith: nil)
         let selectColorImageView = UIImageView()
-        
+
         selectColorImageView.image = selectColorIcon
-        
-    button.setImage(selectColorImageView.image?.withRenderingMode(.alwaysTemplate), for: .normal)
-        
-        button.tintColor = UIColor(hex: imageColor)
+
+        button.uiButton.setImage(selectColorImageView.image?.withRenderingMode(.alwaysTemplate), for: .normal)
+
+        button.uiButton.heightAnchor.constraint(equalToConstant: button.imageSize!.height).isActive = true
+        button.uiButton.widthAnchor.constraint(equalToConstant: button.imageSize!.width).isActive = true
+
+        button.uiButton.tintColor = UIColor(hex: imageColor)
     }
     
     @objc func selectSize(_ sender: UIButton) {
