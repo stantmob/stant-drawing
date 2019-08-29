@@ -13,11 +13,13 @@ public struct Button {
     let uiButton = UIButton()
     let imageName: String
     let imageColor: String
-    let selector : Selector
+    let imageSize: CGSize?
+    let selector: Selector
 
-    init(imageName: String, imageColor: String, selector: Selector) {
+    init(imageName: String, imageColor: String, imageSize: CGSize?, selector: Selector) {
         self.imageName  = imageName
         self.imageColor = imageColor
+        self.imageSize  = imageSize
         self.selector   = selector
         
         setUiButtonIdentifier()
@@ -52,13 +54,13 @@ public class BrushToolView: UIView, GroupSizeContract {
         return self.toolWidth - (self.toolInitX * 2)
     }()
     
-    private var rootView = UIView()
+    private var rootView            = UIView()
+    private let groupToolsView      = UIView()
+    private var separatorView       = UIView()
+    private let groupEndView        = UIView()
+    private var groupPencilSizeView = UIView()
+    private var groupEraseSizeView  = UIView()
     
-    private let groupToolsView           = UIView()
-    private var separatorView            = UIView()
-    private let groupEndView             = UIView()
-    private var groupPencilSizeView      = UIView()
-    private var groupEraseSizeView       = UIView()
     private lazy var groupSelectHexColorView = { return SelectColorView(frame: CGRect(x: 0, y: 0, width: 90, height: 500)) }()
     
     public  var groupToolsButtons      = [Button]()
@@ -101,13 +103,12 @@ public class BrushToolView: UIView, GroupSizeContract {
     
     private func loadGroupToolsButtons() {
                 
-        let moveButton  = Button(imageName: "move", imageColor: blackHexColor,   selector: #selector(self.moveCanvas))
-        let brushButton = Button(imageName: "pencil", imageColor: blackHexColor, selector: #selector(self.drawOnCanvas))
-        let eraseButton = Button(imageName: "eraserfull", imageColor: blackHexColor, selector: #selector(self.erase))
-        let undoButton  = Button(imageName: "undo", imageColor: blackHexColor,   selector: #selector(self.undo))
-        let redoButton  = Button(imageName: "redo", imageColor: blackHexColor,   selector: #selector(self.redo))
-        let colorButton = Button(imageName: "selectColor", imageColor: (delegate?.getHexColor())!, selector: #selector(self.selectColor))
-        
+        let moveButton  = Button(imageName: "move", imageColor: blackHexColor, imageSize: nil,   selector: #selector(self.moveCanvas))
+        let brushButton = Button(imageName: "pencil", imageColor: blackHexColor, imageSize: nil, selector: #selector(self.drawOnCanvas))
+        let eraseButton = Button(imageName: "eraserfull", imageColor: blackHexColor, imageSize: nil, selector: #selector(self.erase))
+        let undoButton  = Button(imageName: "undo", imageColor: blackHexColor, imageSize: nil,   selector: #selector(self.undo))
+        let redoButton  = Button(imageName: "redo", imageColor: blackHexColor, imageSize: nil,   selector: #selector(self.redo))
+        let colorButton = Button(imageName: "selectColor", imageColor: (delegate?.getHexColor())!, imageSize: nil, selector: #selector(self.selectColor))
         
         groupToolsButtons.append(moveButton)
         groupToolsButtons.append(brushButton)
@@ -118,8 +119,8 @@ public class BrushToolView: UIView, GroupSizeContract {
     }
     
     private func loadGroupEndButtons() {
-        let saveButton   = Button(imageName: "save", imageColor: "#00FF00", selector: #selector(self.save))
-        let cancelButton = Button(imageName: "cancel", imageColor: "#FF0000", selector: #selector(self.cancel))
+        let saveButton   = Button(imageName: "save", imageColor: "#00FF00", imageSize: nil, selector: #selector(self.save))
+        let cancelButton = Button(imageName: "cancel", imageColor: "#FF0000", imageSize: nil, selector: #selector(self.cancel))
         
         groupEndButtons.append(saveButton)
         groupEndButtons.append(cancelButton)
@@ -203,7 +204,7 @@ public class BrushToolView: UIView, GroupSizeContract {
             }
             
             setImageEdgeInsets(button: uiButton)
-            setButtonImage(button: uiButton, imageName: button.imageName, imageColor: button.imageColor)
+            setButtonImage(button: button, imageName: button.imageName, imageColor: button.imageColor)
             addButtonListener(uiButton, action: button.selector)
 
             groupView.addSubview(uiButton)
@@ -247,14 +248,25 @@ public class BrushToolView: UIView, GroupSizeContract {
         button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     }
     
-    private func setButtonImage(button: UIButton, imageName: String, imageColor: String) {
+    private func setButtonImage(button: Button, imageName: String, imageColor: String) {
+        let uiButton = button.uiButton
+
         let selectColorIcon      = UIImage(named: imageName, in: bundle, compatibleWith: nil)
         let selectColorImageView = UIImageView()
+        if let imageSize = button.imageSize {
+            selectColorImageView.frame.size = imageSize
+        }
+
         selectColorImageView.image = selectColorIcon
-        
-        button.setImage(selectColorImageView.image?.withRenderingMode(.alwaysTemplate), for: .normal)
-        
-        button.tintColor = UIColor(hex: imageColor)
+
+        uiButton.setImage(selectColorImageView.image?.withRenderingMode(.alwaysTemplate), for: .normal)
+
+        uiButton.tintColor = UIColor(hex: imageColor)
+
+        if let imageSize = button.imageSize {
+            uiButton.imageView?.frame.size = imageSize
+        }
+
     }
     
     private func addButtonListener(_ button: UIButton, action: Selector) {
