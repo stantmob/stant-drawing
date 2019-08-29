@@ -253,8 +253,8 @@ public class BrushToolView: UIView, GroupSizeContract {
 
         let selectColorIcon      = UIImage(named: imageName, in: bundle, compatibleWith: nil)
         let selectColorImageView = UIImageView()
-        if button.imageSize != nil {
-            selectColorImageView.frame.size = button.imageSize!
+        if let imageSize = button.imageSize {
+            selectColorImageView.frame.size = imageSize
         }
 
         selectColorImageView.image = selectColorIcon
@@ -263,9 +263,10 @@ public class BrushToolView: UIView, GroupSizeContract {
 
         uiButton.tintColor = UIColor(hex: imageColor)
 
-        guard let imageSize = button.imageSize else { return }
+        if let imageSize = button.imageSize {
+            uiButton.imageView?.frame.size = imageSize
+        }
 
-        uiButton.imageView?.frame.size = imageSize
     }
     
     private func addButtonListener(_ button: UIButton, action: Selector) {
