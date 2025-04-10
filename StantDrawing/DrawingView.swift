@@ -144,15 +144,12 @@ public class DrawingView: UIView {
     }
     
     private func resizeImage(_ image: UIImage, size: CGSize) -> UIImage? {
-        UIGraphicsBeginImageContext(size)
-        image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let renderer = UIGraphicsImageRenderer(size: size)
         
-        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return newImage
+        return renderer.image { context in
+            image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        }
     }
-    
 }
 
 // MARK: Enable/Disable UserInteraction on ContentDrawingView
